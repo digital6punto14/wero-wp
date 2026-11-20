@@ -20,12 +20,12 @@ final class Fields {
 	 *
 	 * @param int    $post_id Contenuto.
 	 * @param string $name    Nome del campo.
-	 * @param mixed  $default Valore se vuoto.
+	 * @param mixed  $fallback Valore se vuoto.
 	 * @return mixed
 	 */
-	public static function post( int $post_id, string $name, $default = '' ) {
+	public static function post( int $post_id, string $name, $fallback = '' ) {
 		$v = function_exists( 'get_field' ) ? get_field( $name, $post_id, false ) : get_post_meta( $post_id, $name, true );
-		return ( null === $v || '' === $v || false === $v || array() === $v ) ? $default : $v;
+		return ( null === $v || '' === $v || false === $v || array() === $v ) ? $fallback : $v;
 	}
 
 	/**
@@ -33,12 +33,12 @@ final class Fields {
 	 *
 	 * @param \WP_Term $term    Termine.
 	 * @param string   $name    Nome del campo.
-	 * @param mixed    $default Valore se vuoto.
+	 * @param mixed    $fallback Valore se vuoto.
 	 * @return mixed
 	 */
-	public static function term( \WP_Term $term, string $name, $default = '' ) {
+	public static function term( \WP_Term $term, string $name, $fallback = '' ) {
 		$v = function_exists( 'get_field' ) ? get_field( $name, $term, false ) : get_term_meta( $term->term_id, $name, true );
-		return ( null === $v || '' === $v || false === $v ) ? $default : $v;
+		return ( null === $v || '' === $v || false === $v ) ? $fallback : $v;
 	}
 
 	/**

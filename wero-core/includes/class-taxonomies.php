@@ -71,7 +71,7 @@ final class Taxonomies {
 			static function ( \WP_Term $a, \WP_Term $b ): int {
 				$oa = (int) Fields::term( $a, 'ordine', 0 );
 				$ob = (int) Fields::term( $b, 'ordine', 0 );
-				return $oa <=> $ob ?: strcmp( $a->name, $b->name );
+				return 0 !== ( $oa <=> $ob ) ? ( $oa <=> $ob ) : strcmp( $a->name, $b->name );
 			}
 		);
 		return $terms;

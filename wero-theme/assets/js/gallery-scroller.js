@@ -9,6 +9,10 @@
   document.querySelectorAll('.wp-block-gallery.is-style-gallery-scroller').forEach(function (row) {
     if (row.dataset.weroScroller) return;
     row.dataset.weroScroller = '1';
+    /* raggiungibile e scorrevole anche da tastiera (frecce sinistra/destra) */
+    if (!row.hasAttribute('tabindex')) row.tabIndex = 0;
+    row.setAttribute('role', 'region');
+    if (!row.getAttribute('aria-label')) row.setAttribute('aria-label', 'Foto a scorrimento');
     var nav = document.createElement('div');
     nav.className = 'wero-scroller-nav';
     nav.innerHTML =

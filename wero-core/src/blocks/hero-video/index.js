@@ -6,7 +6,7 @@ import metadata from './block.json';
 import './style.css';
 
 const TEMPLATE = [
-	[ 'core/heading', { level: 1, className: 'wero-hero__title', textColor: 'white', fontSize: 'hero', content: __( 'Titolo', 'wero-core' ) } ],
+	[ 'core/heading', { level: 1, className: 'is-style-heading-gradient wero-hero__title', fontSize: 'hero', content: __( 'Titolo', 'wero-core' ) } ],
 	[ 'core/paragraph', { className: 'wero-hero__lead', content: __( 'Testo introduttivo.', 'wero-core' ) } ],
 	[ 'core/buttons', { className: 'wero-hero__actions' }, [ [ 'core/button', { className: 'wero-play', text: __( 'Guarda il video', 'wero-core' ), url: '#guarda' } ] ] ],
 ];

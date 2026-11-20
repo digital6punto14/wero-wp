@@ -87,10 +87,15 @@ final class Editor {
 	 * @return array<string, mixed>
 	 */
 	public static function related_query( array $query, $block ): array {
-		$class = (string) ( $block->context['query']['className'] ?? '' );
+		$class      = (string) ( $block->context['query']['className'] ?? '' );
 		$is_related = str_contains( (string) ( $block->parsed_block['attrs']['className'] ?? '' ), 'wero-scroll-mobile' );
 		if ( ( $is_related || str_contains( $class, 'wero-related' ) ) && is_singular( 'progetto' ) ) {
 			$query['post__not_in'] = array_merge( (array) ( $query['post__not_in'] ?? array() ), array( get_queried_object_id() ) );
+			// Stesso ordine della sfera in home (campo Ordine), non gli ultimi creati.
+			$query['orderby'] = array(
+				'menu_order' => 'ASC',
+				'date'       => 'DESC',
+			);
 		}
 		return $query;
 	}
@@ -108,7 +113,7 @@ final class Editor {
 		if ( '' !== trim( $content ) || ! $post_id || 'progetto' !== get_post_type( $post_id ) ) {
 			return $content;
 		}
-		$card = Fields::image( Fields::post( $post_id, 'immagine_card', 0 ), 'large', array( 'alt' => '' ) );
+		$card  = Fields::image( Fields::post( $post_id, 'immagine_card', 0 ), 'large', array( 'alt' => '' ) );
 		$world = Taxonomies::world_of( $post_id );
 		$style = $world ? (string) Fields::term( $world, 'stile', 'scuro' ) : 'scuro';
 		$inner = $card ? $card : '<span class="wero-ph wero-ph--' . esc_attr( $style ) . '" aria-hidden="true"></span>';

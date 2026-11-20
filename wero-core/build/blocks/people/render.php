@@ -41,11 +41,22 @@ $wero_heading = (string) ( $attributes['heading'] ?? '' );
 			continue;
 		}
 		$wero_role = implode( ', ', array_filter( array( (string) Fields::post( $wero_pid, 'ruolo' ), (string) Fields::post( $wero_pid, 'ente' ) ) ) );
-		$wero_pic  = get_the_post_thumbnail( $wero_pid, 'thumbnail', array( 'class' => 'wero-people__avatar', 'alt' => '' ) );
+		$wero_pic  = get_the_post_thumbnail(
+			$wero_pid,
+			'thumbnail',
+			array(
+				'class' => 'wero-people__avatar',
+				'alt'   => '',
+			)
+		);
 		?>
 		<li>
 			<?php echo $wero_pic ? $wero_pic : '<span class="wero-people__avatar" aria-hidden="true"></span>'; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
-			<div><strong><?php echo esc_html( get_the_title( $wero_pid ) ); ?></strong><?php if ( $wero_role ) : ?><span><?php echo esc_html( $wero_role ); ?></span><?php endif; ?></div>
+			<div><strong><?php echo esc_html( get_the_title( $wero_pid ) ); ?></strong>
+			<?php
+			if ( $wero_role ) :
+				?>
+				<span><?php echo esc_html( $wero_role ); ?></span><?php endif; ?></div>
 		</li>
 	<?php endforeach; ?>
 </ul>

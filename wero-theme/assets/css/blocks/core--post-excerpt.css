@@ -1,3 +1,8 @@
 .wero-article-lead { max-width: 46ch; }
 .wero-article-lead .wp-block-post-excerpt__more-text { display: none; }
 .wero-article-head .wero-article-title { max-width: 16ch; margin-top: -8px; }
+
+/* testata dei progetti: stessi spazi dell'originale (barra → titolo → testo → contenuto) */
+.wero-article-top > * + * { margin-block-start: clamp(28px, 4vw, 48px) !important; }
+.wero-article-top > .yoast-breadcrumbs + * { margin-block-start: 12px !important; }
+.wero-article-head > * + * { margin-block-start: 22px !important; }

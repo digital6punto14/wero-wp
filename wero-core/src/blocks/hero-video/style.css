@@ -9,7 +9,8 @@
 .wero-hero__content { position: relative; width: 100%; padding: calc(var(--wp--custom--nav-height, 76px) + 40px) 0 clamp(56px, 9vh, 104px); transition: opacity .6s ease; }
 .wero-hero__inner { max-width: var(--wp--style--global--content-size, 1184px); margin: 0 auto; padding: 0 var(--wp--custom--gutter, 24px); box-sizing: content-box; }
 .wero-hero__inner > * + * { margin-block-start: 18px; }
-.wero-hero__title { max-width: 14ch; color: #fff; }
+.wero-hero__title { max-width: 14ch; }
+.wero-hero__title:not(.is-style-heading-gradient) { color: #fff; }
 .wero-hero__lead { font-size: clamp(17px, 1.3vw, 19px); max-width: 40ch; color: rgba(255, 255, 255, .88); }
 .wero-hero__actions { margin-top: 26px !important; }
 .wero-hero__note { margin-top: 14px; min-height: 1.4em; font-size: 15px; color: rgba(255, 255, 255, .85); }

@@ -11,8 +11,8 @@
 $wero_img = get_theme_file_uri( 'assets/images/patterns/' );
 ?>
 <!-- wp:wero/hero-video {"align":"full","poster":"<?php echo esc_url( $wero_img . 'showreel-poster.webp' ); ?>"} -->
-<!-- wp:heading {"level":1,"className":"wero-hero__title","fontSize":"hero","textColor":"white","style":{"typography":{"lineHeight":"1","letterSpacing":"-0.04em"}}} -->
-<h1 class="wp-block-heading wero-hero__title has-white-color has-text-color has-hero-font-size" style="letter-spacing:-0.04em;line-height:1">Il primo Robot Communication Studio</h1>
+<!-- wp:heading {"level":1,"className":"is-style-heading-gradient wero-hero__title","fontSize":"hero","style":{"typography":{"lineHeight":"1","letterSpacing":"-0.04em"}}} -->
+<h1 class="wp-block-heading is-style-heading-gradient wero-hero__title has-hero-font-size" style="letter-spacing:-0.04em;line-height:1">Il primo Robot Communication Studio</h1>
 <!-- /wp:heading -->
 
 <!-- wp:paragraph {"className": "wero-hero__lead"} -->

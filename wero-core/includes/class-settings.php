@@ -29,6 +29,7 @@ final class Settings {
 		add_action( 'rest_api_init', array( __CLASS__, 'register_setting' ) );
 		add_action( 'admin_menu', array( __CLASS__, 'menu' ) );
 		add_filter( 'plugin_action_links_' . plugin_basename( FILE ), array( __CLASS__, 'action_link' ) );
+		add_filter( 'option_' . self::OPTION, array( __CLASS__, 'with_defaults' ) );
 	}
 
 	/**
@@ -39,37 +40,185 @@ final class Settings {
 	public static function fields(): array {
 		return array(
 			// Organizzazione.
-			'org_name'        => array( 'type' => 'text', 'default' => 'WeRo', 'label' => __( 'Nome', 'wero-core' ), 'section' => 'org' ),
-			'org_alternate'   => array( 'type' => 'text', 'default' => 'WeRo Robot Communication Studio', 'label' => __( 'Nome esteso', 'wero-core' ), 'section' => 'org' ),
-			'org_description' => array( 'type' => 'textarea', 'default' => 'Il primo Robot Communication Studio: un ecosistema di partner tra ricerca, business, comunicazione e creatività. Joint venture tra 6.14 e Omnicom Advertising.', 'label' => __( 'Descrizione', 'wero-core' ), 'section' => 'org', 'help' => __( 'Usata nei dati strutturati (Yoast) e dagli agenti AI.', 'wero-core' ) ),
-			'email'           => array( 'type' => 'email', 'default' => 'contact@we-ro.it', 'label' => __( 'Email contatti', 'wero-core' ), 'section' => 'org', 'help' => __( 'Compare nel footer e nei dati strutturati.', 'wero-core' ) ),
-			'linkedin'        => array( 'type' => 'url', 'default' => 'https://www.linkedin.com/', 'label' => __( 'Pagina LinkedIn', 'wero-core' ), 'section' => 'org' ),
-			'copyright'       => array( 'type' => 'text', 'default' => 'WeRo, Robot Communication Studio', 'label' => __( 'Testo del copyright', 'wero-core' ), 'section' => 'org', 'help' => __( 'Nel footer diventa “© anno corrente” seguito da questo testo.', 'wero-core' ) ),
+			'org_name'        => array(
+				'type'    => 'text',
+				'default' => 'WeRo',
+				'label'   => __( 'Nome', 'wero-core' ),
+				'section' => 'org',
+			),
+			'org_alternate'   => array(
+				'type'    => 'text',
+				'default' => 'WeRo Robot Communication Studio',
+				'label'   => __( 'Nome esteso', 'wero-core' ),
+				'section' => 'org',
+			),
+			'org_description' => array(
+				'type'    => 'textarea',
+				'default' => 'Il primo Robot Communication Studio: un ecosistema di partner tra ricerca, business, comunicazione e creatività. Joint venture tra 6.14 e Omnicom Advertising.',
+				'label'   => __( 'Descrizione', 'wero-core' ),
+				'section' => 'org',
+				'help'    => __( 'Usata nei dati strutturati (Yoast) e dagli agenti AI.', 'wero-core' ),
+			),
+			'email'           => array(
+				'type'    => 'email',
+				'default' => 'contact@we-ro.it',
+				'label'   => __( 'Email contatti', 'wero-core' ),
+				'section' => 'org',
+				'help'    => __( 'Compare nel footer e nei dati strutturati.', 'wero-core' ),
+			),
+			'linkedin'        => array(
+				'type'    => 'url',
+				'default' => 'https://www.linkedin.com/',
+				'label'   => __( 'Pagina LinkedIn', 'wero-core' ),
+				'section' => 'org',
+			),
+			'copyright'       => array(
+				'type'    => 'text',
+				'default' => 'WeRo, Robot Communication Studio',
+				'label'   => __( 'Testo del copyright', 'wero-core' ),
+				'section' => 'org',
+				'help'    => __( 'Nel footer diventa “© anno corrente” seguito da questo testo.', 'wero-core' ),
+			),
 			// Joint venture.
-			'founder1_name'   => array( 'type' => 'text', 'default' => '6.14 S.r.l.', 'label' => __( 'Founder 1 – ragione sociale', 'wero-core' ), 'section' => 'jv' ),
-			'founder1_url'    => array( 'type' => 'url', 'default' => 'https://6punto14.com/', 'label' => __( 'Founder 1 – sito', 'wero-core' ), 'section' => 'jv' ),
-			'founder1_street' => array( 'type' => 'text', 'default' => 'Via Don Bosco 31', 'label' => __( 'Founder 1 – indirizzo', 'wero-core' ), 'section' => 'jv' ),
-			'founder1_postal' => array( 'type' => 'text', 'default' => '20139', 'label' => __( 'Founder 1 – CAP', 'wero-core' ), 'section' => 'jv' ),
-			'founder1_city'   => array( 'type' => 'text', 'default' => 'Milano', 'label' => __( 'Founder 1 – città', 'wero-core' ), 'section' => 'jv' ),
-			'founder1_vat'    => array( 'type' => 'text', 'default' => '07376100967', 'label' => __( 'Founder 1 – P.IVA', 'wero-core' ), 'section' => 'jv' ),
-			'founder2_name'   => array( 'type' => 'text', 'default' => 'Omnicom Advertising', 'label' => __( 'Founder 2 – nome', 'wero-core' ), 'section' => 'jv' ),
-			'founder2_url'    => array( 'type' => 'url', 'default' => 'https://www.omnicomgroup.com/', 'label' => __( 'Founder 2 – sito', 'wero-core' ), 'section' => 'jv' ),
+			'founder1_name'   => array(
+				'type'    => 'text',
+				'default' => '6.14 S.r.l.',
+				'label'   => __( 'Founder 1 – ragione sociale', 'wero-core' ),
+				'section' => 'jv',
+			),
+			'founder1_url'    => array(
+				'type'    => 'url',
+				'default' => 'https://6punto14.com/',
+				'label'   => __( 'Founder 1 – sito', 'wero-core' ),
+				'section' => 'jv',
+			),
+			'founder1_street' => array(
+				'type'    => 'text',
+				'default' => 'Via Don Bosco 31',
+				'label'   => __( 'Founder 1 – indirizzo', 'wero-core' ),
+				'section' => 'jv',
+			),
+			'founder1_postal' => array(
+				'type'    => 'text',
+				'default' => '20139',
+				'label'   => __( 'Founder 1 – CAP', 'wero-core' ),
+				'section' => 'jv',
+			),
+			'founder1_city'   => array(
+				'type'    => 'text',
+				'default' => 'Milano',
+				'label'   => __( 'Founder 1 – città', 'wero-core' ),
+				'section' => 'jv',
+			),
+			'founder1_vat'    => array(
+				'type'    => 'text',
+				'default' => '07376100967',
+				'label'   => __( 'Founder 1 – P.IVA', 'wero-core' ),
+				'section' => 'jv',
+			),
+			'founder2_name'   => array(
+				'type'    => 'text',
+				'default' => 'Omnicom Advertising',
+				'label'   => __( 'Founder 2 – nome', 'wero-core' ),
+				'section' => 'jv',
+			),
+			'founder2_url'    => array(
+				'type'    => 'url',
+				'default' => 'https://www.omnicomgroup.com/',
+				'label'   => __( 'Founder 2 – sito', 'wero-core' ),
+				'section' => 'jv',
+			),
 			// Aspetto (ThemeBridge).
-			'color_pink'      => array( 'type' => 'color', 'default' => '', 'label' => __( 'Colore rosa', 'wero-core' ), 'section' => 'look', 'help' => __( 'Vuoto = colore del tema (#ff3f7a). Cambia anche la sfumatura.', 'wero-core' ) ),
-			'color_magenta'   => array( 'type' => 'color', 'default' => '', 'label' => __( 'Colore magenta', 'wero-core' ), 'section' => 'look', 'help' => __( 'Vuoto = colore del tema (#ff00c7).', 'wero-core' ) ),
-			'color_ink'       => array( 'type' => 'color', 'default' => '', 'label' => __( 'Colore inchiostro (testo e fondi scuri)', 'wero-core' ), 'section' => 'look', 'help' => __( 'Vuoto = colore del tema (#15121a).', 'wero-core' ) ),
-			'color_paper'     => array( 'type' => 'color', 'default' => '', 'label' => __( 'Colore di fondo', 'wero-core' ), 'section' => 'look', 'help' => __( 'Vuoto = colore del tema (#f4f2e9).', 'wero-core' ) ),
-			'font'            => array( 'type' => 'select', 'default' => 'theme', 'label' => __( 'Font del sito', 'wero-core' ), 'section' => 'look', 'choices' => array( 'theme' => __( 'Quello del tema (Space Grotesk)', 'wero-core' ), 'system' => __( 'Font di sistema', 'wero-core' ) ) ),
+			'color_pink'      => array(
+				'type'    => 'color',
+				'default' => '',
+				'label'   => __( 'Colore rosa', 'wero-core' ),
+				'section' => 'look',
+				'help'    => __( 'Vuoto = colore del tema (#ff3f7a). Cambia anche la sfumatura.', 'wero-core' ),
+			),
+			'color_magenta'   => array(
+				'type'    => 'color',
+				'default' => '',
+				'label'   => __( 'Colore magenta', 'wero-core' ),
+				'section' => 'look',
+				'help'    => __( 'Vuoto = colore del tema (#ff00c7).', 'wero-core' ),
+			),
+			'color_ink'       => array(
+				'type'    => 'color',
+				'default' => '',
+				'label'   => __( 'Colore inchiostro (testo e fondi scuri)', 'wero-core' ),
+				'section' => 'look',
+				'help'    => __( 'Vuoto = colore del tema (#15121a).', 'wero-core' ),
+			),
+			'color_paper'     => array(
+				'type'    => 'color',
+				'default' => '',
+				'label'   => __( 'Colore di fondo', 'wero-core' ),
+				'section' => 'look',
+				'help'    => __( 'Vuoto = colore del tema (#f4f2e9).', 'wero-core' ),
+			),
+			'font'            => array(
+				'type'    => 'select',
+				'default' => 'theme',
+				'label'   => __( 'Font del sito', 'wero-core' ),
+				'section' => 'look',
+				'choices' => array(
+					'theme'  => __( 'Quello del tema (Space Grotesk)', 'wero-core' ),
+					'system' => __( 'Font di sistema', 'wero-core' ),
+				),
+			),
 			// Animazioni.
-			'anim_enabled'    => array( 'type' => 'checkbox', 'default' => 1, 'label' => __( 'Animazioni attive (interruttore generale)', 'wero-core' ), 'section' => 'anim', 'help' => __( 'Spento: niente intro, sfondo animato, cursore e comparsa delle sezioni. Sfera, timeline e scorrimenti restano.', 'wero-core' ) ),
-			'intro'           => array( 'type' => 'checkbox', 'default' => 1, 'label' => __( 'Intro del logo in home', 'wero-core' ), 'section' => 'anim' ),
-			'intro_once'      => array( 'type' => 'checkbox', 'default' => 1, 'label' => __( 'Intro solo alla prima visita della sessione', 'wero-core' ), 'section' => 'anim' ),
-			'background'      => array( 'type' => 'checkbox', 'default' => 1, 'label' => __( 'Sfondo animato a pixel', 'wero-core' ), 'section' => 'anim' ),
-			'cursor'          => array( 'type' => 'checkbox', 'default' => 1, 'label' => __( 'Cursore “computer vision” (solo con il mouse)', 'wero-core' ), 'section' => 'anim' ),
-			'reveal'          => array( 'type' => 'checkbox', 'default' => 1, 'label' => __( 'Comparsa morbida delle sezioni allo scroll', 'wero-core' ), 'section' => 'anim' ),
+			'anim_enabled'    => array(
+				'type'    => 'checkbox',
+				'default' => 1,
+				'label'   => __( 'Animazioni attive (interruttore generale)', 'wero-core' ),
+				'section' => 'anim',
+				'help'    => __( 'Spento: niente intro, sfondo animato, cursore e comparsa delle sezioni. Sfera, timeline e scorrimenti restano.', 'wero-core' ),
+			),
+			'intro'           => array(
+				'type'    => 'checkbox',
+				'default' => 1,
+				'label'   => __( 'Intro del logo in home', 'wero-core' ),
+				'section' => 'anim',
+			),
+			'intro_once'      => array(
+				'type'    => 'checkbox',
+				'default' => 1,
+				'label'   => __( 'Intro solo alla prima visita della sessione', 'wero-core' ),
+				'section' => 'anim',
+			),
+			'background'      => array(
+				'type'    => 'checkbox',
+				'default' => 1,
+				'label'   => __( 'Sfondo animato a pixel', 'wero-core' ),
+				'section' => 'anim',
+			),
+			'cursor'          => array(
+				'type'    => 'checkbox',
+				'default' => 1,
+				'label'   => __( 'Cursore “computer vision” (solo con il mouse)', 'wero-core' ),
+				'section' => 'anim',
+			),
+			'reveal'          => array(
+				'type'    => 'checkbox',
+				'default' => 1,
+				'label'   => __( 'Comparsa morbida delle sezioni allo scroll', 'wero-core' ),
+				'section' => 'anim',
+			),
 			// Moduli e funzioni.
-			'partner_form'    => array( 'type' => 'cf7', 'default' => 0, 'label' => __( 'Modulo “Diventa partner”', 'wero-core' ), 'section' => 'tools', 'help' => __( 'Modulo di Contact Form 7 usato dalla sezione “Diventa partner”.', 'wero-core' ) ),
-			'disable_emoji'   => array( 'type' => 'checkbox', 'default' => 1, 'label' => __( 'Disattiva gli emoji di WordPress (script e cookie in meno)', 'wero-core' ), 'section' => 'tools' ),
+			'partner_form'    => array(
+				'type'    => 'cf7',
+				'default' => 0,
+				'label'   => __( 'Modulo “Diventa partner”', 'wero-core' ),
+				'section' => 'tools',
+				'help'    => __( 'Modulo di Contact Form 7 usato dalla sezione “Diventa partner”.', 'wero-core' ),
+			),
+			'disable_emoji'   => array(
+				'type'    => 'checkbox',
+				'default' => 1,
+				'label'   => __( 'Disattiva gli emoji di WordPress (script e cookie in meno)', 'wero-core' ),
+				'section' => 'tools',
+			),
 		);
 	}
 
@@ -120,12 +269,12 @@ final class Settings {
 	}
 
 	/**
-	 * register_setting con schema REST.
+	 * Registra l'opzione con lo schema REST (register_setting).
 	 */
 	public static function register_setting(): void {
 		$props = array();
 		foreach ( self::fields() as $key => $f ) {
-			$type            = match ( $f['type'] ) {
+			$type = match ( $f['type'] ) {
 				'checkbox' => 'boolean',
 				'cf7'      => 'integer',
 				default    => 'string',
@@ -152,15 +301,33 @@ final class Settings {
 	}
 
 	/**
+	 * L'opzione letta (anche dalla REST) contiene sempre tutte le chiavi.
+	 *
+	 * @param mixed $value Valore salvato.
+	 * @return array<string, mixed>
+	 */
+	public static function with_defaults( $value ): array {
+		return array_merge( self::defaults(), is_array( $value ) ? $value : array() );
+	}
+
+	/**
 	 * Sanitizzazione.
 	 *
 	 * @param mixed $input Valori inviati.
 	 * @return array<string, mixed>
 	 */
 	public static function sanitize( $input ): array {
-		$input = is_array( $input ) ? $input : array();
-		$out   = array();
+		$input   = is_array( $input ) ? $input : array();
+		$current = self::with_defaults( get_option( self::OPTION, array() ) );
+		// Dal modulo della pagina Impostazioni le caselle non spuntate non arrivano: valgono 0.
+		// Da REST o da codice arrivano solo le chiavi da cambiare: le altre restano com'erano.
+		$from_form = isset( $_POST['option_page'] ); // phpcs:ignore WordPress.Security.NonceVerification.Missing -- il nonce lo verifica options.php.
+		$out       = array();
 		foreach ( self::fields() as $key => $f ) {
+			if ( ! array_key_exists( $key, $input ) && ! ( $from_form && 'checkbox' === $f['type'] ) ) {
+				$out[ $key ] = $current[ $key ];
+				continue;
+			}
 			$v = $input[ $key ] ?? null;
 			switch ( $f['type'] ) {
 				case 'checkbox':

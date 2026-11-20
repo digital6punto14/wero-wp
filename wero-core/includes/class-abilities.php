@@ -2,7 +2,7 @@
 /**
  * Abilities API (WordPress 6.9+): funzioni in sola lettura per gli agenti AI.
  *
- * wero/get-projects, wero/get-reports, wero/get-partners, wero/get-contact-info.
+ * Abilities: wero/get-projects, wero/get-reports, wero/get-partners, wero/get-contact-info.
  * Visibili su /wp-json/wp-abilities/v1 (show_in_rest) e pronte per il plugin
  * ufficiale MCP Adapter (meta.mcp.public), che non è installato: vedi README.
  *

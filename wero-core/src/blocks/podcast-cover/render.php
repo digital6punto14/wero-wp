@@ -24,7 +24,14 @@ if ( ! $wero_id ) {
 	return;
 }
 
-$wero_img = Fields::image( Fields::post( $wero_id, 'immagine_card', 0 ), 'large', array( 'class' => 'wero-cover__img', 'alt' => '' ) );
+$wero_img = Fields::image(
+	Fields::post( $wero_id, 'immagine_card', 0 ),
+	'large',
+	array(
+		'class' => 'wero-cover__img',
+		'alt'   => '',
+	)
+);
 $wero_ep  = (string) Fields::post( $wero_id, 'episodio' );
 ?>
 <div <?php echo get_block_wrapper_attributes( array( 'class' => 'wero-cover' . ( $wero_img ? ' has-image' : '' ) ) ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?> aria-hidden="true">
@@ -32,6 +39,10 @@ $wero_ep  = (string) Fields::post( $wero_id, 'episodio' );
 		<?php echo $wero_img; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
 	<?php else : ?>
 		<img class="wero-cover__mark" src="<?php echo esc_url( Blocks::mark_url() ); ?>" alt="">
-		<div><?php if ( $wero_ep ) : ?><p><?php echo esc_html( $wero_ep ); ?></p><?php endif; ?><strong><?php echo esc_html( get_the_title( $wero_id ) ); ?></strong></div>
+		<div>
+		<?php
+		if ( $wero_ep ) :
+			?>
+			<p><?php echo esc_html( $wero_ep ); ?></p><?php endif; ?><strong><?php echo esc_html( get_the_title( $wero_id ) ); ?></strong></div>
 	<?php endif; ?>
 </div>

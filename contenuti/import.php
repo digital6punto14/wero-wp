@@ -48,7 +48,12 @@ final class Wero_Import {
 
 	/** Esegue tutto. */
 	public function run(): void {
-		$admins = get_users( array( 'role' => 'administrator', 'number' => 1 ) );
+		$admins = get_users(
+			array(
+				'role'   => 'administrator',
+				'number' => 1,
+			)
+		);
 		if ( $admins ) {
 			wp_set_current_user( $admins[0]->ID );
 		}
@@ -180,7 +185,7 @@ final class Wero_Import {
 	 * @param string $markup Markup.
 	 */
 	private function bind_media( string $markup ): string {
-		$theme = get_theme_file_uri( 'assets/images/patterns/' );
+		$theme  = get_theme_file_uri( 'assets/images/patterns/' );
 		$markup = preg_replace_callback(
 			'#' . preg_quote( $theme, '#' ) . '([A-Za-z0-9._-]+)#',
 			function ( $m ) {
@@ -215,8 +220,8 @@ final class Wero_Import {
 				if ( $id ) {
 					$b['attrs']['id'] = $id;
 					if ( 'core/image' === $b['blockName'] ) {
-						$rep              = static fn( $s ) => str_replace( '<img src=', '<img class="wp-image-' . $id . '" src=', $s );
-						$b['innerHTML']   = $rep( $b['innerHTML'] );
+						$rep               = static fn( $s ) => str_replace( '<img src=', '<img class="wp-image-' . $id . '" src=', $s );
+						$b['innerHTML']    = $rep( $b['innerHTML'] );
 						$b['innerContent'] = array_map( static fn( $c ) => is_string( $c ) ? $rep( $c ) : $c, $b['innerContent'] );
 					}
 				}
@@ -406,8 +411,8 @@ CF7;
 		$form->set_title( 'Diventa partner' );
 		$props         = $form->get_properties();
 		$props['form'] = $body;
-		$logo  = (string) wp_get_attachment_url( $this->media( 'wero-mark.png', 'WeRo' ) );
-		$email = fn( string $name ) => str_replace( '{{logo}}', esc_url( $logo ), (string) file_get_contents( $this->dir . '/email/' . $name . '.html' ) );
+		$logo          = (string) wp_get_attachment_url( $this->media( 'wero-mark.png', 'WeRo' ) );
+		$email         = fn( string $name ) => str_replace( '{{logo}}', esc_url( $logo ), (string) file_get_contents( $this->dir . '/email/' . $name . '.html' ) );
 		// Mail 1: notifica a WeRo (HTML, risposta diretta a chi ha scritto).
 		$props['mail'] = array_merge(
 			(array) $props['mail'],
@@ -424,7 +429,7 @@ CF7;
 			)
 		);
 		// Mail 2: conferma a chi ha compilato il modulo (HTML, risposte a contact@we-ro.it).
-		$props['mail_2'] = array_merge(
+		$props['mail_2']   = array_merge(
 			(array) ( $props['mail_2'] ?? array() ),
 			array(
 				'active'             => true,
@@ -441,15 +446,15 @@ CF7;
 		$props['messages'] = array_merge(
 			(array) $props['messages'],
 			array(
-				'mail_sent_ok'             => 'Grazie! Ti ricontatteremo presto.',
-				'mail_sent_ng'             => 'Si è verificato un errore durante l’invio. Riprova più tardi o scrivi a contact@we-ro.it.',
-				'validation_error'         => 'Controlla i campi evidenziati e riprova.',
-				'spam'                     => 'Si è verificato un errore durante l’invio. Riprova più tardi.',
-				'accept_terms'             => 'Per inviare la richiesta devi accettare l’informativa privacy.',
-				'invalid_required'         => 'Compila questo campo.',
-				'invalid_too_long'         => 'Il testo è troppo lungo.',
-				'invalid_too_short'        => 'Il testo è troppo corto.',
-				'invalid_email'            => 'Inserisci un indirizzo email valido.',
+				'mail_sent_ok'      => 'Grazie! Ti ricontatteremo presto.',
+				'mail_sent_ng'      => 'Si è verificato un errore durante l’invio. Riprova più tardi o scrivi a contact@we-ro.it.',
+				'validation_error'  => 'Controlla i campi evidenziati e riprova.',
+				'spam'              => 'Si è verificato un errore durante l’invio. Riprova più tardi.',
+				'accept_terms'      => 'Per inviare la richiesta devi accettare l’informativa privacy.',
+				'invalid_required'  => 'Compila questo campo.',
+				'invalid_too_long'  => 'Il testo è troppo lungo.',
+				'invalid_too_short' => 'Il testo è troppo corto.',
+				'invalid_email'     => 'Inserisci un indirizzo email valido.',
 			)
 		);
 		$form->set_properties( $props );
@@ -466,7 +471,10 @@ CF7;
 	 * @param int $form Modulo partner.
 	 */
 	private function settings( int $form ): void {
-		$s                 = (array) get_option( 'wero_settings', array() );
+		$s = (array) get_option( 'wero_settings', array() );
+		if ( class_exists( '\\Wero\\Core\\Settings' ) ) {
+			$s = array_merge( \Wero\Core\Settings::defaults(), $s );
+		}
 		$s['partner_form'] = $form;
 		update_option( 'wero_settings', $s );
 	}
@@ -477,17 +485,17 @@ CF7;
 	 * @param string $md Testo.
 	 */
 	private function md_to_blocks( string $md ): string {
-		$md    = preg_replace( '/<!--.*?-->/s', '', $md );
-		$lines = preg_split( '/\R/', trim( $md ) );
-		$out   = array();
+		$md     = preg_replace( '/<!--.*?-->/s', '', $md );
+		$lines  = preg_split( '/\R/', trim( $md ) );
+		$out    = array();
 		$inline = static function ( string $t ): string {
 			$t = esc_html( $t );
 			$t = preg_replace( '/\*\*(.+?)\*\*/', '<strong>$1</strong>', $t );
 			$t = preg_replace( '/\[([^\]]+)\]\((https?:[^)\s]+)\)/', '<a href="$2">$1</a>', $t );
 			return preg_replace( '#(?<![">])(https?://[^\s<]+)#', '<a href="$1">$1</a>', $t );
 		};
-		$i = 0;
-		$n = count( $lines );
+		$i      = 0;
+		$n      = count( $lines );
 		while ( $i < $n ) {
 			$l = rtrim( $lines[ $i ] );
 			if ( '' === $l || str_starts_with( $l, '# ' ) ) {
@@ -564,7 +572,13 @@ CF7;
 				wp_trash_post( $p->ID );
 			}
 		}
-		$hello = get_posts( array( 'name' => 'ciao-mondo', 'post_type' => 'post', 'posts_per_page' => 1 ) ) ?: get_posts( array( 'name' => 'hello-world', 'post_type' => 'post', 'posts_per_page' => 1 ) );
+		$hello = get_posts(
+			array(
+				'post_name__in'  => array( 'ciao-mondo', 'hello-world' ),
+				'post_type'      => 'post',
+				'posts_per_page' => 1,
+			)
+		);
 		if ( $hello ) {
 			wp_trash_post( $hello[0]->ID );
 		}
@@ -600,29 +614,29 @@ CF7;
 		$logo = $this->media( 'wero-mark.png', 'WeRo' );
 		$set  = array(
 			// Rappresentazione del sito: Organizzazione (WeRo, joint venture 6.14 + Omnicom Advertising).
-			'company_or_person'               => 'company',
-			'company_name'                    => 'WeRo',
-			'company_logo'                    => (string) wp_get_attachment_url( $logo ),
-			'company_logo_id'                 => $logo,
-			'website_name'                    => 'WeRo',
-			'alternate_website_name'          => 'WeRo Robot Communication Studio',
-			'org-description'                 => 'Il primo Robot Communication Studio: un ecosistema di partner tra ricerca, business, comunicazione e creatività. Joint venture tra 6.14 e Omnicom Advertising.',
-			'org-email'                       => 'contact@we-ro.it',
+			'company_or_person'            => 'company',
+			'company_name'                 => 'WeRo',
+			'company_logo'                 => (string) wp_get_attachment_url( $logo ),
+			'company_logo_id'              => $logo,
+			'website_name'                 => 'WeRo',
+			'alternate_website_name'       => 'WeRo Robot Communication Studio',
+			'org-description'              => 'Il primo Robot Communication Studio: un ecosistema di partner tra ricerca, business, comunicazione e creatività. Joint venture tra 6.14 e Omnicom Advertising.',
+			'org-email'                    => 'contact@we-ro.it',
 			// Home.
-			'title-home-wpseo'                => 'WeRo %%sep%% Il primo Robot Communication Studio',
-			'metadesc-home-wpseo'             => $this->data['site']['home_meta'],
+			'title-home-wpseo'             => 'WeRo %%sep%% Il primo Robot Communication Studio',
+			'metadesc-home-wpseo'          => $this->data['site']['home_meta'],
 			// Progetti (dai tag dell'originale: "Titolo — WeRo").
-			'title-progetto'                  => '%%title%% %%sep%% WeRo',
-			'metadesc-progetto'               => '%%excerpt%%',
-			'schema-article-type-progetto'    => 'Article',
-			'title-ptarchive-progetto'        => 'Progetti %%sep%% WeRo',
-			'metadesc-ptarchive-progetto'     => 'Tutti i progetti di WeRo tra ricerca, eventi, linguaggi e design della robotica.',
-			'title-page'                      => '%%title%% %%sep%% WeRo',
-			'separator'                       => 'sc-mdash',
+			'title-progetto'               => '%%title%% %%sep%% WeRo',
+			'metadesc-progetto'            => '%%excerpt%%',
+			'schema-article-type-progetto' => 'Article',
+			'title-ptarchive-progetto'     => 'Progetti %%sep%% WeRo',
+			'metadesc-ptarchive-progetto'  => 'Tutti i progetti di WeRo tra ricerca, eventi, linguaggi e design della robotica.',
+			'title-page'                   => '%%title%% %%sep%% WeRo',
+			'separator'                    => 'sc-mdash',
 			// Breadcrumb (blocco di Yoast nei template interni).
-			'breadcrumbs-enable'              => true,
-			'breadcrumbs-home'                => 'Home',
-			'breadcrumbs-sep'                 => '›',
+			'breadcrumbs-enable'           => true,
+			'breadcrumbs-home'             => 'Home',
+			'breadcrumbs-sep'              => '›',
 		);
 		foreach ( $set as $key => $value ) {
 			WPSEO_Options::set( $key, $value );
@@ -635,13 +649,27 @@ CF7;
 
 	/** Menu (wp_navigation) e header che lo usa. */
 	private function navigation(): void {
-		$links = array( 'Chi siamo' => '/#chi', 'Mondi' => '/#mondi', 'Progetti' => '/#progetti', 'Report' => '/#report', 'Voci' => '/#voci', 'Perché' => '/#perche' );
+		$links = array(
+			'Chi siamo' => '/#chi',
+			'Mondi'     => '/#mondi',
+			'Progetti'  => '/#progetti',
+			'Report'    => '/#report',
+			'Voci'      => '/#voci',
+			'Perché'    => '/#perche',
+		);
 		$items = array();
 		foreach ( $links as $label => $url ) {
-			$items[] = '<!-- wp:navigation-link ' . wp_json_encode( array( 'label' => $label, 'url' => $url, 'kind' => 'custom' ), JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES ) . ' /-->';
+			$items[] = '<!-- wp:navigation-link ' . wp_json_encode(
+				array(
+					'label' => $label,
+					'url'   => $url,
+					'kind'  => 'custom',
+				),
+				JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES
+			) . ' /-->';
 		}
 		$items[] = "<!-- wp:buttons {\"className\":\"wero-header__cta\"} -->\n<div class=\"wp-block-buttons wero-header__cta\"><!-- wp:button -->\n<div class=\"wp-block-button\"><a class=\"wp-block-button__link wp-element-button\" href=\"/#partner\">Diventa partner</a></div>\n<!-- /wp:button --></div>\n<!-- /wp:buttons -->";
-		$nav = $this->upsert(
+		$nav     = $this->upsert(
 			'wp_navigation',
 			'nav:principale',
 			array(
@@ -657,8 +685,8 @@ CF7;
 			'<!-- wp:navigation ' . wp_json_encode( array_merge( array( 'ref' => $nav ), (array) json_decode( preg_match( '#<!-- wp:navigation (\{.*?\}) -->#s', $header, $m ) ? $m[1] : '{}', true ) ), JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES ) . ' /-->',
 			$header
 		);
-		$part = get_block_template( get_stylesheet() . '//header', 'wp_template_part' );
-		$args = array(
+		$part   = get_block_template( get_stylesheet() . '//header', 'wp_template_part' );
+		$args   = array(
 			'post_type'    => 'wp_template_part',
 			'post_status'  => 'publish',
 			'post_name'    => 'header',

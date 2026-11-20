@@ -40,11 +40,11 @@ final class Seo {
 	 * @return array<string, mixed>
 	 */
 	public static function organization( $data ): array {
-		$data  = is_array( $data ) ? $data : array();
-		$c     = Data::contact();
-		$f1    = $c['founders'][0];
-		$f2    = $c['founders'][1];
-		$data += array_filter(
+		$data     = is_array( $data ) ? $data : array();
+		$c        = Data::contact();
+		$f1       = $c['founders'][0];
+		$f2       = $c['founders'][1];
+		$data    += array_filter(
 			array(
 				'description'   => $c['description'],
 				'email'         => $c['email'],

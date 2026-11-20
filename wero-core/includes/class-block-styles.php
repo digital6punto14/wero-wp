@@ -21,7 +21,11 @@ defined( 'ABSPATH' ) || exit;
  */
 final class Block_Styles {
 
-	/** @var array<string, string> Stile => etichetta. */
+	/**
+	 * Stili disponibili.
+	 *
+	 * @var array<string, string> Stile => etichetta.
+	 */
 	private const STYLES = array(
 		'wero-worlds' => 'Mondi: card (scorrono su mobile)',
 		'wero-voices' => 'Voci: video al clic sulla copertina',

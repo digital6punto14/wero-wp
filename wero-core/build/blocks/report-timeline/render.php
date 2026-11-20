@@ -28,7 +28,10 @@ if ( ! $wero_reports ) {
 }
 usort(
 	$wero_reports,
-	static fn( WP_Post $a, WP_Post $b ): int => ( (int) Fields::post( $a->ID, 'anno', 0 ) <=> (int) Fields::post( $b->ID, 'anno', 0 ) ) ?: ( $a->menu_order <=> $b->menu_order )
+	static function ( WP_Post $a, WP_Post $b ): int {
+		$by_year = (int) Fields::post( $a->ID, 'anno', 0 ) <=> (int) Fields::post( $b->ID, 'anno', 0 );
+		return 0 !== $by_year ? $by_year : ( $a->menu_order <=> $b->menu_order );
+	}
 );
 $wero_total = count( $wero_reports );
 $wero_class = 'wero-rtl-block' . ( empty( $attributes['sticky'] ) ? ' is-static' : '' );
@@ -58,12 +61,23 @@ $wero_class = 'wero-rtl-block' . ( empty( $attributes['sticky'] ) ? ' is-static'
 					$wero_label  = (string) Fields::post( $wero_r->ID, 'testo_pulsante', $wero_next ? __( 'Avvisami', 'wero-core' ) : __( 'Scarica il PDF', 'wero-core' ) );
 					$wero_link   = (string) Fields::post( $wero_r->ID, 'link_pulsante', '/#partner' );
 					$wero_proj   = Fields::relation( $wero_r->ID, 'progetto' );
-					$wero_cover  = get_the_post_thumbnail( $wero_r, 'large', array( 'class' => 'rtl__img', 'alt' => '' ) );
+					$wero_cover  = get_the_post_thumbnail(
+						$wero_r,
+						'large',
+						array(
+							'class' => 'rtl__img',
+							'alt'   => '',
+						)
+					);
 					$wero_cclass = $wero_next ? 'report__cover--next' : ( 0 === $wero_i % 2 ? 'report__cover--a' : 'report__cover--b' );
 					?>
 					<li class="rtl__item">
 						<span class="rtl__dot" aria-hidden="true"></span>
-						<h3 class="rtl__title"><?php if ( $wero_year ) : ?><time datetime="<?php echo esc_attr( $wero_year ); ?>"><?php echo esc_html( $wero_year ); ?></time> <?php endif; ?><?php echo esc_html( get_the_title( $wero_r ) ); ?></h3>
+						<h3 class="rtl__title">
+						<?php
+						if ( $wero_year ) :
+							?>
+							<time datetime="<?php echo esc_attr( $wero_year ); ?>"><?php echo esc_html( $wero_year ); ?></time> <?php endif; ?><?php echo esc_html( get_the_title( $wero_r ) ); ?></h3>
 						<div class="rtl__body">
 							<div class="rtl__cover report__cover <?php echo esc_attr( $wero_cclass ); ?>" aria-hidden="true">
 								<?php if ( $wero_cover ) : ?>

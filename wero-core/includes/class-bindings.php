@@ -23,6 +23,7 @@ final class Bindings {
 	 */
 	public static function register(): void {
 		add_action( 'init', array( __CLASS__, 'sources' ) );
+		add_action( 'enqueue_block_editor_assets', array( __CLASS__, 'editor' ) );
 	}
 
 	/**
@@ -111,5 +112,17 @@ final class Bindings {
 			return null;
 		}
 		return in_array( $attribute_name, array( 'url', 'href' ), true ) ? esc_url( (string) $value ) : esc_html( (string) $value );
+	}
+
+	/**
+	 * Editor: valori veri di wero/site nei blocchi collegati (sola lettura).
+	 */
+	public static function editor(): void {
+		wp_enqueue_script( 'wero-bindings-editor', WERO_CORE_URL . 'assets/editor/bindings.js', array( 'wp-blocks' ), VERSION, true );
+		$values = array();
+		foreach ( array_keys( self::site_keys() ) as $key ) {
+			$values[ $key ] = (string) self::site_value( array( 'key' => $key ) );
+		}
+		wp_add_inline_script( 'wero-bindings-editor', 'window.weroSiteBindings = ' . wp_json_encode( $values ) . ';', 'before' );
 	}
 }

@@ -49,18 +49,18 @@ final class Data {
 				$w     = Taxonomies::world_of( $p->ID );
 				$image = Fields::image_url( Fields::post( $p->ID, 'immagine_card', 0 ), 'large' );
 				return array(
-					'id'          => $p->ID,
-					'title'       => get_the_title( $p ),
-					'url'         => get_permalink( $p ),
-					'summary'     => (string) Fields::post( $p->ID, 'descrizione_breve', '' ),
-					'excerpt'     => wp_strip_all_tags( get_the_excerpt( $p ) ),
-					'world'       => $w ? $w->name : '',
-					'world_slug'  => $w ? $w->slug : '',
-					'type'        => (string) Fields::post( $p->ID, 'tipo', '' ),
-					'year'        => (string) Fields::post( $p->ID, 'anno', '' ),
-					'format'      => self::format( $p->ID ),
-					'image'       => $image ? $image : (string) get_the_post_thumbnail_url( $p, 'large' ),
-					'media_url'   => ( Media::of_post( $p->ID ) ?? array( 'url' => '' ) )['url'],
+					'id'         => $p->ID,
+					'title'      => get_the_title( $p ),
+					'url'        => get_permalink( $p ),
+					'summary'    => (string) Fields::post( $p->ID, 'descrizione_breve', '' ),
+					'excerpt'    => wp_strip_all_tags( get_the_excerpt( $p ) ),
+					'world'      => $w ? $w->name : '',
+					'world_slug' => $w ? $w->slug : '',
+					'type'       => (string) Fields::post( $p->ID, 'tipo', '' ),
+					'year'       => (string) Fields::post( $p->ID, 'anno', '' ),
+					'format'     => self::format( $p->ID ),
+					'image'      => $image ? $image : (string) get_the_post_thumbnail_url( $p, 'large' ),
+					'media_url'  => ( Media::of_post( $p->ID ) ?? array( 'url' => '' ) )['url'],
 				);
 			},
 			get_posts( $args )
@@ -207,15 +207,15 @@ final class Data {
 	 */
 	public static function contact(): array {
 		return array(
-			'name'        => (string) Settings::get( 'org_name' ),
-			'full_name'   => (string) Settings::get( 'org_alternate' ),
-			'description' => (string) Settings::get( 'org_description' ),
-			'email'       => (string) Settings::get( 'email' ),
-			'linkedin'    => (string) Settings::get( 'linkedin' ),
-			'website'     => home_url( '/' ),
+			'name'         => (string) Settings::get( 'org_name' ),
+			'full_name'    => (string) Settings::get( 'org_alternate' ),
+			'description'  => (string) Settings::get( 'org_description' ),
+			'email'        => (string) Settings::get( 'email' ),
+			'linkedin'     => (string) Settings::get( 'linkedin' ),
+			'website'      => home_url( '/' ),
 			'partner_form' => home_url( '/#partner' ),
-			'privacy'     => (string) get_privacy_policy_url(),
-			'founders'    => array(
+			'privacy'      => (string) get_privacy_policy_url(),
+			'founders'     => array(
 				array(
 					'name'    => (string) Settings::get( 'founder1_name' ),
 					'url'     => (string) Settings::get( 'founder1_url' ),

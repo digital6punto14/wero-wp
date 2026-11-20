@@ -35,5 +35,9 @@ $wero_var   = 'card' === ( $attributes['variant'] ?? 'bar' ) ? 'card' : 'bar';
 		<?php endif; ?>
 		<a class="wero-meta__back is-secondary" href="<?php echo esc_url( (string) get_post_type_archive_link( 'progetto' ) ); ?>"><?php esc_html_e( 'Tutti i progetti', 'wero-core' ); ?></a>
 	<?php endif; ?>
-	<p class="wero-meta__info"><?php echo Blocks::world_tag( $wero_world, 'bar' === $wero_var ? 'wero-tag' : 'tag-mini' ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?><?php if ( $wero_ty ) : ?><span><?php echo esc_html( $wero_ty ); ?></span><?php endif; ?></p>
+	<p class="wero-meta__info"><?php echo Blocks::world_tag( $wero_world, 'bar' === $wero_var ? 'wero-tag' : 'tag-mini' ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
+	<?php
+	if ( $wero_ty ) :
+		?>
+		<span><?php echo esc_html( $wero_ty ); ?></span><?php endif; ?></p>
 </div>

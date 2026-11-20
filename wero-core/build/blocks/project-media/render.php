@@ -50,9 +50,23 @@ if ( 'audio' === $wero_mode ) :
 	return;
 endif;
 
-$wero_poster = Fields::image( Fields::post( $wero_id, 'media_poster', 0 ), 'large', array( 'class' => 'wero-player__poster', 'alt' => '' ) );
+$wero_poster = Fields::image(
+	Fields::post( $wero_id, 'media_poster', 0 ),
+	'large',
+	array(
+		'class' => 'wero-player__poster',
+		'alt'   => '',
+	)
+);
 if ( ! $wero_poster ) {
-	$wero_poster = get_the_post_thumbnail( $wero_id, 'large', array( 'class' => 'wero-player__poster', 'alt' => '' ) );
+	$wero_poster = get_the_post_thumbnail(
+		$wero_id,
+		'large',
+		array(
+			'class' => 'wero-player__poster',
+			'alt'   => '',
+		)
+	);
 }
 $wero_data = $wero_media ? sprintf( ' data-kind="%s" data-src="%s"', esc_attr( $wero_media['kind'] ), esc_url( $wero_media['src'] ) ) : '';
 ?>

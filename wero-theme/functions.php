@@ -37,12 +37,15 @@ function wero_theme_setup(): void {
 	add_theme_support( 'wp-block-styles' );
 	add_theme_support( 'editor-styles' );
 	add_theme_support( 'responsive-embeds' );
-	add_theme_support( 'custom-logo', array(
-		'height'      => 44,
-		'width'       => 160,
-		'flex-height' => true,
-		'flex-width'  => true,
-	) );
+	add_theme_support(
+		'custom-logo',
+		array(
+			'height'      => 44,
+			'width'       => 160,
+			'flex-height' => true,
+			'flex-width'  => true,
+		)
+	);
 	add_editor_style( 'assets/css/site.css' );
 	load_theme_textdomain( 'wero-theme', get_template_directory() . '/languages' );
 }
@@ -71,11 +74,11 @@ function wero_theme_enqueue_block_styles(): void {
 		return;
 	}
 	foreach ( $files as $file ) {
-		$name = basename( $file, '.css' );           // es. core--navigation
+		$name = basename( $file, '.css' );           // Es. core--navigation.
 		if ( false === strpos( $name, '--' ) ) {
 			continue;
 		}
-		$block = str_replace( '--', '/', $name );    // es. core/navigation
+		$block = str_replace( '--', '/', $name );    // Es. core/navigation.
 		wp_enqueue_block_style(
 			$block,
 			array(
@@ -126,7 +129,7 @@ add_action( 'wp_enqueue_scripts', 'wero_theme_enqueue_scripts' );
  * @return string
  */
 function wero_theme_enqueue_block_scripts( string $content, array $block ): string {
-	$map = array(
+	$map  = array(
 		'core/navigation' => array( 'nav', 'nav-spy' ),
 		'core/gallery'    => array( 'gallery-scroller', '' ),
 	);
