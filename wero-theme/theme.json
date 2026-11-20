@@ -324,12 +324,6 @@
 					"fontWeight": "500",
 					"lineHeight": "1.05",
 					"letterSpacing": "-0.03em"
-				},
-				"spacing": {
-					"margin": {
-						"top": "0",
-						"bottom": "0"
-					}
 				}
 			},
 			"h1": {
@@ -438,14 +432,6 @@
 			}
 		},
 		"blocks": {
-			"core/paragraph": {
-				"spacing": {
-					"margin": {
-						"top": "0",
-						"bottom": "0"
-					}
-				}
-			},
 			"core/image": {
 				"border": {
 					"radius": "28px"

@@ -23,7 +23,14 @@ $wero_img = get_theme_file_uri( 'assets/images/patterns/' );
 <!-- /wp:column -->
 
 <!-- wp:column -->
-<div class="wp-block-column"><!-- wp:contact-form-7/contact-form-selector /--></div>
+<div class="wp-block-column"><?php
+/**
+ * Blocco del modulo di Contact Form 7: lo fornisce il plugin WeRo Core
+ * (modulo scelto in Impostazioni sito). Senza plugin la colonna resta vuota
+ * e il modulo si inserisce a mano con il blocco di Contact Form 7.
+ */
+echo apply_filters( 'wero_partner_form_block', '' ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- markup di blocchi generato dal plugin.
+?></div>
 <!-- /wp:column --></div>
 <!-- /wp:columns --></section>
 <!-- /wp:group -->

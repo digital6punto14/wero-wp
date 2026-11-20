@@ -33,6 +33,12 @@ img { max-width: 100%; }
 	/* con background-clip:text la sfumatura riempie solo il riquadro: lo allungo per non tagliare g, p, q e accenti */
 	padding-block: .06em .16em; margin-block: -.06em -.16em;
 }
+/* nei layout "contenuto" il core centra gli elementi più stretti: i titoli in sfumatura restano allineati a sinistra */
+.is-layout-constrained > .is-style-heading-gradient {
+	margin-left: max(0px, calc((100% - var(--wp--style--global--content-size)) / 2)) !important;
+	margin-right: auto !important;
+}
+:where(.wp-block-heading, .wp-block-post-title) { margin-block: 0; }
 .wero-grad-text { background-color: transparent !important; }
 
 /* bollino (stile di paragrafo "Bollino") */

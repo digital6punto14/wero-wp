@@ -2,7 +2,7 @@
 
 Documento vivo: raccoglie ciò che è stato ricavato dai file, le domande aperte con la proposta consigliata e, man mano, le decisioni prese. Si aggiorna a ogni fase.
 
-Stato: **Decisioni confermate dal cliente il 20/11/2026. Fase 0 confermata il 20/11/2026. Fase 1 (Playground) completata. Fase 2 (tema) in attesa.**
+Stato: **Decisioni confermate dal cliente il 20/11/2026. Fase 0 confermata il 20/11/2026. Fase 1 completata. Fase 2 (tema) completata. Fase 3 (plugin) in attesa.**
 
 ---
 
