@@ -1,0 +1,6 @@
+.wero-chapters { list-style: none; margin: 0; padding: 0; display: grid; }
+.wero-chapters > li + li { border-top: 1px solid var(--wp--custom--line, rgba(21, 18, 26, .12)); }
+.wero-chapter button { width: 100%; display: grid; grid-template-columns: 64px 1fr; gap: 12px; text-align: left; padding: 14px 4px; background: none; border: 0; cursor: pointer; font: inherit; font-size: 16px; color: inherit; }
+.wero-chapter button:hover { color: var(--wp--preset--color--magenta, #ff00c7); }
+.wero-chapter time { font-variant-numeric: tabular-nums; font-weight: 600; }
+.wero-chapters.is-editor { padding: 8px; border: 1px dashed var(--wp--custom--line, #ccc); border-radius: 12px; }

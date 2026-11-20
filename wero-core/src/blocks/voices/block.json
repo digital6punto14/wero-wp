@@ -1,0 +1,18 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 3,
+	"name": "wero/voices",
+	"version": "0.1.0",
+	"title": "Le voci dei progetti",
+	"category": "wero",
+	"icon": "video-alt3",
+	"description": "Video della sezione “Le voci dei progetti” (copertina, titolo, testo). Il video parte al clic. Le voci si modificano nel menu Voci dei progetti.",
+	"keywords": [ "video", "voci" ],
+	"textdomain": "wero-core",
+	"attributes": { "max": { "type": "number", "default": 3 } },
+	"supports": { "html": false, "align": [ "wide" ] },
+	"editorScript": "file:./index.js",
+	"style": "file:./style-index.css",
+	"viewScript": "file:./view.js",
+	"render": "file:./render.php"
+}

@@ -1,0 +1,179 @@
+{
+    "key": "group_wero_report",
+    "title": "Report – dati",
+    "fields": [
+        {
+            "key": "field_9ba3a5381efbb",
+            "label": "Anno",
+            "name": "anno",
+            "aria-label": "",
+            "type": "number",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "33",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "min": 1990,
+            "max": 2100,
+            "placeholder": "",
+            "step": "",
+            "prepend": "",
+            "append": ""
+        },
+        {
+            "key": "field_2bfb1352bd6e3",
+            "label": "Stato",
+            "name": "stato",
+            "aria-label": "",
+            "type": "select",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "33",
+                "class": "",
+                "id": ""
+            },
+            "choices": {
+                "pubblicato": "Pubblicato",
+                "in-arrivo": "In arrivo"
+            },
+            "default_value": "pubblicato",
+            "return_format": "value",
+            "multiple": 0,
+            "allow_null": 0,
+            "ui": 0,
+            "ajax": 0,
+            "placeholder": ""
+        },
+        {
+            "key": "field_d33f6be2efd53",
+            "label": "Testo del pulsante",
+            "name": "testo_pulsante",
+            "aria-label": "",
+            "type": "text",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "34",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "maxlength": "",
+            "placeholder": "Scarica il PDF",
+            "prepend": "",
+            "append": ""
+        },
+        {
+            "key": "field_8638b895f4770",
+            "label": "Descrizione",
+            "name": "descrizione",
+            "aria-label": "",
+            "type": "textarea",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "maxlength": "",
+            "rows": 3,
+            "placeholder": "",
+            "new_lines": ""
+        },
+        {
+            "key": "field_5a8dd1a4fb389",
+            "label": "File PDF",
+            "name": "pdf",
+            "aria-label": "",
+            "type": "file",
+            "instructions": "Dalla Libreria media.",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "return_format": "id",
+            "library": "all",
+            "min_size": "",
+            "max_size": "",
+            "mime_types": "pdf"
+        },
+        {
+            "key": "field_d76abdb86c751",
+            "label": "Link del pulsante (se il report è in arrivo)",
+            "name": "link_pulsante",
+            "aria-label": "",
+            "type": "url",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "placeholder": "/#partner"
+        },
+        {
+            "key": "field_2a282c3e70b29",
+            "label": "Progetto collegato",
+            "name": "progetto",
+            "aria-label": "",
+            "type": "relationship",
+            "instructions": "Per il link “Scopri il progetto”.",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "post_type": [
+                "progetto"
+            ],
+            "post_status": "",
+            "taxonomy": "",
+            "filters": [
+                "search"
+            ],
+            "return_format": "id",
+            "min": "",
+            "max": 1,
+            "elements": "",
+            "bidirectional": 0,
+            "bidirectional_target": []
+        }
+    ],
+    "location": [
+        [
+            {
+                "param": "post_type",
+                "operator": "==",
+                "value": "report"
+            }
+        ]
+    ],
+    "menu_order": 0,
+    "position": "normal",
+    "style": "default",
+    "label_placement": "top",
+    "instruction_placement": "label",
+    "hide_on_screen": "",
+    "active": true,
+    "description": "Report della timeline in home.",
+    "show_in_rest": 1,
+    "modified": 1795200000
+}

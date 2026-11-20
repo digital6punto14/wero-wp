@@ -1,0 +1,455 @@
+{
+    "key": "group_wero_progetto",
+    "title": "Progetto – dati",
+    "fields": [
+        {
+            "key": "field_e5da9678e9997",
+            "label": "Scheda",
+            "name": "",
+            "aria-label": "",
+            "type": "tab",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "placement": "top",
+            "endpoint": 0,
+            "selected": 0
+        },
+        {
+            "key": "field_baa45c7ab2f53",
+            "label": "Tipo",
+            "name": "tipo",
+            "aria-label": "",
+            "type": "text",
+            "instructions": "Compare accanto al mondo nella testata, nelle card e nella sfera.",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "50",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "maxlength": "",
+            "placeholder": "Evento, Video, Podcast, Branding, Report…",
+            "prepend": "",
+            "append": ""
+        },
+        {
+            "key": "field_3bc52f6b6bc6c",
+            "label": "Anno",
+            "name": "anno",
+            "aria-label": "",
+            "type": "number",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "50",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "min": 1990,
+            "max": 2100,
+            "placeholder": "",
+            "step": "",
+            "prepend": "",
+            "append": ""
+        },
+        {
+            "key": "field_65a786a22b81e",
+            "label": "Descrizione breve",
+            "name": "descrizione_breve",
+            "aria-label": "",
+            "type": "textarea",
+            "instructions": "Una frase: compare nella sfera, nella lista e nella griglia della home.",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "maxlength": 220,
+            "rows": 3,
+            "placeholder": "",
+            "new_lines": ""
+        },
+        {
+            "key": "field_7ca4fff7acc08",
+            "label": "Con",
+            "name": "con",
+            "aria-label": "",
+            "type": "text",
+            "instructions": "Voce “Con” della scheda del progetto (modello Articolo).",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "maxlength": "",
+            "placeholder": "Partner della ricerca",
+            "prepend": "",
+            "append": ""
+        },
+        {
+            "key": "field_c5cfc243f530b",
+            "label": "Icona della sfera",
+            "name": "icona",
+            "aria-label": "",
+            "type": "select",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "50",
+                "class": "",
+                "id": ""
+            },
+            "choices": {
+                "robot": "Robot",
+                "wave": "Onda",
+                "eye": "Occhio",
+                "hand": "Mano",
+                "gear": "Ingranaggio",
+                "chat": "Dialogo"
+            },
+            "default_value": "robot",
+            "return_format": "value",
+            "multiple": 0,
+            "allow_null": 0,
+            "ui": 0,
+            "ajax": 0,
+            "placeholder": ""
+        },
+        {
+            "key": "field_c81d5ce51664a",
+            "label": "Immagine della card",
+            "name": "immagine_card",
+            "aria-label": "",
+            "type": "image",
+            "instructions": "Se vuota si usa l’immagine in evidenza.",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "50",
+                "class": "",
+                "id": ""
+            },
+            "return_format": "id",
+            "library": "all",
+            "min_width": "",
+            "min_height": "",
+            "min_size": "",
+            "max_width": "",
+            "max_height": "",
+            "max_size": "",
+            "mime_types": "",
+            "preview_size": "medium"
+        },
+        {
+            "key": "field_f01e3b9a67660",
+            "label": "Video o audio",
+            "name": "",
+            "aria-label": "",
+            "type": "tab",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "placement": "top",
+            "endpoint": 0,
+            "selected": 0
+        },
+        {
+            "key": "field_a0966cb8b4a9a",
+            "label": "Link del video o dell’audio",
+            "name": "media_link",
+            "aria-label": "",
+            "type": "url",
+            "instructions": "Qualsiasi link: YouTube, Vimeo, Spotify, SoundCloud, Apple Podcasts o un file. Se carichi un file qui sotto, ha la precedenza.",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "placeholder": "https://www.youtube.com/watch?v=… oppure Vimeo, Spotify, SoundCloud…"
+        },
+        {
+            "key": "field_048ead1fb8781",
+            "label": "Oppure carica il file",
+            "name": "media_file",
+            "aria-label": "",
+            "type": "file",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "return_format": "id",
+            "library": "all",
+            "min_size": "",
+            "max_size": "",
+            "mime_types": "mp4,webm,mov,mp3,m4a,ogg,wav"
+        },
+        {
+            "key": "field_f316bcad55e7c",
+            "label": "Copertina del player",
+            "name": "media_poster",
+            "aria-label": "",
+            "type": "image",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "50",
+                "class": "",
+                "id": ""
+            },
+            "return_format": "id",
+            "library": "all",
+            "min_width": "",
+            "min_height": "",
+            "min_size": "",
+            "max_width": "",
+            "max_height": "",
+            "max_size": "",
+            "mime_types": "",
+            "preview_size": "medium"
+        },
+        {
+            "key": "field_880068d8b6c87",
+            "label": "Durata",
+            "name": "media_durata",
+            "aria-label": "",
+            "type": "text",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "50",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "maxlength": "",
+            "placeholder": "16:24",
+            "prepend": "",
+            "append": ""
+        },
+        {
+            "key": "field_cc487d67434a0",
+            "label": "Podcast",
+            "name": "",
+            "aria-label": "",
+            "type": "tab",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "placement": "top",
+            "endpoint": 0,
+            "selected": 0
+        },
+        {
+            "key": "field_e65ffba6b21d9",
+            "label": "Etichetta episodio",
+            "name": "episodio",
+            "aria-label": "",
+            "type": "text",
+            "instructions": "Compare sulla copertina del podcast.",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "maxlength": "",
+            "placeholder": "WeRo Talks, episodio 01",
+            "prepend": "",
+            "append": ""
+        },
+        {
+            "key": "field_ce97500e8eb49",
+            "label": "Spotify",
+            "name": "ascolta_spotify",
+            "aria-label": "",
+            "type": "url",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "50",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "placeholder": ""
+        },
+        {
+            "key": "field_3e6e333a4554b",
+            "label": "Apple Podcasts",
+            "name": "ascolta_apple",
+            "aria-label": "",
+            "type": "url",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "50",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "placeholder": ""
+        },
+        {
+            "key": "field_4d2390f55eb4a",
+            "label": "YouTube",
+            "name": "ascolta_youtube",
+            "aria-label": "",
+            "type": "url",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "50",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "placeholder": ""
+        },
+        {
+            "key": "field_11591304dc9f3",
+            "label": "Altra piattaforma",
+            "name": "ascolta_altro",
+            "aria-label": "",
+            "type": "url",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "25",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "placeholder": ""
+        },
+        {
+            "key": "field_8a8b3a566e5ac",
+            "label": "Nome della piattaforma",
+            "name": "ascolta_altro_nome",
+            "aria-label": "",
+            "type": "text",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "25",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "maxlength": "",
+            "placeholder": "",
+            "prepend": "",
+            "append": ""
+        },
+        {
+            "key": "field_a487cdbf42658",
+            "label": "Persone",
+            "name": "",
+            "aria-label": "",
+            "type": "tab",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "placement": "top",
+            "endpoint": 0,
+            "selected": 0
+        },
+        {
+            "key": "field_c1dba3e60414e",
+            "label": "Persone",
+            "name": "persone",
+            "aria-label": "",
+            "type": "relationship",
+            "instructions": "Ospiti, relatori o conduttori: compaiono nel blocco “Persone”. Ordine = ordine della lista.",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "post_type": [
+                "persona"
+            ],
+            "post_status": "",
+            "taxonomy": "",
+            "filters": [
+                "search"
+            ],
+            "return_format": "id",
+            "min": "",
+            "max": "",
+            "elements": [
+                "featured_image"
+            ],
+            "bidirectional": 0,
+            "bidirectional_target": []
+        }
+    ],
+    "location": [
+        [
+            {
+                "param": "post_type",
+                "operator": "==",
+                "value": "progetto"
+            }
+        ]
+    ],
+    "menu_order": 0,
+    "position": "normal",
+    "style": "default",
+    "label_placement": "top",
+    "instruction_placement": "label",
+    "hide_on_screen": "",
+    "active": true,
+    "description": "Dati strutturati dei progetti. Il testo resta nei blocchi.",
+    "show_in_rest": 1,
+    "modified": 1795200000
+}

@@ -2,7 +2,7 @@
 
 Documento vivo: raccoglie ciò che è stato ricavato dai file, le domande aperte con la proposta consigliata e, man mano, le decisioni prese. Si aggiorna a ogni fase.
 
-Stato: **Decisioni confermate dal cliente il 20/11/2026. Fase 0 confermata il 20/11/2026. Fase 1 completata. Fase 2 (tema) completata. Fase 3 (plugin) in attesa.**
+Stato: **Decisioni confermate dal cliente il 20/11/2026. Fase 0 confermata il 20/11/2026. Fase 1 completata. Fase 2 (tema) completata. Fase 3 (plugin) completata. Fase 4 (contenuti): piano da approvare.**
 
 ---
 
@@ -250,6 +250,9 @@ Legenda: **R** = risposta tua; **P** = mia proposta applicata perché la domanda
 | D36 | Cookie policy in **noindex** (Yoast) | R |
 | D37 | **Requisiti reali del server: WordPress 7.1+ e PHP 8.3+.** Le versioni attuali dei plugin ammessi lo richiedono: Contact Form 7 6.2.5 vuole WP 7.1 e PHP 8.3, Yoast SEO 28.9 vuole WP 7.0. Tema e plugin custom restano compatibili con WP 6.9 / PHP 8.2 come da specifica. | Verifica Fase 1 |
 | D38 | **Riga dei loghi aggiornabile ed estendibile**: ogni logo è un Partner (post type). Per aggiungere un logo basta creare un Partner e caricare il logo: la "tessera" con l'etichetta Business / Ricerca viene generata dal blocco, non serve più preparare un SVG a parte. Ordine, tipo e attivo/nascosto si cambiano dal Partner; velocità e curvatura dalle impostazioni del blocco. Nessun limite al numero di loghi. | R |
+| D39 | Il campo “Formato” del progetto non serve: il formato è il **template** scelto nel pannello laterale (4 template). Il campo “Tipo” (Evento, Video, Report…) resta per le etichette. | Fase 3 |
+| D40 | Video e audio esterni (YouTube, Vimeo, Spotify, SoundCloud, Apple Podcasts) si caricano **solo al clic** del visitatore (“facciata”): nessuna richiesta a terze parti all'apertura della pagina. Il collegamento con le categorie di Cookie Consent si verifica nella Fase 6. | Fase 3 |
+| D41 | Loghi SVG (6.14, Italdesign, Eni Joule, Rehabilia, Alto Robotics, logo WeRo): WordPress non accetta SVG nella Libreria media, quindi vengono convertiti in PNG ad alta risoluzione. | Fase 3 |
 | D27 | Search Console non gestita in questo progetto | R (domanda tolta) |
 | D28 | Crawler AI consentiti; robots.txt senza blocchi. Abilities in sola lettura: wero/get-projects, wero/get-reports, wero/get-partners, wero/get-contact-info | P |
 | D29 | Hosting non ancora noto: requisiti minimi documentati (WordPress 6.9+, PHP 8.2+); consigliato uno staging | P |

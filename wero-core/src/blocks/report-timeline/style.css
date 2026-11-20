@@ -1,0 +1,93 @@
+/* Timeline dei report (dall'originale .rtl, classi racchiuse in .wero-rtl-block) */
+.wero-rtl-block, .wero-rtl-block *, .wero-rtl-block *::before, .wero-rtl-block *::after { box-sizing: border-box; }
+.wero-rtl-block { --wero-edge: max(var(--wp--custom--gutter, 16px), calc((100vw - var(--wp--custom--wrap, 1280px)) / 2 + var(--wp--custom--gutter, 16px))); }
+.wero-rtl-block .rtl__cover { position: relative; }
+.wero-rtl-block .btn { display: inline-flex; align-items: center; justify-content: center; gap: 10px; padding: 15px 26px; border-radius: 999px; border: 0; cursor: pointer; font: inherit; font-size: 16px; font-weight: 600; letter-spacing: -.01em; text-decoration: none; transition: transform .25s var(--wp--custom--ease, ease), box-shadow .25s var(--wp--custom--ease, ease); }
+.wero-rtl-block .btn:hover { transform: translateY(-2px); }
+.wero-rtl-block .btn--grad { background: var(--wp--preset--gradient--wero, linear-gradient(90deg, #ff3f7a, #ff00c7)); color: #fff; box-shadow: 0 10px 30px -10px rgba(255, 0, 199, .6); }
+.wero-rtl-block .btn--line { background: transparent; color: var(--wp--preset--color--ink, #15121a); box-shadow: inset 0 0 0 1.5px var(--wp--preset--color--ink, #15121a); padding: 12px 22px; font-size: 15px; }
+.wero-rtl-block .btn--line:hover { background: var(--wp--preset--color--ink, #15121a); color: #fff; }
+.wero-rtl-block .round { width: 42px; height: 42px; border-radius: 50%; border: 1.5px solid var(--wp--preset--color--ink, #15121a); background: transparent; cursor: pointer; font-size: 18px; color: var(--wp--preset--color--ink, #15121a); }
+.wero-rtl-block .round:hover { background: var(--wp--preset--color--ink, #15121a); color: #fff; }
+.wero-rtl-block .tag-mini { justify-self: start; display: inline-block; padding: 5px 12px; border-radius: 999px; font-size: 13px; font-weight: 600; color: #fff; white-space: nowrap; }
+.wero-rtl-block .tag-mini--scuro { background: var(--wp--preset--color--ink, #15121a); }
+.wero-rtl-block .tag-mini--sfumatura { background: var(--wp--preset--gradient--wero, linear-gradient(90deg, #ff3f7a, #ff00c7)); }
+.wero-rtl-block .tag-mini--contorno { background: var(--wp--preset--color--paper-light, #fbfaf5); color: var(--wp--preset--color--magenta, #ff00c7); box-shadow: inset 0 0 0 1.5px var(--wp--preset--color--magenta, #ff00c7); }
+.wero-rtl-block .report__more { font-size: 15px; font-weight: 600; text-underline-offset: 4px; color: var(--wp--preset--color--ink, #15121a); }
+.wero-rtl-block .report__more:hover { color: var(--wp--preset--color--magenta, #ff00c7); }
+.wero-rtl-block .rtl__cover img.rtl__img { width: 100%; height: 100%; object-fit: cover; filter: none; position: absolute; inset: 0; }
+.wero-rtl-block .report__cover { position: relative; aspect-ratio: 3 / 4; border-radius: 16px; padding: 18px; display: grid; align-content: space-between; color: #fff; overflow: hidden;
+  box-shadow: 0 20px 40px -24px rgba(21, 18, 26, .5); }
+.wero-rtl-block .report__cover--a { background: radial-gradient(circle at 1px 1px, rgba(255,255,255,.2) 1px, transparent 1.6px) 0 0 / 12px 12px, var(--wp--preset--gradient--wero, linear-gradient(90deg, #ff3f7a, #ff00c7)); }
+.wero-rtl-block .report__cover--b { background: radial-gradient(circle at 1px 1px, rgba(255,255,255,.14) 1px, transparent 1.6px) 0 0 / 12px 12px, linear-gradient(160deg, #241b2a, var(--wp--preset--color--ink, #15121a) 70%); }
+.wero-rtl-block .report__cover img { width: 46%; filter: brightness(0) invert(1); }
+.wero-rtl-block .report__cover span { font-size: clamp(15px, 1.4vw, 19px); font-weight: 600; line-height: 1.1; letter-spacing: -.02em; }
+.wero-rtl-block .rtl { position: relative; margin-top: var(--wp--preset--spacing--head, 40px); }
+/* il blocco fermo è alto quanto il contenuto (non tutto lo schermo) e resta centrato in verticale: top calcolato in main.js */
+.wero-rtl-block .rtl__sticky { position: sticky; top: 0; overflow: hidden; display: flex; flex-direction: column; padding-top: 36px; }
+.wero-rtl-block .rtl__line { position: absolute; left: 0; right: 0; top: 40px; height: 1.5px; background: var(--wp--custom--line, rgba(21, 18, 26, .12)); }
+.wero-rtl-block .rtl__progress { position: absolute; left: 0; top: -.5px; height: 2.5px; width: 0; background: var(--wp--preset--color--ink, #15121a); }
+.wero-rtl-block .rtl__track { list-style: none; margin: 0; padding: 0 var(--wp--custom--gutter, 16px); display: flex; gap: 0; will-change: transform; position: relative; }
+.wero-rtl-block .rtl__item { flex: 0 0 clamp(520px, 44vw, 680px); position: relative; padding-right: clamp(32px, 4vw, 64px); }
+.wero-rtl-block .rtl__dot { display: block; width: 9px; height: 9px; border-radius: 50%; background: var(--wp--custom--line, rgba(21, 18, 26, .12)); margin: 0 0 14px -4px; transition: background .3s; }
+.wero-rtl-block .rtl__item.is-past .rtl__dot { background: var(--wp--preset--color--ink, #15121a); }
+.wero-rtl-block .rtl__title { font-size: clamp(18px, 1.4vw, 21px); font-weight: 500; letter-spacing: -.02em; margin: 0 0 24px; }
+.wero-rtl-block .rtl__title time { color: var(--wp--preset--color--magenta, #ff00c7); margin-right: 6px; }
+.wero-rtl-block .rtl__body { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: clamp(20px, 2.4vw, 36px); height: 400px; }
+.wero-rtl-block .rtl__cover { aspect-ratio: auto; height: 100%; }
+.wero-rtl-block .rtl__text { display: flex; flex-direction: column; gap: 14px; max-width: 30ch; align-self: end; }
+.wero-rtl-block .rtl__item:nth-child(even) .rtl__text { align-self: start; }
+.wero-rtl-block .rtl__meta { display: flex; flex-wrap: wrap; align-items: center; gap: 8px 10px; font-size: 13px; color: var(--wp--preset--color--ink-soft, #3b3640); }
+.wero-rtl-block .rtl__desc { font-size: 15px; line-height: 1.55; }
+/* pulsanti: stessa altezza e allineati */
+.wero-rtl-block .rtl__actions { display: flex; flex-wrap: wrap; align-items: center; gap: 10px 16px; padding: 0; background: none; border-radius: 0; }
+.wero-rtl-block .rtl__actions .btn { height: 46px; padding: 0 22px; font-size: 15px; }
+.wero-rtl-block .rtl__actions .report__more { line-height: 46px; }
+.wero-rtl-block .report__cover--next { background: transparent; color: var(--wp--preset--color--magenta, #ff00c7); border: 1.5px dashed rgba(21,18,26,.25); box-shadow: none; }
+.wero-rtl-block .report__cover--next img { filter: none; opacity: .5; }
+/* telefono / movimento ridotto: niente blocco, scorrimento orizzontale col dito */
+@media (max-width: 900px), (prefers-reduced-motion: reduce) {
+  .wero-rtl-block .rtl { height: auto !important; }
+  .wero-rtl-block .rtl__sticky { position: static; height: auto; overflow-x: auto; scroll-snap-type: x proximity; scroll-padding-inline: var(--wp--custom--gutter, 16px); padding: 24px 0 16px; scrollbar-width: none; }
+  .wero-rtl-block .rtl__line { top: 30px; }
+  .wero-rtl-block .rtl__track { transform: none !important; top: 0; }
+  .wero-rtl-block .rtl__item { flex-basis: 84vw; scroll-snap-align: start; padding-right: 20px; }
+  .wero-rtl-block .rtl__item:last-child { scroll-snap-align: end; }   /* l'ultima tappa si aggancia al bordo destro, altrimenti è irraggiungibile */
+  .wero-rtl-block .rtl__body { grid-template-columns: 1fr; height: auto; }
+  .wero-rtl-block .rtl__cover { aspect-ratio: 4 / 3; height: auto; }
+  .wero-rtl-block .rtl__text, .wero-rtl-block .rtl__item:nth-child(even) .rtl__text { align-self: start; max-width: none; }
+}
+.wero-rtl-block .rtl__nav { order: 3; margin-top: 28px; width: 100%; box-sizing: border-box; display: flex; justify-content: flex-end; align-items: center; gap: 12px; z-index: 2; }
+.wero-rtl-block .rtl__count { font-size: 15px; font-weight: 600; font-variant-numeric: tabular-nums; min-width: 4.5em; text-align: center; }
+.wero-rtl-block .rtl__nav .round:disabled { opacity: .3; cursor: default; }
+.wero-rtl-block .rtl__nav .round:disabled:hover { background: transparent; color: inherit; }
+@media (max-width: 900px), (prefers-reduced-motion: reduce) {
+  /* i pulsanti stanno dentro il contenitore che scorre di lato: li tengo fermi a sinistra */
+  .wero-rtl-block .rtl__nav { position: sticky; left: var(--wp--custom--gutter, 16px); order: -1; width: max-content; justify-content: flex-start; margin: 0; padding: 0 0 20px; }
+  /* la linea parte dalla timeline (sotto le frecce) e scorre con lei */
+  .wero-rtl-block .rtl__line { display: none; }
+  .wero-rtl-block .rtl__track { border-top: 1.5px solid var(--wp--custom--line, rgba(21, 18, 26, .12)); margin-inline: var(--wp--custom--gutter, 16px); padding-inline: 0; }
+  .wero-rtl-block .rtl__dot { margin-top: -5px; }
+  /* titoli sempre su due righe, così le tappe restano allineate */
+  .wero-rtl-block .rtl__title { min-height: calc(2 * 1.2em); line-height: 1.2; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
+}
+
+
+/* opzione "sezione ferma" spenta: comportamento mobile anche su desktop */
+  .wero-rtl-block.is-static .rtl { height: auto !important; }
+  .wero-rtl-block.is-static .rtl__sticky { position: static; height: auto; overflow-x: auto; scroll-snap-type: x proximity; scroll-padding-inline: var(--wp--custom--gutter, 16px); padding: 24px 0 16px; scrollbar-width: none; }
+  .wero-rtl-block.is-static .rtl__line { top: 30px; }
+  .wero-rtl-block.is-static .rtl__track { transform: none !important; top: 0; }
+  .wero-rtl-block.is-static .rtl__item { flex-basis: 84vw; scroll-snap-align: start; padding-right: 20px; }
+  .wero-rtl-block.is-static .rtl__item:last-child { scroll-snap-align: end; }   /* l'ultima tappa si aggancia al bordo destro, altrimenti è irraggiungibile */
+  .wero-rtl-block.is-static .rtl__body { grid-template-columns: 1fr; height: auto; }
+  .wero-rtl-block.is-static .rtl__cover { aspect-ratio: 4 / 3; height: auto; }
+  .wero-rtl-block.is-static .rtl__text, .wero-rtl-block.is-static .rtl__item:nth-child(even) .rtl__text { align-self: start; max-width: none; }
+  /* i pulsanti stanno dentro il contenitore che scorre di lato: li tengo fermi a sinistra */
+  .wero-rtl-block.is-static .rtl__nav { position: sticky; left: var(--wp--custom--gutter, 16px); order: -1; width: max-content; justify-content: flex-start; margin: 0; padding: 0 0 20px; }
+  /* la linea parte dalla timeline (sotto le frecce) e scorre con lei */
+  .wero-rtl-block.is-static .rtl__line { display: none; }
+  .wero-rtl-block.is-static .rtl__track { border-top: 1.5px solid var(--wp--custom--line, rgba(21, 18, 26, .12)); margin-inline: var(--wp--custom--gutter, 16px); padding-inline: 0; }
+  .wero-rtl-block.is-static .rtl__dot { margin-top: -5px; }
+  /* titoli sempre su due righe, così le tappe restano allineate */
+  .wero-rtl-block.is-static .rtl__title { min-height: calc(2 * 1.2em); line-height: 1.2; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }

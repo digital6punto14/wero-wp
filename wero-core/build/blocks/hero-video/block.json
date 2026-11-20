@@ -1,0 +1,49 @@
+{
+  "$schema": "https://schemas.wp.org/trunk/block.json",
+  "apiVersion": 3,
+  "name": "wero/hero-video",
+  "version": "0.1.0",
+  "title": "Hero con video",
+  "category": "wero",
+  "icon": "format-video",
+  "description": "Copertina a tutto schermo con titolo, testo e pulsanti. Il video (file, YouTube o Vimeo) parte solo al clic.",
+  "keywords": [
+    "hero",
+    "video",
+    "copertina"
+  ],
+  "textdomain": "wero-core",
+  "attributes": {
+    "poster": {
+      "type": "string",
+      "default": ""
+    },
+    "posterId": {
+      "type": "number",
+      "default": 0
+    },
+    "mediaUrl": {
+      "type": "string",
+      "default": ""
+    },
+    "mediaId": {
+      "type": "number",
+      "default": 0
+    },
+    "videoLabel": {
+      "type": "string",
+      "default": "The future of robotics"
+    }
+  },
+  "supports": {
+    "html": false,
+    "align": [
+      "full"
+    ],
+    "anchor": true
+  },
+  "editorScript": "file:./index.js",
+  "style": "file:./style-index.css",
+  "viewScript": "file:./view.js",
+  "render": "file:./render.php"
+}

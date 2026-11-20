@@ -1,0 +1,21 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 3,
+	"name": "wero/people",
+	"version": "0.1.0",
+	"category": "wero",
+	"textdomain": "wero-core",
+	"usesContext": [
+		"postId",
+		"postType"
+	],
+	"title": "Persone",
+	"icon": "admin-users",
+	"description": "Ospiti e relatori collegati al progetto (campo “Persone”). Si modificano nel menu Persone.",
+	"supports": {
+		"html": false
+	},
+	"editorScript": "file:./index.js",
+	"style": "file:./style-index.css",
+	"render": "file:./render.php"
+}

@@ -1,0 +1,17 @@
+.wero-player--video { position: relative; border-radius: 28px; overflow: hidden; background: var(--wp--preset--color--ink, #15121a); aspect-ratio: 16 / 9; }
+.wero-player--video, .wero-player--video *, .wero-player--video *::before, .wero-player--video *::after { box-sizing: border-box; }
+.wero-player__poster, .wero-player--video video, .wero-player--video iframe { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; border: 0; }
+.wero-player__play {
+	position: absolute; left: 24px; bottom: 56px; width: 80px; height: 80px; border-radius: 50%; border: 0; cursor: pointer;
+	background: var(--wp--preset--gradient--wero, #ff00c7); box-shadow: 0 16px 40px -10px rgba(255, 0, 199, .7); display: grid; place-items: center;
+	transition: transform .25s var(--wp--custom--ease, ease);
+}
+.wero-player__play:hover { transform: scale(1.06); }
+.wero-player__play svg { width: 34px; height: 34px; margin-left: 5px; fill: #fff; }
+.wero-player--video .wero-player__note { position: absolute; left: 24px; bottom: 20px; margin: 0; color: rgba(255, 255, 255, .75); font-size: 14px; }
+.wero-player.is-playing .wero-player__play, .wero-player.is-playing .wero-player__note { display: none; }
+.wero-player--audio { display: grid; gap: 12px; padding: 22px; border-radius: 22px; background: var(--wp--preset--color--paper-light, #fbfaf5); }
+.wero-player--audio audio { width: 100%; accent-color: var(--wp--preset--color--magenta, #ff00c7); }
+.wero-player--audio iframe { width: 100%; border: 0; border-radius: 12px; }
+.wero-player__load { justify-self: start; height: 46px; padding: 0 22px; border-radius: 999px; border: 0; cursor: pointer; background: var(--wp--preset--gradient--wero, #ff00c7); color: #fff; font: inherit; font-size: 15px; font-weight: 600; }
+.wero-player--audio p { margin: 0; font-size: 13px; color: var(--wp--preset--color--ink-soft, #3b3640); }

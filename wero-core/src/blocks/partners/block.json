@@ -1,0 +1,20 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 3,
+	"name": "wero/partners",
+	"version": "0.1.0",
+	"title": "Loghi dei partner",
+	"category": "wero",
+	"icon": "groups",
+	"description": "Loghi dei Partner con scheda (nome, descrizione, link) che si apre al passaggio o al tocco. I dati si modificano in Partner.",
+	"keywords": [ "partner", "founder", "loghi" ],
+	"textdomain": "wero-core",
+	"attributes": {
+		"group": { "type": "string", "enum": [ "founder", "business", "ricerca", "all" ], "default": "founder" }
+	},
+	"supports": { "html": false, "align": [ "wide", "full" ] },
+	"editorScript": "file:./index.js",
+	"style": "file:./style-index.css",
+	"viewScript": "file:./view.js",
+	"render": "file:./render.php"
+}

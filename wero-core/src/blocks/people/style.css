@@ -1,0 +1,5 @@
+.wero-people { list-style: none; margin: 0; padding: 0; display: grid; gap: 14px; }
+.wero-people li { display: grid; grid-template-columns: 48px 1fr; gap: 14px; align-items: center; }
+.wero-people__avatar { width: 48px; height: 48px; border-radius: 50%; background: var(--wp--preset--gradient--wero, #ff00c7); object-fit: cover; display: block; }
+.wero-people strong { display: block; font-size: 16px; }
+.wero-people span { font-size: 14px; color: var(--wp--preset--color--ink-soft, #3b3640); }

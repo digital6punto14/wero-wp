@@ -1,0 +1,4 @@
+.wero-facts { margin: 0; display: grid; gap: 18px; padding: 24px; border-radius: 22px; background: var(--wp--preset--color--paper-light, #fbfaf5); }
+.wero-facts div { display: grid; gap: 2px; }
+.wero-facts dt { font-size: 13px; font-weight: 600; color: var(--wp--preset--color--ink-soft, #3b3640); }
+.wero-facts dd { margin: 0; font-size: 16px; font-weight: 600; }

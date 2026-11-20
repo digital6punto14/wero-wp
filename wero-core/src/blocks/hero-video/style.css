@@ -1,0 +1,31 @@
+/* Hero: video a tutto schermo, testi bianchi (dall'originale .hero) */
+.wero-hero, .wero-hero *, .wero-hero *::before, .wero-hero *::after { box-sizing: border-box; }
+.wero-hero { position: relative; min-height: 100vh; min-height: 100svh; display: flex; align-items: flex-end; color: #fff; background: var(--wp--preset--color--ink, #15121a); overflow: hidden; margin-top: 0 !important; margin-bottom: 0 !important; }
+.wero-hero__media, .wero-hero__scrim { position: absolute; inset: 0; }
+.wero-hero__poster, .wero-hero__player, .wero-hero__player > * { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; border: 0; }
+.wero-hero__player:empty { display: none; }
+.wero-hero__player { background: #000; z-index: 3; }
+.wero-hero__scrim { background: linear-gradient(to top, rgba(10, 8, 12, .78), rgba(10, 8, 12, .25) 55%, rgba(10, 8, 12, .1)); transition: opacity .6s ease; }
+.wero-hero__content { position: relative; width: 100%; padding: calc(var(--wp--custom--nav-height, 76px) + 40px) 0 clamp(56px, 9vh, 104px); transition: opacity .6s ease; }
+.wero-hero__inner { max-width: var(--wp--style--global--content-size, 1184px); margin: 0 auto; padding: 0 var(--wp--custom--gutter, 24px); box-sizing: content-box; }
+.wero-hero__inner > * + * { margin-block-start: 18px; }
+.wero-hero__title { max-width: 14ch; color: #fff; }
+.wero-hero__lead { font-size: clamp(17px, 1.3vw, 19px); max-width: 40ch; color: rgba(255, 255, 255, .88); }
+.wero-hero__actions { margin-top: 26px !important; }
+.wero-hero__note { margin-top: 14px; min-height: 1.4em; font-size: 15px; color: rgba(255, 255, 255, .85); }
+.wero-hero.is-playing .wero-hero__content, .wero-hero.is-playing .wero-hero__scrim, .wero-hero.is-playing .wero-hero__bigplay { opacity: 0; pointer-events: none; }
+.wero-hero__bigplay {
+	position: absolute; z-index: 2; left: 50%; top: 50%; transform: translate(-50%, -50%);
+	width: clamp(84px, 8vw, 116px); height: clamp(84px, 8vw, 116px); border-radius: 50%; border: 0; cursor: pointer;
+	background: rgba(255, 255, 255, .22); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px);
+	display: grid; place-items: center; box-shadow: inset 0 0 0 1.5px rgba(255, 255, 255, .55);
+	transition: transform .3s var(--wp--custom--ease, ease), opacity .3s;
+}
+.wero-hero__bigplay svg { width: 38%; height: 38%; margin-left: 6%; fill: #fff; }
+.wero-hero__bigplay:hover { transform: translate(-50%, -50%) scale(1.07); background: rgba(255, 255, 255, .34); }
+.wero-hero__close { position: absolute; z-index: 4; right: var(--wp--custom--gutter, 24px); top: calc(var(--wp--custom--nav-height, 76px) + 16px); height: 42px; padding: 0 18px; border-radius: 999px; border: 0; background: #fff; color: #15121a; font: inherit; font-size: 14px; font-weight: 600; cursor: pointer; }
+.wero-hero.is-editor { min-height: 520px; }
+@media (max-width: 900px) {
+	.wero-hero__note { display: none; }
+	.wero-hero__bigplay { top: 34%; }
+}

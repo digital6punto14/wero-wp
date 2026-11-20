@@ -1,0 +1,22 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 3,
+	"name": "wero/projects-explorer",
+	"version": "0.1.0",
+	"title": "Sfera dei progetti",
+	"category": "wero",
+	"icon": "admin-site-alt3",
+	"description": "Sfera 3D dei progetti con filtri per mondo, pannello informativo, lista paginata e vista a griglia. I progetti arrivano dal tipo di contenuto Progetti.",
+	"keywords": [ "progetti", "sfera", "portfolio" ],
+	"textdomain": "wero-core",
+	"attributes": {
+		"perPage": { "type": "number", "default": 5 },
+		"spin": { "type": "boolean", "default": true },
+		"max": { "type": "number", "default": 40 }
+	},
+	"supports": { "html": false, "multiple": false, "align": [ "wide" ] },
+	"editorScript": "file:./index.js",
+	"style": "file:./style-index.css",
+	"viewScript": "file:./view.js",
+	"render": "file:./render.php"
+}

@@ -1,0 +1,26 @@
+{
+  "$schema": "https://schemas.wp.org/trunk/block.json",
+  "apiVersion": 3,
+  "name": "wero/intro",
+  "version": "0.1.0",
+  "title": "Intro del logo",
+  "category": "wero",
+  "icon": "controls-play",
+  "description": "Animazione del logo WeRo all'apertura della home (5 secondi, con “Salta”). Si attiva e disattiva da Impostazioni › WeRo › Animazioni.",
+  "keywords": [
+    "intro",
+    "logo",
+    "animazione"
+  ],
+  "textdomain": "wero-core",
+  "supports": {
+    "html": false,
+    "multiple": false,
+    "reusable": false,
+    "inserter": false
+  },
+  "editorScript": "file:./index.js",
+  "style": "file:./style-index.css",
+  "viewScript": "file:./view.js",
+  "render": "file:./render.php"
+}

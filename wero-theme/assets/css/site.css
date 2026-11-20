@@ -5,6 +5,7 @@
    (assets/css/blocks/), caricati solo dove il blocco è presente.
    ========================================================= */
 
+*, *::before, *::after { box-sizing: border-box; }
 html { scroll-behavior: smooth; scroll-padding-top: calc(var(--wp--custom--nav-height) + 12px); }
 body {
 	/* riserva se WebGL non è disponibile: il crema di fondo dello sfondo a pixel */

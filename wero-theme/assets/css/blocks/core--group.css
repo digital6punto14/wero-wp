@@ -42,3 +42,6 @@
 @media (max-width: 560px) {
 	.wero-footer__bottom { flex-direction: column; gap: 8px; }
 }
+
+/* progetti: riquadro "Diventa partner" dopo "Altri progetti" (come l'originale) */
+.wero-more + .wp-block-template-part { margin-block-start: var(--wp--preset--spacing--block) !important; }

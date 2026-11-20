@@ -30,21 +30,13 @@ $wero_img = get_theme_file_uri( 'assets/images/patterns/' );
 <!-- /wp:paragraph -->
 
 <!-- wp:wero/chapters -->
-<!-- wp:wero/chapter {"time":"00:00","seconds":0} -->
-<p class="wp-block-wero-chapter">Apertura</p>
-<!-- /wp:wero/chapter -->
+<!-- wp:wero/chapter {"time":"00:00","seconds":0,"label":"Apertura"} /-->
 
-<!-- wp:wero/chapter {"time":"01:35","seconds":95} -->
-<p class="wp-block-wero-chapter">Perché portare i robot fuori dai laboratori</p>
-<!-- /wp:wero/chapter -->
+<!-- wp:wero/chapter {"time":"01:35","seconds":95,"label":"Perché portare i robot fuori dai laboratori"} /-->
 
-<!-- wp:wero/chapter {"time":"06:52","seconds":412} -->
-<p class="wp-block-wero-chapter">Il dialogo con il pubblico</p>
-<!-- /wp:wero/chapter -->
+<!-- wp:wero/chapter {"time":"06:52","seconds":412,"label":"Il dialogo con il pubblico"} /-->
 
-<!-- wp:wero/chapter {"time":"13:00","seconds":780} -->
-<p class="wp-block-wero-chapter">Cosa resta dopo l’evento</p>
-<!-- /wp:wero/chapter -->
+<!-- wp:wero/chapter {"time":"13:00","seconds":780,"label":"Cosa resta dopo l’evento"} /-->
 <!-- /wp:wero/chapters -->
 
 <!-- wp:paragraph {"className":"wero-side-h","fontSize":"small","style":{"spacing":{"margin":{"top":"28px"}}}} -->

@@ -1,0 +1,14 @@
+/* Riga curva dei loghi (dall'originale .tilted) */
+.wero-logo-row, .wero-logo-row *, .wero-logo-row *::before, .wero-logo-row *::after { box-sizing: border-box; }
+.wero-logo-row { position: relative; }
+.wero-legend { display: flex; gap: 16px; list-style: none; padding: 0; margin: 0 auto 0; font-size: 15px; font-weight: 600; justify-content: flex-end; max-width: var(--wp--style--global--content-size, 1184px); padding-inline: var(--wp--custom--gutter, 24px); margin-top: -40px; color: inherit; }
+.wero-legend li { display: flex; align-items: center; gap: 8px; }
+.wero-dot { width: 10px; height: 10px; border-radius: 50%; display: inline-block; }
+.wero-dot--business { background: #ff3f7a; }
+.wero-dot--ricerca { background: #7b5cff; }
+.wero-tilted { position: relative; height: clamp(220px, 26vw, 340px); overflow: hidden; container-type: size; }
+.wero-tilted .tilted__band { position: absolute; inset: 0; pointer-events: none; transition: opacity .5s ease; }
+.wero-tilted .tilted__tile { position: absolute; transform-style: preserve-3d; }
+.wero-tilted .tilted__slice { position: absolute; top: 0; overflow: hidden; }
+.wero-tilted .tilted__slice img { position: absolute; top: 0; max-width: none; object-fit: cover; }
+@media (max-width: 900px) { .wero-legend { margin-top: 12px; justify-content: flex-start; } }

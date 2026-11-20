@@ -1,0 +1,46 @@
+{
+  "$schema": "https://schemas.wp.org/trunk/block.json",
+  "apiVersion": 3,
+  "name": "wero/logo-row",
+  "version": "0.1.0",
+  "title": "Riga curva dei loghi",
+  "category": "wero",
+  "icon": "images-alt2",
+  "description": "I loghi dei Partner (non founder) scorrono su una riga curva, con l'etichetta Business o Ricerca. Per aggiungere un logo basta creare un Partner.",
+  "keywords": [
+    "loghi",
+    "partner",
+    "collaboratori",
+    "slider"
+  ],
+  "textdomain": "wero-core",
+  "attributes": {
+    "speed": {
+      "type": "number",
+      "default": 3.2
+    },
+    "curve": {
+      "type": "number",
+      "default": 72
+    },
+    "tileHeight": {
+      "type": "number",
+      "default": 34
+    },
+    "showLegend": {
+      "type": "boolean",
+      "default": true
+    }
+  },
+  "supports": {
+    "html": false,
+    "align": [
+      "wide",
+      "full"
+    ]
+  },
+  "editorScript": "file:./index.js",
+  "style": "file:./style-index.css",
+  "viewScript": "file:./view.js",
+  "render": "file:./render.php"
+}

@@ -1,0 +1,21 @@
+{
+  "$schema": "https://schemas.wp.org/trunk/block.json",
+  "apiVersion": 3,
+  "name": "wero/listen-links",
+  "version": "0.1.0",
+  "category": "wero",
+  "textdomain": "wero-core",
+  "usesContext": [
+    "postId",
+    "postType"
+  ],
+  "title": "Ascolta su",
+  "icon": "share",
+  "description": "Link alle piattaforme del podcast (campi Spotify, Apple Podcasts, YouTube, altra).",
+  "supports": {
+    "html": false
+  },
+  "editorScript": "file:./index.js",
+  "style": "file:./style-index.css",
+  "render": "file:./render.php"
+}

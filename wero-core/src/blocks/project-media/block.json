@@ -1,0 +1,32 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 3,
+	"name": "wero/project-media",
+	"version": "0.1.0",
+	"category": "wero",
+	"textdomain": "wero-core",
+	"usesContext": [
+		"postId",
+		"postType"
+	],
+	"title": "Player del progetto",
+	"icon": "controls-play",
+	"description": "Video o audio del progetto dal campo “Link del video o dell’audio” (file, YouTube, Vimeo, Spotify, SoundCloud, Apple Podcasts). I servizi esterni si caricano solo al clic.",
+	"attributes": {
+		"mode": {
+			"type": "string",
+			"enum": [
+				"video",
+				"audio"
+			],
+			"default": "video"
+		}
+	},
+	"supports": {
+		"html": false
+	},
+	"editorScript": "file:./index.js",
+	"style": "file:./style-index.css",
+	"render": "file:./render.php",
+	"viewScript": "file:./view.js"
+}

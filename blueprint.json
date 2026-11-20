@@ -15,7 +15,7 @@
 	},
 	"constants": {
 		"WP_DEBUG": true,
-		"WP_DEBUG_LOG": true,
+		"WP_DEBUG_LOG": "/wordpress/wp-content/plugins/wero-core/debug.log",
 		"WP_DEBUG_DISPLAY": false,
 		"WP_DEVELOPMENT_MODE": "all"
 	},

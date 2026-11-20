@@ -1,0 +1,20 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 3,
+	"name": "wero/report-timeline",
+	"version": "0.1.0",
+	"title": "Timeline dei report",
+	"category": "wero",
+	"icon": "media-document",
+	"description": "Timeline orizzontale dei Report: su desktop scorre con la pagina, su mobile con il dito. I report si modificano nel menu Report.",
+	"keywords": [ "report", "timeline", "pdf" ],
+	"textdomain": "wero-core",
+	"attributes": {
+		"sticky": { "type": "boolean", "default": true }
+	},
+	"supports": { "html": false, "multiple": false, "align": [ "full" ] },
+	"editorScript": "file:./index.js",
+	"style": "file:./style-index.css",
+	"viewScript": "file:./view.js",
+	"render": "file:./render.php"
+}

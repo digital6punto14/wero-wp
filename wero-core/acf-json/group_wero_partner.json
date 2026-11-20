@@ -1,0 +1,155 @@
+{
+    "key": "group_wero_partner",
+    "title": "Partner – dati",
+    "fields": [
+        {
+            "key": "field_9bf6c44c1e668",
+            "label": "Logo",
+            "name": "logo",
+            "aria-label": "",
+            "type": "image",
+            "instructions": "PNG o SVG con sfondo trasparente. Nella riga curva diventa bianco automaticamente.",
+            "required": 1,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "return_format": "id",
+            "library": "all",
+            "min_width": "",
+            "min_height": "",
+            "min_size": "",
+            "max_width": "",
+            "max_height": "",
+            "max_size": "",
+            "mime_types": "",
+            "preview_size": "medium"
+        },
+        {
+            "key": "field_fde3bc3fa60d6",
+            "label": "Tipo",
+            "name": "tipo",
+            "aria-label": "",
+            "type": "select",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "33",
+                "class": "",
+                "id": ""
+            },
+            "choices": {
+                "business": "Business",
+                "ricerca": "Ricerca"
+            },
+            "default_value": "business",
+            "return_format": "value",
+            "multiple": 0,
+            "allow_null": 0,
+            "ui": 0,
+            "ajax": 0,
+            "placeholder": ""
+        },
+        {
+            "key": "field_4160d625d3bce",
+            "label": "Founder",
+            "name": "founder",
+            "aria-label": "",
+            "type": "true_false",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "33",
+                "class": "",
+                "id": ""
+            },
+            "message": "È uno dei founder di WeRo",
+            "default_value": 0,
+            "ui": 1,
+            "ui_on_text": "",
+            "ui_off_text": ""
+        },
+        {
+            "key": "field_9bd7a369410ce",
+            "label": "Altezza del logo (px)",
+            "name": "altezza_logo",
+            "aria-label": "",
+            "type": "number",
+            "instructions": "Per bilanciare il peso visivo tra loghi diversi.",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "34",
+                "class": "",
+                "id": ""
+            },
+            "default_value": 64,
+            "min": 20,
+            "max": 200,
+            "placeholder": "",
+            "step": "",
+            "prepend": "",
+            "append": "px"
+        },
+        {
+            "key": "field_0ea83fa63a9e4",
+            "label": "Descrizione",
+            "name": "descrizione",
+            "aria-label": "",
+            "type": "textarea",
+            "instructions": "Compare nella scheda che si apre sul logo (founder).",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "maxlength": "",
+            "rows": 3,
+            "placeholder": "",
+            "new_lines": ""
+        },
+        {
+            "key": "field_a8ae17c56e215",
+            "label": "Sito web",
+            "name": "sito",
+            "aria-label": "",
+            "type": "url",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "placeholder": ""
+        }
+    ],
+    "location": [
+        [
+            {
+                "param": "post_type",
+                "operator": "==",
+                "value": "partner"
+            }
+        ]
+    ],
+    "menu_order": 0,
+    "position": "normal",
+    "style": "default",
+    "label_placement": "top",
+    "instruction_placement": "label",
+    "hide_on_screen": "",
+    "active": true,
+    "description": "Loghi dei founder e della riga dei collaboratori. Ordine: campo “Ordine” in Attributi.",
+    "show_in_rest": 1,
+    "modified": 1795200000
+}

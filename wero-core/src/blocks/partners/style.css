@@ -1,0 +1,34 @@
+/* Loghi dei partner con scheda (dall'originale .pgroup / .partner / .pcard) */
+.wero-partners, .wero-partners *, .wero-partners *::before, .wero-partners *::after { box-sizing: border-box; }
+.wero-partners { width: 100%; }
+.wero-partners__list { list-style: none; margin: 0 auto; padding: 0; width: 100%; max-width: 1040px; display: grid; grid-auto-flow: column; grid-auto-columns: minmax(0, 1fr); }
+.wero-partner { position: relative; display: grid; justify-items: center; }
+.wero-partner__logo {
+	display: grid; place-items: center; width: 100%; height: 150px; padding: 0 16px;
+	border: 0; background: none; cursor: pointer; color: inherit; border-radius: 20px; transition: background .25s; font: inherit; font-weight: 600;
+}
+.wero-partners.is-founder .wero-partner__logo { height: 220px; }
+.wero-partner__logo img { height: var(--h, 64px); width: auto; max-width: 100%; object-fit: contain; transition: transform .3s var(--wp--custom--ease, ease); }
+.wero-partners.is-founder .wero-partner__logo img { height: calc(var(--h, 64px) * 1.3); }
+.wero-partner__logo:hover, .wero-partner.is-open .wero-partner__logo { background: rgba(255, 255, 255, .45); }
+.wero-partner__logo:hover img, .wero-partner.is-open .wero-partner__logo img { transform: translateY(-3px); }
+.wero-pcard {
+	position: absolute; left: 50%; top: 100%; z-index: 30; width: min(320px, 80vw); margin-top: 10px; margin-left: calc(min(320px, 80vw) / -2);
+	padding: 18px 20px; border-radius: 20px; background: var(--wp--preset--gradient--wero, linear-gradient(90deg, #ff3f7a, #ff00c7)); color: #fff; text-align: left;
+	box-shadow: 0 24px 50px -24px rgba(176, 0, 138, .6);
+	opacity: 0; visibility: hidden; transform: translateY(-6px); transition: opacity .2s ease, transform .25s var(--wp--custom--ease, ease), visibility 0s .25s;
+}
+.wero-pcard::before { content: ""; position: absolute; left: 0; right: 0; top: -16px; height: 16px; }
+.wero-partner:hover .wero-pcard, .wero-partner:focus-within .wero-pcard, .wero-partner.is-open .wero-pcard { opacity: 1; visibility: visible; transform: none; transition-delay: 0s; }
+.wero-pcard p { margin: 0; }
+.wero-pcard__name { font-size: 18px; font-weight: 700; letter-spacing: -.01em; }
+.wero-pcard__desc { margin-top: 6px !important; font-size: 15px; line-height: 1.45; }
+.wero-pcard__link { display: inline-block; margin-top: 12px; font-size: 15px; font-weight: 600; color: #fff !important; text-underline-offset: 4px; }
+@media (max-width: 900px) {
+	.wero-partner__logo, .wero-partners.is-founder .wero-partner__logo { height: 120px; }
+	.wero-partner__logo img { height: calc(var(--h, 64px) * .72); }
+	.wero-partners.is-founder .wero-partner__logo img { height: auto; width: 88%; max-width: 88%; }
+	.wero-pcard { position: static; margin: 8px 0 0; display: none; width: 100%; }
+	.wero-partner.is-open .wero-pcard { display: block; }
+}
+@media (max-width: 900px) { .wero-partners.is-founder .wero-partner__logo img[src*="6punto14"] { width: auto; height: 58px; } }
