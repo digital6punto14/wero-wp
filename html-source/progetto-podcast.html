@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Tools for human beings — WeRo</title>
+  <meta name="description" content="Episodio del podcast di WeRo.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&display=swap">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/article.css">
+</head>
+<body>
+<canvas class="bg-glow" id="bgGlow" aria-hidden="true"></canvas>
+<canvas class="dot-trail" id="dotTrail" aria-hidden="true"></canvas>
+
+<header class="nav" id="nav">
+  <a class="nav__logo" href="index.html" aria-label="WeRo — torna alla home"><img src="assets/img/wero-mark.svg" alt="WeRo"></a>
+  <nav class="nav__links" aria-label="Sezioni">
+    <a href="index.html#chi">Chi siamo</a>
+    <a href="index.html#mondi">Mondi</a>
+    <a href="index.html#progetti" class="is-active">Progetti</a>
+    <a href="index.html#voci">Voci</a>
+    <a href="index.html#perche">Perché</a>
+  </nav>
+  <a class="btn btn--grad nav__cta" href="index.html#partner">Diventa partner</a>
+  <button class="nav__burger" id="burger" type="button" aria-label="Apri menu" aria-expanded="false"><span></span><span></span></button>
+</header>
+
+<main id="top">
+  <article class="article">
+    <div class="wrap">
+      <div class="article__bar">
+        <a class="article__back" href="index.html#progetti"><span aria-hidden="true">←</span> Tutti i progetti</a>
+        <p class="article__meta"><span class="tag-world">Robotics Intelligence</span><span>Podcast, 2026</span></p>
+      </div>
+      <div class="episode">
+        <div class="cover" aria-hidden="true">
+          <img src="assets/img/wero-mark.svg" alt="">
+          <div><p>WeRo Talks, episodio 01</p><strong>Tools for human beings</strong></div>
+        </div>
+        <div class="article__head">
+          <h1 class="article__title">Tools for human beings</h1>
+          <p class="article__lead">Come cambia la percezione dei robot quando smettono di essere macchine e diventano strumenti per le persone.</p>
+          <div class="audio" data-duration="1934">
+            <!-- con il file vero: <audio src="episodio-01.mp3" preload="metadata"></audio> -->
+            <audio preload="none"></audio>
+            <div class="audio__row">
+              <button class="audio__play" type="button" aria-label="Riproduci">
+                <svg class="i-play" viewBox="0 0 24 24" aria-hidden="true"><path d="M7 4.5v15l12-7.5z"/></svg>
+                <svg class="i-pause" viewBox="0 0 24 24" aria-hidden="true"><path d="M6.5 5h4v14h-4zM13.5 5h4v14h-4z"/></svg>
+              </button>
+              <input class="audio__bar" type="range" min="0" max="1934" value="0" step="1" aria-label="Posizione nell'episodio">
+              <span class="audio__time">00:00 / 32:14</span>
+            </div>
+            <div class="audio__row audio__row--controls">
+              <button class="audio__skip" type="button" data-skip="-15" aria-label="Indietro di 15 secondi">−15 s</button>
+              <button class="audio__skip" type="button" data-skip="30" aria-label="Avanti di 30 secondi">+30 s</button>
+              <button class="audio__speed" type="button" aria-label="Velocità di riproduzione">1×</button>
+            </div>
+          </div>
+          <div class="listen" aria-label="Ascolta anche su">
+            <a class="chip" href="#">Spotify</a><a class="chip" href="#">Apple Podcasts</a><a class="chip" href="#">YouTube</a>
+          </div>
+        </div>
+      </div>
+      <div class="notes">
+        <div class="prose">
+          <h2>In questo episodio</h2>
+          <p>WeRo ha accompagnato il progetto dalla strategia al racconto: un lavoro condiviso tra ricerca, comunicazione e creatività per rendere comprensibile a tutti una tecnologia complessa.</p>
+          <p>Da qui è nato un sistema di identità e di contenuti che mette al centro le persone e il rapporto tra uomo e macchina, invece della sola tecnica.</p>
+          <details class="transcript">
+            <summary>Leggi la trascrizione</summary>
+            <div class="prose">
+              <p><strong>Voce 1:</strong> Testo della trascrizione dell'episodio.</p>
+              <p><strong>Voce 2:</strong> Risposta dell'ospite.</p>
+            </div>
+          </details>
+        </div>
+        <aside>
+          <p class="side-h">Ospiti</p>
+          <ul class="people">
+            <li><span class="avatar" aria-hidden="true"></span><div><strong>Nome Cognome</strong><span>Ruolo, ente</span></div></li>
+            <li><span class="avatar" aria-hidden="true"></span><div><strong>Nome Cognome</strong><span>Conduce, WeRo</span></div></li>
+          </ul>
+        </aside>
+      </div>
+
+      <section class="more" aria-labelledby="more-h">
+        <h2 class="more__h" id="more-h">Altri progetti</h2>
+        <div class="more__list">
+          <a class="more__item" href="progetto-articolo.html"><div class="ph "><span class="ph__label">Immagine</span></div><strong>Accessible Robotics</strong><span>Robotics Intelligence, Report, 2024</span></a>
+          <a class="more__item" href="progetto-articolo-complesso.html"><img src="assets/img/gb/gb-robot.webp" alt="" loading="lazy"><strong>Generative Bionics</strong><span>Language &amp; Design, Branding, 2025</span></a>
+          <a class="more__item" href="progetto-video.html"><img src="assets/img/video/voce-space.webp" alt="" loading="lazy"><strong>Cultura robotica al Gazometro</strong><span>Conversation &amp; Events, Video, 2025</span></a>
+        </div>
+      </section>
+      <div class="cta-band">
+        <p class="cta-band__text">Vuoi diventare un nostro partner?</p>
+        <a class="btn btn--ink" href="index.html#partner">Contattaci</a>
+      </div>
+    </div>
+  </article>
+</main>
+
+<footer class="footer">
+  <div class="wrap">
+    <div class="footer__top">
+      <img class="footer__logo" src="assets/img/wero-logo.svg" alt="WeRo, Robot Communication Studio">
+      <div class="footer__cols">
+        <div>
+          <p class="footer__h grad-text">Contatti</p>
+          <a href="mailto:contact@we-ro.it">contact@we-ro.it</a>
+        </div>
+        <div>
+          <p class="footer__h grad-text">Seguici</p>
+          <a href="https://www.linkedin.com/" target="_blank" rel="noopener">LinkedIn</a>
+        </div>
+        <div>
+          <p class="footer__h grad-text">Founder</p>
+          <div class="footer__logos"><img src="assets/img/loghi/omnicom-advertising.png" alt="Omnicom Advertising"><img src="assets/img/loghi/6punto14.svg" alt="6.14"></div>
+        </div>
+      </div>
+    </div>
+    <div class="footer__bottom">
+      <p>© 2026 WeRo, Robot Communication Studio</p>
+      <a href="#top">Torna su</a>
+    </div>
+  </div>
+</footer>
+
+<script src="js/background.js" defer></script>
+<script src="js/dot-trail.js" defer></script>
+<script src="js/page.js" defer></script>
+</body>
+</html>

@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Generative Bionics — WeRo</title>
+  <meta name="description" content="Generative Bionics: logo design e identità per la robotica del futuro, nato dalla ricerca IIT.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&display=swap">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/article.css">
+</head>
+<body>
+<canvas class="bg-glow" id="bgGlow" aria-hidden="true"></canvas>
+<canvas class="dot-trail" id="dotTrail" aria-hidden="true"></canvas>
+
+<header class="nav" id="nav">
+  <a class="nav__logo" href="index.html" aria-label="WeRo — torna alla home"><img src="assets/img/wero-mark.svg" alt="WeRo"></a>
+  <nav class="nav__links" aria-label="Sezioni">
+    <a href="index.html#chi">Chi siamo</a>
+    <a href="index.html#mondi">Mondi</a>
+    <a href="index.html#progetti" class="is-active">Progetti</a>
+    <a href="index.html#voci">Voci</a>
+    <a href="index.html#perche">Perché</a>
+  </nav>
+  <a class="btn btn--grad nav__cta" href="index.html#partner">Diventa partner</a>
+  <button class="nav__burger" id="burger" type="button" aria-label="Apri menu" aria-expanded="false"><span></span><span></span></button>
+</header>
+
+<main id="top">
+  <article class="article">
+    <div class="wrap">
+      <div class="article__bar">
+        <a class="article__back" href="index.html#progetti"><span aria-hidden="true">←</span> Tutti i progetti</a>
+        <p class="article__meta"><span class="tag-world">Language &amp; Design</span><span>Branding, 2025</span></p>
+      </div>
+      <header class="article__head">
+        <h1 class="article__title">Generative Bionics</h1>
+        <p class="article__lead">Logo design per la robotica del futuro. Oggi la robotica è alla ricerca di una propria identità: costruire un segno chiaro e riconoscibile diventa essenziale per raccontare innovazione, affidabilità e visione.</p>
+      </header>
+      <figure class="media media--img"><img src="assets/img/gb/gb-robot.webp" alt="Il robot di Generative Bionics con il nuovo marchio sul torace" loading="lazy"></figure>
+      <div class="story">
+        <section class="story__block">
+          <figure class="media media--img"><img src="assets/img/gb/gb-logo-griglia.webp" alt="Il logo Generative Bionics sulla sua griglia di costruzione" loading="lazy"><figcaption>La griglia di costruzione del marchio.</figcaption></figure>
+          <div class="story__text">
+            <h2>Un marchio che nasce dalla ricerca</h2>
+            <p>Generative Bionics nasce dall’eccellenza scientifica dell’Italian Institute of Technology (IIT). È da questo contesto di ricerca avanzata che prende forma un’identità visiva capace di rendere accessibile la complessità tecnologica, trasformandola in un segno essenziale, chiaro e coerente, in cui precisione, modularità ed equilibrio formale guidano ogni scelta progettuale.</p>
+            <p>Il disegno del marchio segue una griglia rigorosa, che ne definisce proporzioni, pesi e relazioni geometriche. Ogni elemento è calibrato per comunicare solidità scientifica e coerenza visiva, senza rinunciare a una dimensione espressiva.</p>
+          </div>
+        </section>
+        <section class="story__block">
+          <figure class="media media--img media--square">
+            <video src="assets/img/gb/gb-logo.mp4" poster="assets/img/gb/gb-logo-poster.jpg" autoplay muted loop playsinline aria-label="Animazione del logo Generative Bionics"></video>
+          </figure>
+          <div class="story__text">
+            <h2>Un segno che si muove</h2>
+            <p>Il logo si sviluppa a partire da una struttura circolare, ispirata alla logica distribuita della Physical AI, tecnologia alla base dei sistemi sviluppati dall’azienda. Una costellazione di punti e orbite interconnesse genera un segno dinamico e organico, che racconta un ecosistema in cui intelligenza artificiale, corpo meccanico e interazione umana convivono e si influenzano.</p>
+            <p>È un simbolo che parla di movimento, continuità e innovazione: valori centrali nell’identità di Generative Bionics.</p>
+          </div>
+        </section>
+        <section class="story__block story__block--wide">
+          <figure class="media media--img"><img src="assets/img/gb/gb-human-side.webp" alt="Visual “The human side of robotics” con il marchio Generative Bionics" loading="lazy"></figure>
+          <div class="story__text">
+            <h2>Un’identità distintiva</h2>
+            <p>In collaborazione con 6.14 abbiamo costruito un linguaggio visivo capace di unire rigore ingegneristico e sensibilità umana. Il logo diventa così il fulcro di un sistema flessibile, pensato per evolvere nel tempo insieme all’azienda e per rappresentare una nuova estetica della robotica Made in Italy.</p>
+            <p>Il marchio Generative Bionics è stato premiato ai Touchpoint Awards Identity 2026, categoria New Logo, per la capacità del progetto di tradurre la complessità della robotica in un segno chiaro, distintivo e contemporaneo.</p>
+            <p class="story__links"><a class="chip" href="https://6punto14.com/generative-bionics/" target="_blank" rel="noopener">Il case study di 6.14</a></p>
+          </div>
+        </section>
+      </div>
+
+      <section class="more" aria-labelledby="more-h">
+        <h2 class="more__h" id="more-h">Altri progetti</h2>
+        <div class="more__list">
+          <a class="more__item" href="progetto-articolo.html"><div class="ph "><span class="ph__label">Immagine</span></div><strong>Accessible Robotics</strong><span>Robotics Intelligence, Report, 2024</span></a>
+          <a class="more__item" href="progetto-video.html"><img src="assets/img/video/voce-space.webp" alt="" loading="lazy"><strong>Cultura robotica al Gazometro</strong><span>Conversation &amp; Events, Video, 2025</span></a>
+          <a class="more__item" href="progetto-podcast.html"><div class="ph "><span class="ph__label">Immagine</span></div><strong>Tools for human beings</strong><span>Robotics Intelligence, Podcast, 2026</span></a>
+        </div>
+      </section>
+      <div class="cta-band">
+        <p class="cta-band__text">Vuoi diventare un nostro partner?</p>
+        <a class="btn btn--ink" href="index.html#partner">Contattaci</a>
+      </div>
+    </div>
+  </article>
+</main>
+
+<footer class="footer">
+  <div class="wrap">
+    <div class="footer__top">
+      <img class="footer__logo" src="assets/img/wero-logo.svg" alt="WeRo, Robot Communication Studio">
+      <div class="footer__cols">
+        <div>
+          <p class="footer__h grad-text">Contatti</p>
+          <a href="mailto:contact@we-ro.it">contact@we-ro.it</a>
+        </div>
+        <div>
+          <p class="footer__h grad-text">Seguici</p>
+          <a href="https://www.linkedin.com/" target="_blank" rel="noopener">LinkedIn</a>
+        </div>
+        <div>
+          <p class="footer__h grad-text">Founder</p>
+          <div class="footer__logos"><img src="assets/img/loghi/omnicom-advertising.png" alt="Omnicom Advertising"><img src="assets/img/loghi/6punto14.svg" alt="6.14"></div>
+        </div>
+      </div>
+    </div>
+    <div class="footer__bottom">
+      <p>© 2026 WeRo, Robot Communication Studio</p>
+      <a href="#top">Torna su</a>
+    </div>
+  </div>
+</footer>
+
+<script src="js/background.js" defer></script>
+<script src="js/dot-trail.js" defer></script>
+<script src="js/page.js" defer></script>
+</body>
+</html>

@@ -1,0 +1,475 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>WeRo — Il primo Robot Communication Studio</title>
+  <meta name="description" content="WeRo è il primo Robot Communication Studio: un ecosistema di partner tra ricerca, business, comunicazione e creatività.">
+
+  <!-- Intro: saltata (prima del primo paint) solo con movimento ridotto o ?intro=0 -->
+  <script>
+    (function () {
+      // l'intro parte a ogni caricamento; si salta solo con movimento ridotto o con ?intro=0
+      var skip = false;
+      if (window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) skip = true;
+      if (/[?&]intro=0/.test(location.search)) skip = true;
+      document.documentElement.classList.add(skip ? 'intro-skip' : 'intro-on');
+    })();
+  </script>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&display=swap">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<!-- ============ INTRO: animazione logo ============ -->
+<div class="intro" id="intro" aria-hidden="true">
+  <div class="intro__stage" id="introStage">
+    <span class="intro__pill" aria-hidden="true"></span>
+    <svg class="wero-logo" viewBox="0 0 348.62 100.08" role="img" aria-label="WeRo, Robot Communication Studio">
+      <defs><linearGradient id="weroGrad" x1="0" y1="0" x2="348.62" y2="0" gradientUnits="userSpaceOnUse"><stop offset="0" stop-color="#ff3f7a"/><stop offset=".07" stop-color="#ff3f7a"/><stop offset=".29" stop-color="#ff3387"/><stop offset=".72" stop-color="#ff16ab"/><stop offset="1" stop-color="#ff00c7"/></linearGradient></defs>
+      <g class="wero-logo__mark" fill="url(#weroGrad)">
+        <g class="lg-wer"><path d="M69.66,0v62.49h-17.99V22.15h-16.28v19.8h-18.75V0H0v40.01c0,4.63,1.5,9.05,4.23,12.46,3.12,3.9,7.6,6.13,12.31,6.13h18.44c.03.15.05.33.05.54v1.56c0,4.54,1.48,8.89,4.17,12.26,3.08,3.84,7.5,6.04,12.14,6.04h18.62c4.64,0,9.07-2.2,12.15-6.04,2.68-3.36,4.16-7.71,4.16-12.26V0h-16.6Z"/><path d="M111.67,0c-4.54,0-8.9,1.48-12.25,4.16-3.84,3.08-6.04,7.51-6.04,12.15v14.99c0,4.65,2.2,9.07,6.04,12.14,3.36,2.68,7.71,4.16,12.25,4.16h11.55c.3,0,.55.25.55.55v14.3c0,4.7,2.23,9.18,6.13,12.31,3.41,2.73,7.84,4.23,12.46,4.23h29.85v-16.65s-31.15-.16-31.52-.34v-16.68c0-7.92-6.45-14.37-14.37-14.37h-16.56v-14.31h61.38V0h-59.47Z"/><path d="M195.62,0c-4.64,0-9.07,2.2-12.14,6.04-2.68,3.36-4.16,7.7-4.16,12.25v60.7h16.65V16.49h14.31v16.46c0,7.93,6.45,14.38,14.37,14.38h20.65v31.68h16.65v-30.02c0-4.62-1.5-9.05-4.23-12.46-3.12-3.9-7.6-6.13-12.31-6.13h-17.94c-.3,0-.55-.25-.55-.54v-11.56c0-4.55-1.48-8.9-4.16-12.25-3.08-3.84-7.5-6.04-12.14-6.04h-14.99Z"/></g>
+        <path class="lg lg--o" d="M285.7,58.67V16.36h46.27v46.27h-46.27v-3.97ZM283.88,0c-8.18,0-14.83,6.65-14.83,14.83v49.34c0,8.18,6.65,14.83,14.83,14.83h49.91c8.18,0,14.83-6.65,14.83-14.83V14.83c0-8.18-6.65-14.83-14.83-14.83h-49.91Z"/>
+      </g>
+      <g class="wero-logo__sub" fill="#ff3f7a"><path d="M284.06,95.09c-.73-.4-1.73-.6-2.99-.6-1.16,0-1.77-.2-2.08-.36-.36-.2-.38-.37-.38-.53s.03-.33.38-.53c.56-.29,1.44-.36,2.08-.36.78,0,1.43.12,1.85.36.33.19.52.41.58.73l1.87-.4c-.2-.86-.71-1.56-1.54-2-.71-.4-1.64-.6-2.77-.6-1.24,0-2.25.2-2.98.6-.9.48-1.39,1.26-1.39,2.2s.49,1.72,1.39,2.2c.73.4,1.73.6,2.98.6,1.16,0,1.77.2,2.08.36.36.2.38.37.38.53s-.03.33-.38.53c-.56.29-1.43.36-2.08.36-.78,0-1.42-.12-1.84-.36-.33-.18-.52-.41-.6-.73l-1.85.4c.18.86.71,1.56,1.52,2,.71.4,1.65.6,2.77.6,1.26,0,2.26-.2,2.99-.6.89-.48,1.38-1.26,1.38-2.2s-.49-1.72-1.38-2.2"/><path d="M304.19,95.98c0,.74-.17,1.3-.53,1.65-.36.36-.93.54-1.67.54s-1.31-.19-1.67-.54c-.36-.36-.53-.91-.53-1.65v-5.16h-12.51v1.9h3.02v7.36h1.91v-7.36h5.68v3.26c0,.61.08,1.16.26,1.65.18.53.46.98.83,1.35.37.37.82.65,1.34.83.5.17,1.06.26,1.67.26s1.16-.09,1.67-.26c.52-.19.98-.46,1.35-.83.36-.37.65-.82.83-1.35.17-.49.25-1.05.25-1.65v-5.16h-1.9v5.16Z"/><path d="M316.52,92.05c-.41-.41-.91-.73-1.51-.94-.56-.2-1.19-.29-1.89-.29h-4.1v9.26h4.1c.7,0,1.34-.11,1.89-.29.6-.21,1.1-.53,1.51-.94s.73-.93.94-1.51c.2-.57.29-1.2.29-1.89s-.09-1.32-.29-1.89c-.21-.58-.53-1.1-.94-1.51M313.12,98.18h-2.2v-5.45h2.2c1.84,0,2.73.89,2.73,2.73s-.89,2.73-2.73,2.73"/><rect x="320.26" y="90.82" width="1.91" height="9.26"/><path d="M333.65,93.56c-.21-.58-.53-1.1-.94-1.51-.41-.41-.93-.73-1.51-.94-.57-.2-1.2-.29-1.89-.29s-1.32.09-1.89.29c-.58.21-1.1.53-1.51.94-.41.41-.73.93-.94,1.51-.18.57-.29,1.2-.29,1.89s.11,1.32.29,1.89c.21.58.53,1.1.94,1.51.41.41.93.73,1.51.94.57.19,1.2.29,1.89.29s1.32-.11,1.89-.29c.58-.21,1.1-.53,1.51-.94s.73-.93.94-1.51c.2-.57.29-1.2.29-1.89s-.09-1.32-.29-1.89M329.31,98.18c-1.84,0-2.73-.89-2.73-2.73s.89-2.73,2.73-2.73,2.73.89,2.73,2.73-.89,2.73-2.73,2.73"/><path d="M110.67,92.72c.74,0,1.34.15,1.77.45.41.27.68.66.82,1.22l1.84-.5c-.13-.49-.33-.93-.6-1.31-.26-.38-.61-.73-.99-.99-.77-.5-1.72-.77-2.84-.77-.69,0-1.32.09-1.89.29-.58.21-1.1.53-1.51.94s-.73.93-.94,1.51c-.18.57-.29,1.2-.29,1.89s.11,1.32.29,1.89c.21.58.53,1.1.94,1.51.41.41.93.73,1.51.94.57.18,1.2.29,1.89.29,1.12,0,2.08-.27,2.84-.77.38-.26.73-.61.99-.99.26-.38.46-.82.6-1.31l-1.84-.5c-.15.56-.41.95-.82,1.22-.44.3-1.03.45-1.77.45-1.84,0-2.73-.89-2.73-2.73s.89-2.73,2.73-2.73"/><path d="M125.25,92.05c-.41-.41-.93-.73-1.51-.94-.57-.2-1.2-.29-1.89-.29s-1.32.09-1.89.29c-.58.21-1.1.53-1.51.94-.41.41-.73.93-.94,1.51-.18.57-.29,1.2-.29,1.89s.11,1.32.29,1.89c.21.58.53,1.1.94,1.51s.93.73,1.51.94c.57.19,1.2.29,1.89.29s1.32-.11,1.89-.29c.58-.21,1.1-.53,1.51-.94s.73-.93.94-1.51c.2-.57.29-1.2.29-1.89s-.09-1.32-.29-1.89c-.21-.58-.53-1.1-.94-1.51M121.85,98.18c-1.84,0-2.73-.89-2.73-2.73s.89-2.73,2.73-2.73,2.73.89,2.73,2.73-.89,2.73-2.73,2.73"/><polygon points="149.95 97.37 145.74 90.82 144.27 90.82 144.27 98.2 140.37 98.2 140.37 90.82 138.9 90.82 134.68 97.37 130.47 90.82 129 90.82 129 100.08 130.9 100.08 130.9 95.01 134.16 100.08 135.21 100.08 138.46 95.01 138.46 100.08 139.54 100.08 140.37 100.08 144.27 100.08 145.47 100.08 146.17 100.08 146.17 95.01 149.43 100.08 150.48 100.08 153.73 95.01 153.73 100.08 155.64 100.08 155.64 90.82 154.17 90.82 149.95 97.37"/><path d="M164.85,95.98c0,.74-.17,1.3-.53,1.65-.36.36-.93.54-1.67.54s-1.31-.19-1.67-.54c-.36-.36-.53-.91-.53-1.65v-5.16h-1.9v5.16c0,.61.08,1.16.26,1.65.18.53.46.98.83,1.35.37.37.82.65,1.34.83.5.17,1.06.26,1.67.26s1.16-.09,1.67-.26c.52-.19.98-.46,1.35-.83.36-.37.65-.82.83-1.35.17-.49.25-1.05.25-1.65v-5.16h-1.9v5.16Z"/><polygon points="176.24 96.63 171.04 90.82 169.67 90.82 169.67 100.08 171.57 100.08 171.57 94.27 176.76 100.08 178.15 100.08 178.15 90.82 176.24 90.82 176.24 96.63"/><rect x="181.06" y="90.82" width="1.91" height="9.26"/><path d="M190.11,92.72c.74,0,1.34.15,1.77.45.41.27.68.66.82,1.22l1.84-.5c-.13-.49-.33-.93-.6-1.31-.26-.38-.61-.73-.99-.99-.77-.5-1.72-.77-2.85-.77-.69,0-1.32.09-1.89.29-.58.21-1.1.53-1.51.94-.41.41-.73.93-.94,1.51-.18.57-.29,1.2-.29,1.89s.11,1.32.29,1.89c.21.58.53,1.1.94,1.51.41.41.93.73,1.51.94.57.18,1.2.29,1.89.29,1.12,0,2.08-.27,2.85-.77.38-.26.73-.61.99-.99.26-.38.46-.82.6-1.31l-1.84-.5c-.15.56-.41.95-.82,1.22-.44.3-1.03.45-1.77.45-1.84,0-2.73-.89-2.73-2.73s.89-2.73,2.73-2.73"/><path d="M200.04,90.82l-4.3,9.26h2.1l.49-1.05h4.63l.49,1.05h2.1l-4.3-9.26h-1.22ZM199.2,97.13l1.44-3.1,1.43,3.1h-2.87Z"/><polygon points="205.82 92.72 208.84 92.72 208.84 100.08 210.75 100.08 210.75 92.72 213.78 92.72 213.78 90.82 205.82 90.82 205.82 92.72"/><rect x="216.42" y="90.82" width="1.91" height="9.26"/><path d="M228.88,92.05c-.41-.41-.93-.73-1.51-.94-.57-.2-1.2-.29-1.89-.29s-1.32.09-1.89.29c-.58.21-1.1.53-1.51.94-.41.41-.73.93-.94,1.51-.19.57-.29,1.2-.29,1.89s.11,1.32.29,1.89c.21.58.53,1.1.94,1.51.41.41.93.73,1.51.94.57.19,1.2.29,1.89.29s1.32-.11,1.89-.29c.58-.21,1.1-.53,1.51-.94s.73-.93.94-1.51c.2-.57.29-1.2.29-1.89s-.09-1.32-.29-1.89c-.21-.58-.53-1.1-.94-1.51M225.48,98.18c-1.84,0-2.73-.89-2.73-2.73s.89-2.73,2.73-2.73,2.73.89,2.73,2.73-.89,2.73-2.73,2.73"/><polygon points="239.2 90.82 239.2 96.63 234 90.82 232.62 90.82 232.62 100.08 234.53 100.08 234.53 94.27 239.72 100.08 241.11 100.08 241.11 90.82 239.2 90.82"/><path d="M22.89,94.14c0-2.05-1.27-3.32-3.32-3.32h-4.9v9.26h1.9v-2.63h2.14l1.84,2.63h2.33l-2-2.85c1.26-.44,2-1.55,2-3.1M20.64,95.21c-.21.23-.58.33-1.07.33h-2.99v-2.82h2.99c.49,0,.86.11,1.07.33.22.23.34.58.34,1.09s-.12.85-.34,1.07"/><path d="M44.77,91.57c-.35-.34-.98-.76-2.04-.76h-13.09c-.69,0-1.32.09-1.89.29-.58.21-1.1.53-1.51.94-.41.41-.73.93-.94,1.51-.18.57-.29,1.2-.29,1.89s.11,1.32.29,1.89c.21.58.53,1.1.94,1.51.41.41.93.73,1.51.94.57.18,1.2.29,1.89.29s1.32-.11,1.89-.29c.58-.21,1.1-.53,1.51-.94.41-.41.73-.93.94-1.51.2-.57.29-1.2.29-1.89s-.09-1.32-.29-1.89c-.11-.31-.25-.59-.42-.86h3.23v7.38h5.94c1.06,0,1.69-.41,2.04-.75.34-.34.75-.98.75-2.04,0-.89-.28-1.47-.57-1.84.29-.37.57-.95.57-1.84,0-1.06-.41-1.69-.75-2.04M29.64,98.18c-1.84,0-2.73-.89-2.73-2.73s.89-2.73,2.73-2.73,2.73.89,2.73,2.73-.89,2.73-2.73,2.73M43.42,97.98c-.16.16-.46.2-.69.2h-4.04v-1.77h4.04c.23,0,.53.04.69.2.17.16.2.46.2.69s-.03.53-.2.69M43.42,94.3c-.16.16-.46.2-.69.2h-4.04v-1.77h4.04c.23,0,.53.04.69.2.17.16.2.46.2.69s-.03.53-.2.69"/><path d="M55.94,92.05c-.41-.41-.93-.73-1.51-.94-.57-.2-1.2-.29-1.89-.29s-1.32.09-1.89.29c-.58.21-1.1.53-1.51.94-.41.41-.73.93-.94,1.51-.18.57-.29,1.2-.29,1.89s.11,1.32.29,1.89c.21.58.53,1.1.94,1.51s.93.73,1.51.94c.57.19,1.2.29,1.89.29s1.32-.11,1.89-.29c.58-.21,1.1-.53,1.51-.94s.73-.93.94-1.51c.2-.57.29-1.2.29-1.89s-.09-1.32-.29-1.89c-.21-.58-.53-1.1-.94-1.51M52.54,98.18c-1.84,0-2.73-.89-2.73-2.73s.89-2.73,2.73-2.73,2.73.89,2.73,2.73-.89,2.73-2.73,2.73"/><polygon points="58.76 90.82 58.76 92.72 61.77 92.72 61.77 100.08 63.68 100.08 63.68 92.72 66.71 92.72 66.71 90.82 58.76 90.82"/></g>
+    </svg>
+  </div>
+  <button class="intro__btn intro__skip" id="introSkip" type="button">Salta</button>
+</div>
+
+<!-- ============ SFONDO + SCIA CURSORE ============ -->
+<canvas class="bg-glow" id="bgGlow" aria-hidden="true"></canvas>
+<canvas class="dot-trail" id="dotTrail" aria-hidden="true"></canvas>
+
+<!-- ============ NAV ============ -->
+<header class="nav" id="nav">
+  <a class="nav__logo" href="#top" aria-label="WeRo — torna all'inizio"><img src="assets/img/wero-mark.svg" alt="WeRo"></a>
+  <nav class="nav__links" aria-label="Sezioni">
+    <a href="#chi">Chi siamo</a>
+    <a href="#mondi">Mondi</a>
+    <a href="#progetti">Progetti</a>
+    <a href="#report">Report</a>
+    <a href="#voci">Voci</a>
+    <a href="#perche">Perché</a>
+  </nav>
+  <a class="btn btn--grad nav__cta" href="#partner">Diventa partner</a>
+  <button class="nav__burger" id="burger" type="button" aria-label="Apri menu" aria-expanded="false"><span></span><span></span></button>
+</header>
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
+  <defs>
+    <linearGradient id="weroIco" x1="0" y1="0" x2="64" y2="64" gradientUnits="userSpaceOnUse"><stop offset="0" stop-color="#ff3f7a"/><stop offset="1" stop-color="#ff00c7"/></linearGradient>
+    <!-- corpo "clay": bianco-rosa con luce in alto a sinistra -->
+    <radialGradient id="icoBody" cx=".32" cy=".22" r="1"><stop offset="0" stop-color="#fff"/><stop offset=".45" stop-color="#ffe4ee"/><stop offset="1" stop-color="#ff9fc0"/></radialGradient>
+    <!-- parti in rilievo (orecchie, retro): rosa pieno -->
+    <linearGradient id="icoPart" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#ff6f9c"/><stop offset="1" stop-color="#ff2e78"/></linearGradient>
+    <!-- schermo lucido: sfumatura WeRo, più scuro in basso -->
+    <linearGradient id="icoScreen" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#ff4a7d"/><stop offset=".6" stop-color="#ff1aa8"/><stop offset="1" stop-color="#e800b8"/></linearGradient>
+    <linearGradient id="icoGloss" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#fff" stop-opacity=".55"/><stop offset=".55" stop-color="#fff" stop-opacity="0"/></linearGradient>
+    <filter id="icoGlow" x="-50%" y="-50%" width="200%" height="200%"><feGaussianBlur stdDeviation="1.6" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+    <filter id="icoShadow" x="-50%" y="-200%" width="200%" height="500%"><feGaussianBlur stdDeviation="2.4"/></filter>
+  </defs>
+</svg>
+<main id="top">
+
+  <!-- ============ 01 HERO: copertina del video "The future of robotics", parte solo dal pulsante ============ -->
+  <section class="hero" id="hero">
+    <div class="hero__media">
+      <img class="hero__poster" src="assets/img/video/showreel-poster.webp" alt="" fetchpriority="high">
+      <!-- con il file vero: aggiungere src="assets/video/the-future-of-robotics.mp4" al video qui sotto -->
+      <video class="hero__video" id="heroVideo" playsinline controls preload="none" hidden></video>
+    </div>
+    <div class="hero__scrim" aria-hidden="true"></div>
+    <button class="hero__bigplay" type="button" aria-label="Guarda il video “The future of robotics”" data-play-hero><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 4.5v15l12-7.5z"/></svg></button>
+
+    <div class="wrap hero__content">
+      <h1 class="hero__title">Il primo Robot Communication Studio</h1>
+      <p class="hero__lead">Un ecosistema di partner che esplora la robotica e ne racconta l'evoluzione.</p>
+      <div class="hero__actions">
+        <button class="btn btn--grad" id="heroPlay" type="button"><svg class="btn__ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M7 4.5v15l12-7.5z" fill="currentColor"/></svg>Guarda “The future of robotics”</button>
+        <a class="btn btn--ghost" href="#chi">Scopri WeRo</a>
+      </div>
+      <p class="hero__note" id="heroNote" role="status"></p>
+    </div>
+  </section>
+
+  <!-- ============ 02 CHI SIAMO ============ -->
+  <section class="section" id="chi">
+    <div class="wrap">
+      <div class="split">
+        <h2 class="h2">Competenze diverse.<br>Un'intelligenza condivisa.</h2>
+        <p class="lead">WeRo nasce dall'incontro tra ricerca, business, comunicazione e creatività. Un ecosistema di partner che unisce competenze complementari per esplorare le potenzialità della robotica, interpretarne l'evoluzione e costruire nuove connessioni tra persone e tecnologia.</p>
+      </div>
+
+      <div class="partners">
+        <section class="pgroup pgroup--founding" aria-labelledby="pg-f">
+          <h3 class="pgroup__tag pill pill--founding" id="pg-f">Founder</h3>
+          <p class="pgroup__lead">WeRo nasce dall’incontro tra Omnicom Advertising e 6.14.</p>
+          <ul class="pgroup__logos">
+            <li class="partner">
+              <button class="partner__logo" type="button" aria-expanded="false"><img style="--h:88px" src="assets/img/loghi/omnicom-advertising.png" alt="Omnicom Advertising" loading="lazy"></button>
+              <div class="pcard" role="region" aria-label="Omnicom Advertising"><p class="pcard__name">Omnicom Advertising</p><p class="pcard__desc">Rete di agenzie di comunicazione del gruppo Omnicom. Ha fondato WeRo insieme a 6.14.</p><a class="pcard__link" href="https://www.omnicomgroup.com/" target="_blank" rel="noopener">Visita il sito <span aria-hidden="true">↗</span></a></div>
+            </li>
+            <li class="partner">
+              <button class="partner__logo" type="button" aria-expanded="false"><img style="--h:118px" src="assets/img/loghi/6punto14.svg" alt="6.14" loading="lazy"></button>
+              <div class="pcard" role="region" aria-label="6.14"><p class="pcard__name">6.14</p><p class="pcard__desc">Creative licensing e comunicazione, Milano. Ha fondato WeRo insieme a Omnicom Advertising.</p><a class="pcard__link" href="https://6punto14.com/" target="_blank" rel="noopener">Visita il sito <span aria-hidden="true">↗</span></a></div>
+            </li>
+          </ul>
+        </section>
+      </div>
+    </div>
+
+    <!-- largo come la sezione "Perché": fascia a tutta pagina, contenuti allineati al resto -->
+    <div class="collab">
+      <div class="wrap collab__head">
+        <h3 class="h3">In questi anni abbiamo collaborato con</h3>
+        <ul class="legend"><li><i class="dot dot--biz"></i>Business</li><li><i class="dot dot--res"></i>Ricerca</li></ul>
+      </div>
+      <!-- Riga curva (port vanilla di TiltedGridHero) -->
+      <div class="tilted" id="collabRow" aria-label="Loghi dei collaboratori"></div>
+      <div class="wrap">
+        <div class="cta-band">
+          <p class="cta-band__text">Vuoi diventare un nostro partner?</p>
+          <a class="btn btn--ink" href="#partner">Contattaci</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- foto eventi: griglia su desktop, scorrimento orizzontale su mobile -->
+    <div class="wrap">
+      <ul class="photos" id="photos" aria-label="Foto dagli eventi WeRo">
+        <li class="photo"><img src="assets/img/foto/evento-get-ready.webp" alt="Presentazione WeRo durante un evento: sullo schermo la slide Get Ready" width="1280" height="853" loading="lazy" decoding="async"></li>
+        <li class="photo"><img src="assets/img/foto/r1.webp" alt="Il robot R1 visto di fronte" width="629" height="395" loading="lazy" decoding="async"></li>
+        <li class="photo"><img src="assets/img/foto/evento-panel.webp" alt="Panel WeRo sulle sfide e opportunità della robotica per la ricerca" width="1280" height="853" loading="lazy" decoding="async"></li>
+        <li class="photo photo--tall"><img src="assets/img/foto/gasometro.webp" alt="L'evento WeRo How can we disrupt robotics perception al Gasometro di Roma" width="600" height="800" loading="lazy" decoding="async"></li>
+      </ul>
+      <div class="photos__nav">
+        <button type="button" class="round" id="photosPrev" aria-label="Foto precedente">←</button>
+        <button type="button" class="round" id="photosNext" aria-label="Foto successiva">→</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ 03 I TRE MONDI ============ -->
+  <section class="section" id="mondi">
+    <div class="wrap">
+      <div class="split">
+        <h2 class="h2">Different minds.<br>Shared impact.</h2>
+        <div>
+          <p class="lead lead--strong">Prospettive diverse per un impatto condiviso</p>
+          <p class="lead">La collaborazione tra ricerca, business e creatività ci permette di esplorare la robotica da prospettive diverse. Dall'analisi delle trasformazioni tecnologiche alla creazione di occasioni di confronto, fino allo sviluppo di nuovi linguaggi e identità.</p>
+        </div>
+      </div>
+
+      <div class="worlds">
+        <article class="world" data-world="ri">
+          <figure class="world__media"><img src="assets/img/video/showreel-poster.webp" alt="Primo piano di un robot con gli occhi a led" loading="lazy"></figure>
+          <h3 class="world__t">Robotics Intelligence</h3>
+          <p class="world__d">Ricerca, report e analisi per leggere le trasformazioni della robotica e la percezione delle persone.</p>
+          <a class="world__link" href="#progetti" data-filter="ri">Vedi i progetti</a>
+        </article>
+        <article class="world" data-world="ce">
+          <figure class="world__media"><img src="assets/img/video/voce-space.webp" alt="Copertina del talk “When robots enter our space”" loading="lazy"></figure>
+          <h3 class="world__t">Conversation &amp; Events</h3>
+          <p class="world__d">Eventi, talk e occasioni di confronto che mettono in dialogo ricerca, aziende e pubblico.</p>
+          <a class="world__link" href="#progetti" data-filter="ce">Vedi i progetti</a>
+        </article>
+        <article class="world" data-world="ld">
+          <figure class="world__media"><img src="assets/img/gb/gb-human-side.webp" alt="Visual “The human side of robotics” per Generative Bionics" loading="lazy"></figure>
+          <h3 class="world__t">Language &amp; Design</h3>
+          <p class="world__d">Nuovi linguaggi, identità e storytelling per dare voce ai robot e ai progetti di ricerca.</p>
+          <a class="world__link" href="#progetti" data-filter="ld">Vedi i progetti</a>
+        </article>
+      </div>
+      <div class="worlds-dots" role="tablist" aria-label="Scegli il mondo"><button type="button" aria-label="Robotics Intelligence" class="is-on"></button><button type="button" aria-label="Conversation &amp; Events"></button><button type="button" aria-label="Language &amp; Design"></button></div>
+    </div>
+  </section>
+
+  <!-- ============ 04 PROGETTI (sfera) ============ -->
+  <section class="section section--projects" id="progetti">
+    <div class="wrap">
+      <div class="projects__head">
+        <h2 class="h2">Progetti</h2>
+        <div class="filters" role="group" aria-label="Filtra per mondo">
+          <button type="button" class="chip is-on" data-filter="all" aria-pressed="true">Tutti</button>
+          <button type="button" class="chip" data-filter="ri" aria-pressed="false">Robotics Intelligence</button>
+          <button type="button" class="chip" data-filter="ce" aria-pressed="false">Conversation &amp; Events</button>
+          <button type="button" class="chip" data-filter="ld" aria-pressed="false">Language &amp; Design</button>
+        </div>
+      </div>
+
+      <div class="projects">
+        <!-- la sfera è una vista visiva della lista qui sotto: per screen reader e Google conta la lista -->
+        <div class="sphere" id="sphere" aria-hidden="true"></div>
+        <aside class="pinfo" id="pinfo" aria-label="Progetto in primo piano">
+          <div class="pinfo__body">
+            <p class="pinfo__desc" id="pinfoDesc" aria-live="polite"></p>
+            <a class="btn btn--ink pinfo__link" id="pinfoLink" href="#">Scopri il progetto</a>
+          </div>
+          <div class="pinfo__nav">
+            <button type="button" class="round" id="pPrev" aria-label="Progetto precedente">←</button>
+            <span class="pinfo__count" id="pinfoCount"></span>
+            <button type="button" class="round" id="pNext" aria-label="Progetto successivo">→</button>
+          </div>
+        </aside>
+      </div>
+
+      <!-- griglia: sostituisce la sfera quando si sceglie "Guarda come griglia" -->
+      <ul class="pgrid" id="pgrid" hidden></ul>
+
+      <!-- lista con paginazione, sempre sotto la sfera / griglia -->
+      <div class="pviews">
+        <div class="pviews__bar">
+          <p class="pviews__count" id="pviewsCount" aria-live="polite"></p>
+          <button class="btn btn--line" id="viewToggle" type="button" aria-pressed="false">Guarda come griglia</button>
+        </div>
+        <ol class="prow-list" id="prowList"></ol>
+        <nav class="pager" id="pager" aria-label="Pagine dei progetti"></nav>
+      </div>
+
+      <!-- Lista reale dei progetti: nascosta alla vista, letta da Google, screen reader e dalla sfera.
+           In WordPress: un ciclo sul tipo di contenuto "Progetti" che stampa questi <li>. -->
+      <ol class="plist sr-only" id="projectList">
+        <li class="plist__item" data-world="ri" data-type="Report" data-year="2024" data-icon="eye">
+          <h3 class="plist__title">Accessible Robotics</h3>
+          <p class="plist__meta">Report, 2024, Robotics Intelligence</p>
+          <p class="plist__desc">Report sull'accessibilità della robotica e sul suo impatto nella vita delle persone.</p>
+          <a class="plist__link" href="progetto-articolo.html">Scopri il progetto</a>
+        </li>
+        <li class="plist__item" data-world="ce" data-type="Evento" data-year="" data-icon="robot">
+          <h3 class="plist__title">Evento e toolkit di robotica</h3>
+          <p class="plist__meta">Evento, Conversation &amp; Events</p>
+          <p class="plist__desc">Un evento e un toolkit per avvicinare aziende e pubblico ai temi della robotica.</p>
+          <a class="plist__link" href="progetto-articolo.html">Scopri il progetto</a>
+        </li>
+        <li class="plist__item" data-world="ld" data-type="Branding" data-year="2025" data-icon="hand" data-image="assets/img/gb/gb-robot.webp">
+          <h3 class="plist__title">Generative Bionics</h3>
+          <p class="plist__meta">Branding, 2025, Language &amp; Design</p>
+          <p class="plist__desc">Logo design e identità per la robotica del futuro, nata dalla ricerca IIT. Premiata ai Touchpoint Awards Identity 2026.</p>
+          <a class="plist__link" href="progetto-articolo-complesso.html">Scopri il progetto</a>
+        </li>
+        <li class="plist__item" data-world="ri" data-type="Report" data-year="2025" data-icon="wave">
+          <h3 class="plist__title">How can we disrupt robotics perceptions</h3>
+          <p class="plist__meta">Report, 2025, Robotics Intelligence</p>
+          <p class="plist__desc">Come cambiare la percezione dei robot: da macchine a “tools for human beings”.</p>
+          <a class="plist__link" href="progetto-articolo.html">Scopri il progetto</a>
+        </li>
+        <li class="plist__item" data-world="ce" data-type="Video" data-year="2025" data-icon="gear">
+          <h3 class="plist__title">Cultura robotica al Gazometro</h3>
+          <p class="plist__meta">Video, 2025, Conversation &amp; Events</p>
+          <p class="plist__desc">Un appuntamento per portare la cultura robotica fuori dai laboratori.</p>
+          <a class="plist__link" href="progetto-video.html">Scopri il progetto</a>
+        </li>
+        <li class="plist__item" data-world="ld" data-type="Design" data-year="" data-icon="robot">
+          <h3 class="plist__title">R1</h3>
+          <p class="plist__meta">Design, Language &amp; Design</p>
+          <p class="plist__desc">Linguaggio e design per il robot umanoide R1 (da confermare con IIT).</p>
+          <a class="plist__link" href="progetto-articolo.html">Scopri il progetto</a>
+        </li>
+        <li class="plist__item" data-world="ri" data-type="Podcast" data-year="2026" data-icon="chat">
+          <h3 class="plist__title">Tools for human beings</h3>
+          <p class="plist__meta">Podcast, 2026, Robotics Intelligence</p>
+          <p class="plist__desc">Come cambia la percezione dei robot quando smettono di essere macchine e diventano strumenti per le persone.</p>
+          <a class="plist__link" href="progetto-podcast.html">Scopri il progetto</a>
+        </li>
+        <li class="plist__item" data-world="ce" data-type="Evento" data-year="2022" data-icon="chat">
+          <h3 class="plist__title">IIT</h3>
+          <p class="plist__meta">Evento, 2022, Conversation &amp; Events</p>
+          <p class="plist__desc">Occasione di confronto con l'Istituto Italiano di Tecnologia.</p>
+          <a class="plist__link" href="progetto-articolo.html">Scopri il progetto</a>
+        </li>
+        <li class="plist__item" data-world="ce" data-type="Evento" data-year="2022" data-icon="wave">
+          <h3 class="plist__title">CDP Tech Transfer Day</h3>
+          <p class="plist__meta">Evento, 2022, Conversation &amp; Events</p>
+          <p class="plist__desc">Partecipazione al Tech Transfer Day di Cassa Depositi e Prestiti.</p>
+          <a class="plist__link" href="progetto-articolo.html">Scopri il progetto</a>
+        </li>
+        <li class="plist__item" data-world="ce" data-type="Evento" data-year="2023" data-icon="eye">
+          <h3 class="plist__title">CNR</h3>
+          <p class="plist__meta">Evento, 2023, Conversation &amp; Events</p>
+          <p class="plist__desc">Incontro con il Consiglio Nazionale delle Ricerche.</p>
+          <a class="plist__link" href="progetto-articolo.html">Scopri il progetto</a>
+        </li>
+        <li class="plist__item" data-world="ce" data-type="Evento" data-year="2024" data-icon="hand">
+          <h3 class="plist__title">Milano Sala Next</h3>
+          <p class="plist__meta">Evento, 2024, Conversation &amp; Events</p>
+          <p class="plist__desc">Un momento di dialogo su robotica e futuro a Milano.</p>
+          <a class="plist__link" href="progetto-articolo.html">Scopri il progetto</a>
+        </li>
+        <li class="plist__item" data-world="ce" data-type="Evento" data-year="2026" data-icon="gear">
+          <h3 class="plist__title">ROAD</h3>
+          <p class="plist__meta">Evento, 2026, Conversation &amp; Events</p>
+          <p class="plist__desc">Prossimo appuntamento in calendario.</p>
+          <a class="plist__link" href="progetto-articolo.html">Scopri il progetto</a>
+        </li>
+      </ol>
+    </div>
+  </section>
+
+  <!-- ============ REPORT: da scaricare ============ -->
+  <section class="section" id="report">
+    <div class="wrap">
+      <div class="split">
+        <h2 class="h2">Report</h2>
+        <p class="lead">Le nostre ricerche su robotica e percezione delle persone, da leggere e scaricare liberamente.</p>
+      </div>
+    </div>
+    <!-- timeline dei report: la sezione resta ferma e scorrendo in verticale la timeline avanza in orizzontale -->
+    <div class="rtl" id="rtl">
+      <div class="rtl__sticky">
+        <div class="rtl__line" aria-hidden="true"><span class="rtl__progress"></span></div>
+        <div class="rtl__nav wrap">
+          <button type="button" class="round" id="rtlPrev" aria-label="Report precedente">←</button>
+          <span class="rtl__count" id="rtlCount" aria-live="polite">1 di 3</span>
+          <button type="button" class="round" id="rtlNext" aria-label="Report successivo">→</button>
+        </div>
+        <ol class="rtl__track" aria-label="Timeline dei report">
+            <li class="rtl__item">
+              <span class="rtl__dot" aria-hidden="true"></span>
+              <h3 class="rtl__title"><time datetime="2024">2024</time> Accessible Robotics</h3>
+              <div class="rtl__body">
+                <div class="rtl__cover report__cover report__cover--a" aria-hidden="true"><img src="assets/img/wero-mark.svg" alt=""><span>Accessible Robotics</span></div>
+                <div class="rtl__text">
+                  <p class="rtl__meta"><span class="tag-mini tag-mini--ri">Robotics Intelligence</span>Report</p>
+                  <p class="rtl__desc">Report sull’accessibilità della robotica e sul suo impatto nella vita delle persone.</p>
+                  <div class="rtl__actions report"><a class="btn btn--grad" href="#" download>Scarica il PDF</a><a class="report__more" href="progetto-articolo.html">Scopri il progetto</a></div>
+                </div>
+              </div>
+            </li>
+            <li class="rtl__item">
+              <span class="rtl__dot" aria-hidden="true"></span>
+              <h3 class="rtl__title"><time datetime="2025">2025</time> How can we disrupt robotics perceptions</h3>
+              <div class="rtl__body">
+                <div class="rtl__cover report__cover report__cover--b" aria-hidden="true"><img src="assets/img/wero-mark.svg" alt=""><span>How can we disrupt robotics perceptions</span></div>
+                <div class="rtl__text">
+                  <p class="rtl__meta"><span class="tag-mini tag-mini--ri">Robotics Intelligence</span>Report</p>
+                  <p class="rtl__desc">Come cambiare la percezione dei robot: da macchine a “tools for human beings”.</p>
+                  <div class="rtl__actions report"><a class="btn btn--grad" href="#" download>Scarica il PDF</a></div>
+                </div>
+              </div>
+            </li>
+            <li class="rtl__item">
+              <span class="rtl__dot" aria-hidden="true"></span>
+              <h3 class="rtl__title"><time datetime="2026">2026</time> Il prossimo report</h3>
+              <div class="rtl__body">
+                <div class="rtl__cover report__cover report__cover--next" aria-hidden="true"><img src="assets/img/wero-mark.svg" alt=""><span>Il prossimo report</span></div>
+                <div class="rtl__text">
+                  <p class="rtl__meta"><span class="tag-mini tag-mini--ri">Robotics Intelligence</span>In arrivo</p>
+                  <p class="rtl__desc">Stiamo lavorando alla nuova edizione. Scrivici per riceverla appena esce.</p>
+                  <div class="rtl__actions report"><a class="btn btn--line" href="#partner">Avvisami</a></div>
+                </div>
+              </div>
+            </li>
+        </ol>
+      </div>
+    </div>
+    <div class="wrap">
+    </div>
+  </section>
+
+  <!-- ============ 05 VOCI ============ -->
+  <section class="section" id="voci">
+    <div class="wrap">
+      <h2 class="h2">Le voci dei progetti</h2>
+      <div class="voices">
+        <article class="voice">
+          <button class="voice__media" type="button" aria-label="Guarda il video: When robotics become care"><img src="assets/img/video/voce-care.webp" alt="" loading="lazy"><span class="play" aria-hidden="true"></span></button>
+          <p class="voice__name">When robotics become care</p><p class="voice__desc">Come la robotica può prendersi cura delle persone: assistenza, riabilitazione e tecnologie indossabili che restituiscono autonomia nella vita di tutti i giorni.</p>
+        </article>
+        <article class="voice">
+          <button class="voice__media" type="button" aria-label="Guarda il video: When robotics meet the world of work"><img src="assets/img/video/voce-work.webp" alt="" loading="lazy"><span class="play" aria-hidden="true"></span></button>
+          <p class="voice__name">When robotics meet the world of work</p><p class="voice__desc">Robot e persone che lavorano fianco a fianco: cosa cambia nelle fabbriche, negli uffici e nelle competenze, e come costruire una collaborazione basata sulla fiducia.</p>
+        </article>
+        <article class="voice">
+          <button class="voice__media" type="button" aria-label="Guarda il video: When robots enter our space"><img src="assets/img/video/voce-space.webp" alt="" loading="lazy"><span class="play" aria-hidden="true"></span></button>
+          <p class="voice__name">When robots enter our space</p><p class="voice__desc">Quando i robot escono dai laboratori ed entrano in case, negozi e città: come progettare una convivenza chiara, sicura e comprensibile per tutti.</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ 06 PERCHÉ ============ -->
+  <section class="section section--dark" id="perche">
+    <div class="wrap">
+      <div class="why">
+        <div class="why__side">
+          <h2 class="h2 h2--light">Perché lo<br>facciamo?</h2>
+          <figure class="why__photo"><img src="assets/img/foto/perche-wero.webp" alt="Il team WeRo presenta il primo Robot Communication Studio" width="940" height="940" loading="lazy" decoding="async"></figure>
+        </div>
+        <div class="why__body">
+          <p class="why__claim">Vogliamo cambiare la percezione dei robot: da semplici macchine a <span class="grad-text">“tools for human beings”</span>.</p>
+          <p>Siamo nati per creare un nuovo concetto di comunicazione tra persone, macchine e brand, per dare vita a nuove interconnessioni e nuove comunità.</p>
+          <p>Ci impegniamo per portare la robotica anche a chi oggi la vede solo come un complesso di codici e bulloni, dando sempre più importanza al linguaggio e alla relazione H2M: una connessione emotiva che è la chiave per progettare i robot e le loro interfacce.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ 07 PARTNER (form) ============ -->
+  <section class="section" id="partner">
+    <div class="wrap">
+      <div class="contact">
+        <div>
+          <h2 class="h2">Vuoi diventare<br>un nostro partner?</h2>
+          <p class="lead">Raccontaci chi sei e su cosa vorresti collaborare: ti ricontatteremo.</p>
+        </div>
+        <form class="form" id="partnerForm" novalidate>
+          <div class="form__row">
+            <label class="field"><span>Nome</span><input name="nome" autocomplete="name" required></label>
+            <label class="field"><span>Azienda / Ente</span><input name="azienda" autocomplete="organization"></label>
+          </div>
+          <label class="field"><span>Email</span><input name="email" type="email" autocomplete="email" required></label>
+          <fieldset class="field field--chips">
+            <legend>Ambito di interesse</legend>
+            <label><input type="checkbox" name="ambito" value="ricerca"><span>Ricerca</span></label>
+            <label><input type="checkbox" name="ambito" value="business"><span>Business</span></label>
+            <label><input type="checkbox" name="ambito" value="creativita"><span>Comunicazione &amp; creatività</span></label>
+          </fieldset>
+          <label class="field"><span>Messaggio</span><textarea name="messaggio" rows="4"></textarea></label>
+          <label class="check"><input type="checkbox" name="privacy" required><span>Ho letto l'informativa privacy</span></label>
+          <button class="btn btn--grad btn--block" type="submit">Invia richiesta</button>
+          <p class="form__msg" id="formMsg" role="status"></p>
+        </form>
+      </div>
+    </div>
+  </section>
+</main>
+
+<!-- ============ FOOTER ============ -->
+<footer class="footer">
+  <div class="wrap">
+    <div class="footer__top">
+      <img class="footer__logo" src="assets/img/wero-logo.svg" alt="WeRo, Robot Communication Studio">
+      <div class="footer__cols">
+        <div>
+          <p class="footer__h grad-text">Contatti</p>
+          <a href="mailto:contact@we-ro.it">contact@we-ro.it</a>
+        </div>
+        <div>
+          <p class="footer__h grad-text">Seguici</p>
+          <a href="https://www.linkedin.com/" target="_blank" rel="noopener">LinkedIn</a>
+        </div>
+        <div>
+          <p class="footer__h grad-text">Founder</p>
+          <div class="footer__logos"><img src="assets/img/loghi/omnicom-advertising.png" alt="Omnicom Advertising"><img src="assets/img/loghi/6punto14.svg" alt="6.14"></div>
+        </div>
+      </div>
+    </div>
+    <div class="footer__bottom">
+      <p>© 2026 WeRo, Robot Communication Studio</p>
+      <a href="#top">Torna su</a>
+    </div>
+  </div>
+</footer>
+
+<script src="js/background.js" defer></script>
+<script src="js/dot-trail.js" defer></script>
+<script src="js/tilted-grid.js" defer></script>
+<script src="js/card-sphere.js" defer></script>
+<script src="js/main.js" defer></script>
+<script src="js/intro.js" defer></script>
+</body>
+</html>

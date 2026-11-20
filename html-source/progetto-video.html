@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Cultura robotica al Gazometro — WeRo</title>
+  <meta name="description" content="Pagina video di un progetto WeRo.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&display=swap">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/article.css">
+</head>
+<body>
+<canvas class="bg-glow" id="bgGlow" aria-hidden="true"></canvas>
+<canvas class="dot-trail" id="dotTrail" aria-hidden="true"></canvas>
+
+<header class="nav" id="nav">
+  <a class="nav__logo" href="index.html" aria-label="WeRo — torna alla home"><img src="assets/img/wero-mark.svg" alt="WeRo"></a>
+  <nav class="nav__links" aria-label="Sezioni">
+    <a href="index.html#chi">Chi siamo</a>
+    <a href="index.html#mondi">Mondi</a>
+    <a href="index.html#progetti" class="is-active">Progetti</a>
+    <a href="index.html#voci">Voci</a>
+    <a href="index.html#perche">Perché</a>
+  </nav>
+  <a class="btn btn--grad nav__cta" href="index.html#partner">Diventa partner</a>
+  <button class="nav__burger" id="burger" type="button" aria-label="Apri menu" aria-expanded="false"><span></span><span></span></button>
+</header>
+
+<main id="top">
+  <article class="article">
+    <div class="wrap">
+      <div class="article__bar">
+        <a class="article__back" href="index.html#progetti"><span aria-hidden="true">←</span> Tutti i progetti</a>
+        <p class="article__meta"><span class="tag-world">Conversation &amp; Events</span><span>Video, 2025</span></p>
+      </div>
+      <header class="article__head">
+        <h1 class="article__title">Cultura robotica al Gazometro</h1>
+        <p class="article__lead">Un appuntamento per portare la cultura robotica fuori dai laboratori. Il racconto della serata in video.</p>
+      </header>
+      <div class="player">
+        <!-- con il video vero: <video src="..." controls hidden></video> oppure un embed YouTube/Vimeo -->
+        <video controls hidden playsinline preload="none"></video>
+        <img class="player__poster" src="assets/img/video/voce-space.webp" alt="">
+        <button class="player__play" type="button" aria-label="Riproduci il video"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 4.5v15l13-7.5z"/></svg></button>
+        <p class="player__note">Durata 16:24</p>
+      </div>
+      <div class="video-info">
+        <div class="prose">
+          <p>WeRo ha accompagnato il progetto dalla strategia al racconto: un lavoro condiviso tra ricerca, comunicazione e creatività per rendere comprensibile a tutti una tecnologia complessa.</p>
+          <p>Il punto di partenza è stato l’ascolto: interviste con il team di ricerca, analisi del linguaggio usato finora e dei pubblici a cui il progetto vuole parlare.</p>
+        </div>
+        <aside>
+          <p class="side-h">Capitoli</p>
+          <ol class="chapters"><li><button type="button" data-t="0"><time>00:00</time><span>Apertura</span></button></li><li><button type="button" data-t="95"><time>01:35</time><span>Perché portare i robot fuori dai laboratori</span></button></li><li><button type="button" data-t="412"><time>06:52</time><span>Il dialogo con il pubblico</span></button></li><li><button type="button" data-t="780"><time>13:00</time><span>Cosa resta dopo l’evento</span></button></li></ol>
+          <p class="side-h" style="margin-top:28px">Intervengono</p>
+          <ul class="people">
+            <li><span class="avatar" aria-hidden="true"></span><div><strong>Nome Cognome</strong><span>Ruolo, ente</span></div></li>
+            <li><span class="avatar" aria-hidden="true"></span><div><strong>Nome Cognome</strong><span>Ruolo, ente</span></div></li>
+          </ul>
+        </aside>
+      </div>
+
+      <section class="more" aria-labelledby="more-h">
+        <h2 class="more__h" id="more-h">Altri progetti</h2>
+        <div class="more__list">
+          <a class="more__item" href="progetto-articolo.html"><div class="ph "><span class="ph__label">Immagine</span></div><strong>Accessible Robotics</strong><span>Robotics Intelligence, Report, 2024</span></a>
+          <a class="more__item" href="progetto-articolo-complesso.html"><img src="assets/img/gb/gb-robot.webp" alt="" loading="lazy"><strong>Generative Bionics</strong><span>Language &amp; Design, Branding, 2025</span></a>
+          <a class="more__item" href="progetto-podcast.html"><div class="ph "><span class="ph__label">Immagine</span></div><strong>Tools for human beings</strong><span>Robotics Intelligence, Podcast, 2026</span></a>
+        </div>
+      </section>
+      <div class="cta-band">
+        <p class="cta-band__text">Vuoi diventare un nostro partner?</p>
+        <a class="btn btn--ink" href="index.html#partner">Contattaci</a>
+      </div>
+    </div>
+  </article>
+</main>
+
+<footer class="footer">
+  <div class="wrap">
+    <div class="footer__top">
+      <img class="footer__logo" src="assets/img/wero-logo.svg" alt="WeRo, Robot Communication Studio">
+      <div class="footer__cols">
+        <div>
+          <p class="footer__h grad-text">Contatti</p>
+          <a href="mailto:contact@we-ro.it">contact@we-ro.it</a>
+        </div>
+        <div>
+          <p class="footer__h grad-text">Seguici</p>
+          <a href="https://www.linkedin.com/" target="_blank" rel="noopener">LinkedIn</a>
+        </div>
+        <div>
+          <p class="footer__h grad-text">Founder</p>
+          <div class="footer__logos"><img src="assets/img/loghi/omnicom-advertising.png" alt="Omnicom Advertising"><img src="assets/img/loghi/6punto14.svg" alt="6.14"></div>
+        </div>
+      </div>
+    </div>
+    <div class="footer__bottom">
+      <p>© 2026 WeRo, Robot Communication Studio</p>
+      <a href="#top">Torna su</a>
+    </div>
+  </div>
+</footer>
+
+<script src="js/background.js" defer></script>
+<script src="js/dot-trail.js" defer></script>
+<script src="js/page.js" defer></script>
+</body>
+</html>

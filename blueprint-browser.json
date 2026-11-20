@@ -1,0 +1,142 @@
+{
+	"$schema": "https://playground.wordpress.net/blueprint-schema.json",
+	"meta": {
+		"title": "WeRo – anteprima",
+		"author": "WeRo",
+		"description": "Anteprima nel browser: tema e plugin letti dal ramo \"sviluppo\" di github.com/digital6punto14/wero-wp."
+	},
+	"landingPage": "/wp-admin/",
+	"preferredVersions": {
+		"php": "8.3",
+		"wp": "latest"
+	},
+	"features": {
+		"networking": true
+	},
+	"constants": {
+		"WP_DEBUG": true,
+		"WP_DEBUG_LOG": true,
+		"WP_DEBUG_DISPLAY": false
+	},
+	"steps": [
+		{
+			"step": "login",
+			"username": "admin",
+			"password": "password"
+		},
+		{
+			"step": "setSiteLanguage",
+			"language": "it_IT"
+		},
+		{
+			"step": "setSiteOptions",
+			"options": {
+				"blogname": "WeRo Robot Communication Studio",
+				"blogdescription": "Il primo Robot Communication Studio",
+				"timezone_string": "Europe/Rome",
+				"date_format": "j F Y",
+				"time_format": "H:i"
+			}
+		},
+		{
+			"step": "installPlugin",
+			"pluginData": {
+				"resource": "wordpress.org/plugins",
+				"slug": "wordpress-seo"
+			},
+			"options": {
+				"activate": true
+			},
+			"ifAlreadyInstalled": "skip"
+		},
+		{
+			"step": "installPlugin",
+			"pluginData": {
+				"resource": "wordpress.org/plugins",
+				"slug": "advanced-custom-fields"
+			},
+			"options": {
+				"activate": true
+			},
+			"ifAlreadyInstalled": "skip"
+		},
+		{
+			"step": "installPlugin",
+			"pluginData": {
+				"resource": "wordpress.org/plugins",
+				"slug": "contact-form-7"
+			},
+			"options": {
+				"activate": true
+			},
+			"ifAlreadyInstalled": "skip"
+		},
+		{
+			"step": "installPlugin",
+			"pluginData": {
+				"resource": "wordpress.org/plugins",
+				"slug": "site-mailer"
+			},
+			"options": {
+				"activate": true
+			},
+			"ifAlreadyInstalled": "skip"
+		},
+		{
+			"step": "installPlugin",
+			"pluginData": {
+				"resource": "wordpress.org/plugins",
+				"slug": "cookiez"
+			},
+			"options": {
+				"activate": true
+			},
+			"ifAlreadyInstalled": "skip"
+		},
+		{
+			"step": "installPlugin",
+			"pluginData": {
+				"resource": "wordpress.org/plugins",
+				"slug": "image-optimization"
+			},
+			"options": {
+				"activate": true
+			},
+			"ifAlreadyInstalled": "skip"
+		},
+		{
+			"step": "installTheme",
+			"themeData": {
+				"resource": "git:directory",
+				"url": "https://github.com/digital6punto14/wero-wp",
+				"ref": "sviluppo",
+				"refType": "branch",
+				"path": "wero-theme"
+			},
+			"options": {
+				"activate": true,
+				"targetFolderName": "wero-theme"
+			},
+			"ifAlreadyInstalled": "overwrite"
+		},
+		{
+			"step": "installPlugin",
+			"pluginData": {
+				"resource": "git:directory",
+				"url": "https://github.com/digital6punto14/wero-wp",
+				"ref": "sviluppo",
+				"refType": "branch",
+				"path": "wero-core"
+			},
+			"options": {
+				"activate": true,
+				"targetFolderName": "wero-core"
+			},
+			"ifAlreadyInstalled": "overwrite"
+		},
+		{
+			"step": "runPHP",
+			"code": "<?php require '/wordpress/wp-load.php'; global $wp_rewrite; $wp_rewrite->set_permalink_structure('/%postname%/'); update_option('rewrite_rules', ''); flush_rewrite_rules( false );"
+		}
+	]
+}
