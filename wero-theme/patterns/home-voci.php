@@ -16,7 +16,7 @@ $wero_img = get_theme_file_uri( 'assets/images/patterns/' );
 <!-- /wp:heading -->
 
 <!-- wp:group {"metadata": {"name": "Card delle voci"}, "className": "is-style-wero-voices", "layout": {"type": "grid", "columnCount": 3, "minimumColumnWidth": null}, "style": {"spacing": {"margin": {"top": "var:preset|spacing|head"}}}} -->
-<div class="wp-block-group is-style-wero-voices" style="margin-top:var(--wp--preset--spacing--head)"><!-- wp:group {"className":"wero-voice","layout":{"type":"flex","orientation":"vertical","justifyContent":"stretch"}} -->
+<div class="wp-block-group is-style-wero-voices" style="margin-top:var(--wp--preset--spacing--head)"><!-- wp:group {"metadata":{"name":"Voce: When robotics become care"},"className":"wero-voice","layout":{"type":"flex","orientation":"vertical","justifyContent":"stretch"}} -->
 <div class="wp-block-group wero-voice"><!-- wp:image {"sizeSlug": "large", "linkDestination": "custom", "className": "wero-voice__cover", "aspectRatio": "16/9", "scale": "cover"} -->
 <figure class="wp-block-image size-large wero-voice__cover"><a href="#"><img src="<?php echo esc_url( $wero_img . 'voce-care.webp' ); ?>" alt="Copertina del video “When robotics become care”" style="aspect-ratio:16/9;object-fit:cover"/></a></figure>
 <!-- /wp:image -->
@@ -30,7 +30,7 @@ $wero_img = get_theme_file_uri( 'assets/images/patterns/' );
 <!-- /wp:paragraph --></div>
 <!-- /wp:group -->
 
-<!-- wp:group {"className":"wero-voice","layout":{"type":"flex","orientation":"vertical","justifyContent":"stretch"}} -->
+<!-- wp:group {"metadata":{"name":"Voce: When robotics meet the world of work"},"className":"wero-voice","layout":{"type":"flex","orientation":"vertical","justifyContent":"stretch"}} -->
 <div class="wp-block-group wero-voice"><!-- wp:image {"sizeSlug": "large", "linkDestination": "custom", "className": "wero-voice__cover", "aspectRatio": "16/9", "scale": "cover"} -->
 <figure class="wp-block-image size-large wero-voice__cover"><a href="#"><img src="<?php echo esc_url( $wero_img . 'voce-work.webp' ); ?>" alt="Copertina del video “When robotics meet the world of work”" style="aspect-ratio:16/9;object-fit:cover"/></a></figure>
 <!-- /wp:image -->
@@ -44,7 +44,7 @@ $wero_img = get_theme_file_uri( 'assets/images/patterns/' );
 <!-- /wp:paragraph --></div>
 <!-- /wp:group -->
 
-<!-- wp:group {"className":"wero-voice","layout":{"type":"flex","orientation":"vertical","justifyContent":"stretch"}} -->
+<!-- wp:group {"metadata":{"name":"Voce: When robots enter our space"},"className":"wero-voice","layout":{"type":"flex","orientation":"vertical","justifyContent":"stretch"}} -->
 <div class="wp-block-group wero-voice"><!-- wp:image {"sizeSlug": "large", "linkDestination": "custom", "className": "wero-voice__cover", "aspectRatio": "16/9", "scale": "cover"} -->
 <figure class="wp-block-image size-large wero-voice__cover"><a href="#"><img src="<?php echo esc_url( $wero_img . 'voce-space.webp' ); ?>" alt="Copertina del video “When robots enter our space”" style="aspect-ratio:16/9;object-fit:cover"/></a></figure>
 <!-- /wp:image -->
