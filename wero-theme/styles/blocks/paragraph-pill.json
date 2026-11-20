@@ -1,0 +1,31 @@
+{
+	"$schema": "https://schemas.wp.org/wp/6.9/theme.json",
+	"version": 3,
+	"slug": "paragraph-pill",
+	"title": "Bollino",
+	"blockTypes": [
+		"core/paragraph"
+	],
+	"styles": {
+		"color": {
+			"gradient": "var(--wp--preset--gradient--wero)",
+			"text": "var(--wp--preset--color--white)"
+		},
+		"border": {
+			"radius": "999px"
+		},
+		"spacing": {
+			"padding": {
+				"top": "7px",
+				"bottom": "7px",
+				"left": "16px",
+				"right": "16px"
+			}
+		},
+		"typography": {
+			"fontSize": "var(--wp--preset--font-size--small)",
+			"fontWeight": "600",
+			"lineHeight": "1.2"
+		}
+	}
+}

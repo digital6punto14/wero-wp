@@ -1,0 +1,17 @@
+{
+	"$schema": "https://schemas.wp.org/wp/6.9/theme.json",
+	"version": 3,
+	"slug": "button-ghost",
+	"title": "Contorno chiaro",
+	"blockTypes": [
+		"core/button"
+	],
+	"styles": {
+		"color": {
+			"gradient": "none",
+			"background": "transparent",
+			"text": "var(--wp--preset--color--white)"
+		},
+		"shadow": "inset 0 0 0 1.5px rgba(255,255,255,.7)"
+	}
+}

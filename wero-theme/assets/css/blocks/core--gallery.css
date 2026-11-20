@@ -1,0 +1,26 @@
+/* =========================================================
+   Galleria — stile "A scorrimento"
+   Foto in riga, alte uguali, a scorrimento orizzontale fino ai bordi dello
+   schermo; la prima si allinea al contenuto. Frecce (gallery-scroller.js) su desktop.
+   ========================================================= */
+.wp-block-gallery.is-style-gallery-scroller {
+	--edge: max(var(--wp--custom--gutter), calc((100vw - var(--wp--custom--wrap)) / 2 + var(--wp--custom--gutter)));
+	position: relative;
+	display: flex !important; flex-wrap: nowrap !important; gap: clamp(12px, 1.6vw, 24px) !important;
+	overflow-x: auto; scroll-snap-type: x mandatory; scroll-padding-inline: var(--edge);
+	padding-inline: var(--edge) !important; scrollbar-width: none; overscroll-behavior-x: contain;
+}
+.wp-block-gallery.is-style-gallery-scroller::-webkit-scrollbar { display: none; }
+.wp-block-gallery.is-style-gallery-scroller::after { content: ""; flex: 0 0 1px; }
+.wp-block-gallery.is-style-gallery-scroller > .wp-block-image {
+	flex: 0 0 auto !important; width: auto !important; height: clamp(260px, 34vw, 460px); aspect-ratio: 3 / 2;
+	margin: 0 !important; border-radius: 28px; overflow: hidden; background: var(--wp--preset--color--ink); scroll-snap-align: start;
+}
+.wp-block-gallery.is-style-gallery-scroller > .wp-block-image.is-tall { aspect-ratio: 3 / 4; }
+.wp-block-gallery.is-style-gallery-scroller > .wp-block-image img { width: 100% !important; height: 100% !important; object-fit: cover; border-radius: 0; }
+.wp-block-gallery.is-style-gallery-scroller > .wp-block-image figcaption { display: none; }
+.wero-scroller-nav { display: flex; justify-content: flex-end; gap: 12px; margin: 20px auto 0; max-width: var(--wp--style--global--content-size); }
+@media (max-width: 900px) {
+	.wp-block-gallery.is-style-gallery-scroller > .wp-block-image { height: 56vw; border-radius: 22px; }
+	.wero-scroller-nav { display: none; }
+}

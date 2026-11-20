@@ -1,3 +1,31 @@
-<!-- wp:group {"tagName":"main","layout":{"type":"constrained"}} -->
-<main class="wp-block-group"><!-- wp:post-title {"level":1} /--><!-- wp:post-content /--></main>
+<!-- wp:template-part {"slug":"header","area":"header","tagName":"header","className":"wero-site-header"} /-->
+
+<!-- wp:group {"tagName":"main","className":"wero-main","style":{"spacing":{"padding":{"top":"calc(var(--wp--custom--nav-height) + var(--wp--preset--spacing--head))","bottom":"var:preset|spacing|section"},"blockGap":"clamp(28px, 4vw, 48px)"}},"layout":{"type":"constrained"}} -->
+<main class="wp-block-group wero-main" style="padding-top:calc(var(--wp--custom--nav-height) + var(--wp--preset--spacing--head));padding-bottom:var(--wp--preset--spacing--section)"><!-- wp:query-title {"type":"archive","level":1,"className":"is-style-heading-gradient","fontSize":"section"} /-->
+
+<!-- wp:query {"queryId":1,"query":{"perPage":12,"pages":0,"offset":0,"postType":"post","order":"desc","orderBy":"date","inherit":true},"className":"is-style-query-cards"} -->
+<div class="wp-block-query is-style-query-cards"><!-- wp:post-template {"layout":{"type":"grid","columnCount":3}} -->
+<!-- wp:post-featured-image {"isLink":true,"aspectRatio":"4/3","style":{"border":{"radius":"20px"}}} /-->
+
+<!-- wp:wero/project-meta {"variant":"card"} /-->
+
+<!-- wp:post-title {"level":3,"isLink":true,"fontSize":"body","style":{"typography":{"fontWeight":"600","letterSpacing":"-0.02em","lineHeight":"1.15"}}} /-->
+<!-- /wp:post-template -->
+
+<!-- wp:query-pagination {"layout":{"type":"flex","justifyContent":"center"}} -->
+<!-- wp:query-pagination-previous {"label":"←"} /-->
+
+<!-- wp:query-pagination-numbers /-->
+
+<!-- wp:query-pagination-next {"label":"→"} /-->
+<!-- /wp:query-pagination -->
+
+<!-- wp:query-no-results -->
+<!-- wp:paragraph -->
+<p>Nessun progetto trovato.</p>
+<!-- /wp:paragraph -->
+<!-- /wp:query-no-results --></div>
+<!-- /wp:query --></main>
 <!-- /wp:group -->
+
+<!-- wp:template-part {"slug":"footer","area":"footer","tagName":"footer","className":"wero-site-footer"} /-->

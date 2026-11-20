@@ -1,0 +1,16 @@
+{
+	"$schema": "https://schemas.wp.org/wp/6.9/theme.json",
+	"version": 3,
+	"slug": "image-rounded",
+	"title": "Arrotondata grande",
+	"blockTypes": [
+		"core/image",
+		"core/video",
+		"core/cover"
+	],
+	"styles": {
+		"border": {
+			"radius": "28px"
+		}
+	}
+}

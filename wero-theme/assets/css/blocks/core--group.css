@@ -1,0 +1,44 @@
+/* =========================================================
+   Gruppi: sezioni della home, pannelli scuri, vetro, founder
+   ========================================================= */
+/* sezione: la home è una sequenza di gruppi "sezione" con ancora */
+.wero-section { position: relative; }
+.wero-main--home > .wp-block-post-content > .wero-section:first-child { margin-block-start: 0; }
+
+/* pannello scuro a tutta larghezza con margine (fascia collaboratori, "Perché") */
+.wp-block-group.alignfull.wero-band { margin-left: 12px !important; margin-right: 12px !important; width: auto; max-width: none; overflow: hidden; }
+.wero-band .wero-band__title { color: #fff; }
+.wero-band.is-style-group-dark .is-style-heading-gradient { color: transparent !important; }
+
+/* riquadro "Diventa partner" dentro la fascia scura: diventa una riga separata da una linea */
+.wero-band .wero-band__cta { margin-top: var(--wp--preset--spacing--medium); }
+.wero-band .wero-cta { background: none !important; border-radius: 0 !important; padding: var(--wp--preset--spacing--medium) 0 0 !important; border-top: 1px solid rgba(255, 255, 255, .14); }
+
+/* vetro (pannello del form) */
+.is-style-group-glass { backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px); }
+
+/* founder */
+.wero-founders { text-align: center; }
+.wero-founders__lead { font-size: clamp(18px, 1.6vw, 22px); color: var(--wp--preset--color--ink-soft); }
+
+/* racconto (articolo complesso) */
+.wero-story__text { max-width: 64ch; }
+.wero-story__block.is-wide .wero-story__text { max-width: 64ch; }
+
+@media (max-width: 900px) {
+	.wp-block-group.alignfull.wero-band { margin-left: 0 !important; margin-right: 0 !important; border-radius: 28px !important; }
+}
+
+/* ---------- footer ---------- */
+.wero-footer { margin-top: 0 !important; }
+.wero-footer a { text-decoration: none; }
+.wero-footer a:hover { color: var(--wp--preset--color--pink) !important; }
+.wero-footer .wero-footer__logo img { width: min(100%, 440px) !important; height: auto; }
+.wero-footer .wero-footer__h { font-weight: 600; margin-bottom: 8px !important; }
+.wero-footer .wero-footer__logos img { height: 40px !important; width: auto !important; filter: brightness(0) invert(1); }
+.wero-footer .wero-footer__logos figure { margin: 0; }
+.wero-footer__bottom { color: rgba(255, 255, 255, .6); }
+.wero-footer__bottom a { color: inherit !important; }
+@media (max-width: 560px) {
+	.wero-footer__bottom { flex-direction: column; gap: 8px; }
+}

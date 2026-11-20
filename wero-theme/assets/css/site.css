@@ -1,0 +1,73 @@
+/* =========================================================
+   WeRo — CSS globale (tutte le pagine)
+   Solo ciò che theme.json non esprime: sfondo, canvas degli effetti,
+   focus, utilità e animazioni globali. Il resto è nei file per blocco
+   (assets/css/blocks/), caricati solo dove il blocco è presente.
+   ========================================================= */
+
+html { scroll-behavior: smooth; scroll-padding-top: calc(var(--wp--custom--nav-height) + 12px); }
+body {
+	/* riserva se WebGL non è disponibile: il crema di fondo dello sfondo a pixel */
+	background: linear-gradient(#ece8de, #e2ded3) fixed var(--wp--preset--color--paper);
+	-webkit-font-smoothing: antialiased;
+	overflow-x: clip;
+}
+img { max-width: 100%; }
+:focus-visible { outline: 3px solid var(--wp--preset--color--magenta); outline-offset: 3px; border-radius: 6px; }
+.wp-site-blocks { padding-top: 0; }
+.wp-site-blocks > * + * { margin-block-start: 0; }
+
+/* effetti globali (creati da assets/js/background.js e cursor.js) */
+.bg-glow { position: fixed; inset: 0; width: 100vw; height: 100vh; z-index: -1; display: block; opacity: 0; transition: opacity .8s ease; pointer-events: none; }
+.bg-glow.is-ready { opacity: 1; }
+.dot-trail { position: fixed; inset: 0; width: 100vw; height: 100vh; z-index: 1100; pointer-events: none; }
+
+/* titoli e testi in sfumatura (stile di blocco "Sfumatura") */
+.is-style-heading-gradient,
+.wero-grad-text {
+	background: var(--wp--preset--gradient--wero);
+	-webkit-background-clip: text; background-clip: text; color: transparent !important;
+}
+.is-style-heading-gradient {
+	width: fit-content; max-width: 100%;
+	/* con background-clip:text la sfumatura riempie solo il riquadro: lo allungo per non tagliare g, p, q e accenti */
+	padding-block: .06em .16em; margin-block: -.06em -.16em;
+}
+.wero-grad-text { background-color: transparent !important; }
+
+/* bollino (stile di paragrafo "Bollino") */
+.is-style-paragraph-pill { display: inline-block; width: fit-content; }
+
+/* pulsante tondo (frecce) */
+.wero-round {
+	width: 42px; height: 42px; border-radius: 50%; border: 1.5px solid currentColor; background: transparent;
+	color: var(--wp--preset--color--ink); cursor: pointer; font: inherit; font-size: 18px; line-height: 1;
+	display: inline-grid; place-items: center; transition: background .2s, color .2s;
+}
+.wero-round:hover { background: var(--wp--preset--color--ink); color: #fff; }
+.wero-round:disabled { opacity: .3; cursor: default; }
+.wero-round:disabled:hover { background: transparent; color: var(--wp--preset--color--ink); }
+
+/* pagina con l'intro attiva: niente scroll, menu nascosto (vedi blocco wero/intro) */
+.intro-on body { overflow: hidden; }
+.intro-on .wero-site-header { opacity: 0; }
+
+/* N1 — comparsa morbida delle sezioni allo scroll: solo CSS, solo dove il browser
+   supporta le animazioni legate allo scroll; si spegne dalle Impostazioni sito (classe sul body) */
+@supports (animation-timeline: view()) {
+	@media (prefers-reduced-motion: no-preference) {
+		.wero-reveal .wero-section > :not(.wp-block-wero-report-timeline):not(.wp-block-wero-projects-explorer) {
+			animation: wero-reveal linear both;
+			animation-timeline: view();
+			animation-range: entry 0% entry 28%;
+		}
+	}
+}
+@keyframes wero-reveal { from { opacity: 0; transform: translateY(24px); } to { opacity: 1; transform: none; } }
+
+@media (prefers-reduced-motion: reduce) {
+	html { scroll-behavior: auto; }
+}
+@media (max-width: 560px) {
+	body { font-size: 17px; }
+}

@@ -1,0 +1,9 @@
+/* Testo dei progetti e delle pagine (equivalente di .prose dell'originale) */
+.wero-prose { font-size: 19px; line-height: 1.65; max-width: 64ch; }
+.wero-prose > * + * { margin-block-start: 1.1em; }
+.wero-prose .wero-prose-h { margin-top: 1.6em; line-height: 1.15; letter-spacing: -.025em; font-weight: 600; }
+.wero-prose .wp-block-image figcaption { margin-top: 10px; }
+.wero-prose .wp-block-table td, .wero-prose .wp-block-table th { padding: 10px 12px; border-color: var(--wp--custom--line); }
+.wero-story { display: grid; gap: var(--wp--preset--spacing--section); }
+.wero-story > * { margin: 0 !important; }
+@media (max-width: 560px) { .wero-prose { font-size: 17px; } }

@@ -1,0 +1,28 @@
+{
+	"$schema": "https://schemas.wp.org/wp/6.9/theme.json",
+	"version": 3,
+	"slug": "button-line",
+	"title": "Contorno",
+	"blockTypes": [
+		"core/button"
+	],
+	"styles": {
+		"color": {
+			"gradient": "none",
+			"background": "transparent",
+			"text": "var(--wp--preset--color--ink)"
+		},
+		"shadow": "inset 0 0 0 1.5px var(--wp--preset--color--ink)",
+		"spacing": {
+			"padding": {
+				"top": "12px",
+				"bottom": "12px",
+				"left": "22px",
+				"right": "22px"
+			}
+		},
+		"typography": {
+			"fontSize": "15px"
+		}
+	}
+}

@@ -1,0 +1,26 @@
+{
+	"$schema": "https://schemas.wp.org/wp/6.9/theme.json",
+	"version": 3,
+	"slug": "group-glass",
+	"title": "Vetro",
+	"blockTypes": [
+		"core/group",
+		"core/columns"
+	],
+	"styles": {
+		"color": {
+			"background": "rgba(251, 250, 245, 0.9)"
+		},
+		"border": {
+			"radius": "32px"
+		},
+		"spacing": {
+			"padding": {
+				"top": "var(--wp--preset--spacing--medium)",
+				"bottom": "var(--wp--preset--spacing--medium)",
+				"left": "var(--wp--preset--spacing--medium)",
+				"right": "var(--wp--preset--spacing--medium)"
+			}
+		}
+	}
+}

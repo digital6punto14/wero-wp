@@ -1,0 +1,67 @@
+/* =========================================================
+   Header a pillola + menu (blocco Navigazione core)
+   Il menu usa "overlay sempre attivo": sopra 1080px lo mostro in riga
+   (come l'originale), sotto si apre come una tendina sotto la pillola.
+   ========================================================= */
+.wero-site-header { position: relative; z-index: 1000; transition: opacity .9s ease .15s; }
+.wero-header {
+	/* livello grafico proprio: su mobile le card 3D della sfera non possono disegnarci sopra */
+	position: fixed; top: calc(12px + var(--wp-admin--admin-bar--height, 0px)); left: 50%; transform: translate3d(-50%, 0, 0);
+	z-index: 1000; isolation: isolate;
+	width: min(calc(100% - 24px), 1240px); height: 64px; margin: 0 !important;
+	gap: 24px; padding: 0 10px 0 22px;
+	border-radius: 999px; background: var(--wp--preset--color--paper-light);
+	box-shadow: var(--wp--preset--shadow--nav);
+}
+.wero-header .wp-block-site-logo img { height: 22px; width: auto !important; }
+.wero-header .wp-block-site-logo a { display: block; }
+
+.wero-header__nav .wp-block-navigation-item__content {
+	text-decoration: none; padding: 10px 14px; border-radius: 999px; font-weight: 500; font-size: 15px;
+	transition: background .2s ease, color .2s ease;
+}
+.wero-header__nav .wp-block-navigation-item__content:hover,
+.wero-header__nav .wp-block-navigation-item__content.is-active { background: rgba(21, 18, 26, .07); color: inherit; }
+.wero-header__nav .wp-block-navigation-item__content.is-active { color: var(--wp--preset--color--magenta); }
+.wero-header__cta .wp-block-button__link { padding: 13px 20px; }
+.wero-header__cta { margin-left: 18px; }
+
+/* pulsante del menu: due linee come l'originale */
+.wero-header .wp-block-navigation__responsive-container-open,
+.wero-header .wp-block-navigation__responsive-container-close { width: 44px; height: 44px; display: grid; place-items: center; }
+
+/* ---- desktop (oltre 1080px): menu in riga, niente pulsante ---- */
+@media (min-width: 1081px) {
+	.wero-header .wp-block-navigation__responsive-container-open { display: none !important; }
+	.wero-header .wp-block-navigation__responsive-container.hidden-by-default:not(.is-menu-open) {
+		display: block; position: static; width: auto; background: transparent !important; z-index: auto;
+	}
+	.wero-header .wp-block-navigation__responsive-container:not(.is-menu-open) .wp-block-navigation__responsive-container-close { display: none; }
+	.wero-header .wp-block-navigation__responsive-container:not(.is-menu-open) .wp-block-navigation__responsive-dialog,
+	.wero-header .wp-block-navigation__responsive-container:not(.is-menu-open) .wp-block-navigation__responsive-container-content {
+		display: flex; flex-direction: row; align-items: center; padding: 0; margin: 0; gap: 6px;
+	}
+	.wero-header .wp-block-navigation__responsive-container:not(.is-menu-open) .wp-block-navigation__container { flex-direction: row; gap: 6px; }
+}
+
+/* ---- tendina (fino a 1080px) ---- */
+.wero-header .wp-block-navigation__responsive-container.is-menu-open {
+	position: fixed; top: calc(12px + 64px + 8px + var(--wp-admin--admin-bar--height, 0px)); left: 12px; right: 12px; bottom: auto;
+	width: auto; height: auto; max-height: calc(100svh - 110px); overflow: auto;
+	padding: 14px 16px 18px; border-radius: 28px;
+	box-shadow: var(--wp--preset--shadow--nav);
+	animation: wero-menu-in .25s var(--wp--custom--ease) both;
+}
+.wero-header .wp-block-navigation__responsive-container.is-menu-open .wp-block-navigation__responsive-container-content { padding-top: 0; align-items: stretch; gap: 4px; }
+.wero-header .wp-block-navigation__responsive-container.is-menu-open .wp-block-navigation__container { align-items: stretch; gap: 2px; width: 100%; }
+.wero-header .wp-block-navigation__responsive-container.is-menu-open .wp-block-navigation-item { width: 100%; }
+.wero-header .wp-block-navigation__responsive-container.is-menu-open .wp-block-navigation-item__content { display: block; width: 100%; padding: 12px 14px; font-size: 17px; }
+.wero-header .wp-block-navigation__responsive-container.is-menu-open .wp-block-navigation__responsive-container-close {
+	position: fixed; top: calc(12px + 10px + var(--wp-admin--admin-bar--height, 0px)); right: 22px;
+}
+.wero-header .wp-block-navigation__responsive-container.is-menu-open .wero-header__cta { margin: 8px 0 0; }
+.wero-header .wp-block-navigation__responsive-container.is-menu-open .wero-header__cta .wp-block-button__link { width: auto; }
+@keyframes wero-menu-in { from { opacity: 0; transform: translateY(-8px); } to { opacity: 1; transform: none; } }
+@media (prefers-reduced-motion: reduce) {
+	.wero-header .wp-block-navigation__responsive-container.is-menu-open { animation: none; }
+}

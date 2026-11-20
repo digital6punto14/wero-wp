@@ -1,0 +1,20 @@
+/* Card dei progetti (archivio e "Altri progetti") */
+.is-style-query-cards .wp-block-post-template { gap: clamp(16px, 2.5vw, 32px) 18px; }
+.is-style-query-cards .wp-block-post { display: grid; gap: 10px; align-content: start; }
+.is-style-query-cards .wp-block-post-featured-image { margin: 0; overflow: hidden; border-radius: 20px; background: var(--wp--preset--color--ink); }
+.is-style-query-cards .wp-block-post-featured-image img { transition: transform .6s var(--wp--custom--ease); }
+.is-style-query-cards .wp-block-post:hover .wp-block-post-featured-image img { transform: scale(1.04); }
+.is-style-query-cards .wp-block-post-title a { text-decoration: none; }
+.is-style-query-cards .wp-block-post:hover .wp-block-post-title a { color: var(--wp--preset--color--magenta); }
+.is-style-query-cards .wp-block-query-pagination { margin-top: 28px; gap: 8px; }
+
+/* "Altri progetti" su mobile: scorrimento orizzontale */
+@media (max-width: 900px) {
+	.wero-related .wp-block-post-template.wero-scroll-mobile {
+		display: flex !important; gap: 12px; overflow-x: auto; scroll-snap-type: x mandatory; scrollbar-width: none; overscroll-behavior-x: contain;
+		margin-inline: calc(-1 * var(--wp--custom--gutter)); padding-inline: var(--wp--custom--gutter); scroll-padding-inline: var(--wp--custom--gutter);
+	}
+	.wero-related .wp-block-post-template.wero-scroll-mobile::-webkit-scrollbar { display: none; }
+	.wero-related .wp-block-post-template.wero-scroll-mobile::after { content: ""; flex: 0 0 1px; }
+	.wero-related .wp-block-post-template.wero-scroll-mobile > .wp-block-post { flex: 0 0 78%; scroll-snap-align: start; }
+}

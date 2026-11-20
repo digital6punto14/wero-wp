@@ -1,0 +1,24 @@
+/* Colonne: titolo + testo affiancati, "Perché", form, articolo con scheda, note */
+.wero-split .is-style-heading-gradient { margin-bottom: 0; }
+.wero-why .wero-why__photo { max-width: 520px; margin: 0; }
+.wero-why__body { display: grid; gap: 18px; color: rgba(255, 255, 255, .82); }
+.wero-why__claim { color: #fff; }
+.wero-contact .wp-block-column:first-child .has-lead-font-size { max-width: 56ch; }
+/* articolo: scheda del progetto ferma a lato durante lo scroll */
+.wero-article-content > .wero-article-aside { position: sticky; top: calc(var(--wp--custom--nav-height) + 24px); align-self: flex-start; }
+.wero-side-h { font-weight: 600; color: var(--wp--preset--color--ink-soft); margin-bottom: 10px !important; }
+.wero-story__block.is-reversed { flex-direction: row; }
+
+@media (max-width: 900px) {
+	.wp-block-columns.wero-split, .wp-block-columns.wero-why, .wp-block-columns.wero-contact,
+	.wp-block-columns.wero-article-content, .wp-block-columns.wero-notes, .wp-block-columns.wero-episode,
+	.wp-block-columns.wero-story__block { flex-wrap: wrap !important; }
+	.wp-block-columns.wero-split > .wp-block-column, .wp-block-columns.wero-why > .wp-block-column,
+	.wp-block-columns.wero-contact > .wp-block-column, .wp-block-columns.wero-article-content > .wp-block-column,
+	.wp-block-columns.wero-notes > .wp-block-column, .wp-block-columns.wero-episode > .wp-block-column,
+	.wp-block-columns.wero-story__block > .wp-block-column { flex-basis: 100% !important; }
+	.wero-article-content > .wero-article-aside { position: static; }
+	.wero-why .wero-why__photo { max-width: none; }
+	.wero-story__block.is-reversed > .wp-block-column:last-child { order: -1; }   /* su mobile l'immagine sta sempre sopra */
+	.wero-episode .wp-block-wero-podcast-cover { max-width: 360px; }
+}

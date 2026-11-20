@@ -1,0 +1,12 @@
+/* Pulsanti: movimento al passaggio come l'originale + stati degli stili di blocco */
+.wp-block-button__link { display: inline-flex; align-items: center; justify-content: center; gap: 10px; text-decoration: none; transition: transform .25s var(--wp--custom--ease), box-shadow .25s var(--wp--custom--ease), background .25s, color .25s; }
+.wp-block-button__link:hover { transform: translateY(-2px); }
+.is-style-button-ghost .wp-block-button__link:hover { background: rgba(255, 255, 255, .12) !important; }
+.is-style-button-line .wp-block-button__link:hover { background: var(--wp--preset--color--ink) !important; color: #fff !important; }
+.is-style-button-chip .wp-block-button__link { transform: none; }
+.is-style-button-chip .wp-block-button__link:hover { transform: none; color: var(--wp--preset--color--magenta) !important; box-shadow: inset 0 0 0 1.5px var(--wp--preset--color--magenta) !important; background: rgba(255, 0, 199, .07) !important; }
+/* pulsante "Guarda il video": icona play */
+.wero-play .wp-block-button__link::before {
+	content: ""; width: 0; height: 0; margin-left: -4px;
+	border-left: 12px solid currentColor; border-top: 7px solid transparent; border-bottom: 7px solid transparent;
+}

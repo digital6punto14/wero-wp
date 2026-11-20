@@ -1,0 +1,4 @@
+/* Trascrizione apribile (Dettagli) */
+.wp-block-details summary { cursor: pointer; padding: 18px 0; font-size: 17px; font-weight: 600; }
+.wp-block-details[open] summary { border-bottom: 1px solid var(--wp--custom--line); margin-bottom: 14px; }
+.wp-block-details > :last-child { padding-bottom: 20px; }

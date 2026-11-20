@@ -1,0 +1,3 @@
+/* video del racconto (quadrato, in loop) */
+.wp-block-video video { border-radius: 28px; background: var(--wp--preset--color--ink); width: 100%; }
+.wp-block-video.wero-media-square video { aspect-ratio: 1; object-fit: cover; max-width: 560px; }

@@ -1,0 +1,42 @@
+/* =========================================================
+   Contact Form 7 con lo stile dell'originale (campi, chip, privacy, messaggi).
+   Selettori del markup standard di CF7: vedi RIEPILOGO-CLASSI-CSS.md.
+   ========================================================= */
+.wpcf7 form { display: grid; gap: 14px; }
+.wpcf7 form p { margin: 0; }
+.wpcf7 .wero-form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+.wpcf7 label { display: grid; gap: 6px; font-size: 13px; font-weight: 600; }
+.wpcf7 .wpcf7-form-control-wrap { display: block; }
+.wpcf7 input[type="text"], .wpcf7 input[type="email"], .wpcf7 input[type="tel"], .wpcf7 input[type="url"], .wpcf7 textarea {
+	width: 100%; font: inherit; font-size: 16px; font-weight: 400; color: var(--wp--preset--color--ink);
+	padding: 14px 16px; border-radius: 14px; border: 1.5px solid var(--wp--custom--line); background: #fff;
+	transition: border-color .2s, box-shadow .2s;
+}
+.wpcf7 input:focus, .wpcf7 textarea:focus { outline: none; border-color: var(--wp--preset--color--magenta); box-shadow: 0 0 0 4px rgba(255, 0, 199, .12); }
+.wpcf7 textarea { resize: vertical; min-height: 120px; height: 120px; }
+/* ambito: caselle come chip */
+.wpcf7 .wero-chips .wpcf7-checkbox { display: flex; flex-wrap: wrap; gap: 8px; }
+.wpcf7 .wero-chips .wpcf7-list-item { margin: 0; }
+.wpcf7 .wero-chips .wpcf7-list-item label { display: inline-block; cursor: pointer; position: relative; }
+.wpcf7 .wero-chips input { position: absolute; opacity: 0; pointer-events: none; }
+.wpcf7 .wero-chips .wpcf7-list-item-label { display: inline-block; padding: 8px 14px; border-radius: 999px; border: 1.5px solid var(--wp--custom--line); background: #fff; font-weight: 600; font-size: 14px; }
+.wpcf7 .wero-chips input:checked + .wpcf7-list-item-label { background: var(--wp--preset--color--ink); color: #fff; border-color: var(--wp--preset--color--ink); }
+.wpcf7 .wero-chips input:focus-visible + .wpcf7-list-item-label { outline: 3px solid var(--wp--preset--color--magenta); outline-offset: 2px; }
+/* privacy */
+.wpcf7 .wpcf7-acceptance .wpcf7-list-item { margin: 0; }
+.wpcf7 .wpcf7-acceptance label { display: flex; gap: 10px; align-items: center; font-size: 14px; font-weight: 400; }
+.wpcf7 .wpcf7-acceptance input { width: 18px; height: 18px; accent-color: var(--wp--preset--color--magenta); }
+/* invio: pulsante a sfumatura a tutta larghezza */
+.wpcf7 .wpcf7-submit {
+	width: 100%; display: inline-flex; justify-content: center; padding: 15px 26px; border: 0; border-radius: 999px; cursor: pointer;
+	background: var(--wp--preset--gradient--wero); color: #fff; font: inherit; font-size: 16px; font-weight: 600; letter-spacing: -.01em;
+	box-shadow: var(--wp--preset--shadow--glow); transition: transform .25s var(--wp--custom--ease);
+}
+.wpcf7 .wpcf7-submit:hover { transform: translateY(-2px); }
+.wpcf7 .wpcf7-spinner { position: absolute; }
+/* messaggi */
+.wpcf7 .wpcf7-not-valid-tip { font-size: 13px; color: #c4004a; margin-top: 4px; }
+.wpcf7 form .wpcf7-response-output { margin: 0; padding: 0; border: 0; font-size: 15px; font-weight: 600; }
+.wpcf7 form.sent .wpcf7-response-output { color: #0b8a4a; }
+.wpcf7 form.invalid .wpcf7-response-output, .wpcf7 form.failed .wpcf7-response-output, .wpcf7 form.spam .wpcf7-response-output { color: #c4004a; }
+@media (max-width: 560px) { .wpcf7 .wero-form-row { grid-template-columns: 1fr; } }
