@@ -38,6 +38,7 @@ require_once WERO_CORE_DIR . 'includes/class-theme-bridge.php';
 require_once WERO_CORE_DIR . 'includes/class-editor.php';
 require_once WERO_CORE_DIR . 'includes/class-forms.php';
 require_once WERO_CORE_DIR . 'includes/class-media.php';
+require_once WERO_CORE_DIR . 'includes/class-data.php';
 require_once WERO_CORE_DIR . 'includes/class-seo.php';
 require_once WERO_CORE_DIR . 'includes/class-rest.php';
 require_once WERO_CORE_DIR . 'includes/class-abilities.php';

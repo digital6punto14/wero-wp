@@ -154,3 +154,15 @@ function wero_theme_enqueue_block_scripts( string $content, array $block ): stri
 	return $content;
 }
 add_filter( 'render_block', 'wero_theme_enqueue_block_scripts', 10, 2 );
+
+/**
+ * Preload del solo font critico (Space Grotesk, alfabeto latino): il testo
+ * compare subito con il font giusto. Gli altri sottoinsiemi si caricano se servono.
+ */
+function wero_theme_preload_font(): void {
+	printf(
+		'<link rel="preload" href="%s" as="font" type="font/woff2" crossorigin>' . "\n",
+		esc_url( get_theme_file_uri( 'assets/fonts/space-grotesk/space-grotesk-latin-wght-normal.woff2' ) )
+	);
+}
+add_action( 'wp_head', 'wero_theme_preload_font', 1 );

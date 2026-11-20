@@ -2,7 +2,7 @@
 
 Documento vivo: raccoglie ciò che è stato ricavato dai file, le domande aperte con la proposta consigliata e, man mano, le decisioni prese. Si aggiorna a ogni fase.
 
-Stato: **Decisioni confermate dal cliente il 20/11/2026. Fase 0 confermata il 20/11/2026. Fase 1 completata. Fase 2 (tema) completata. Fase 3 (plugin) completata. Fase 4 (contenuti) completata. Fase 5 (SEO e agenti AI) in attesa.**
+Stato: **Decisioni confermate dal cliente il 20/11/2026. Fase 0 confermata il 20/11/2026. Fase 1 completata. Fase 2 (tema) completata. Fase 3 (plugin) completata. Fase 4 (contenuti) completata. Fase 5 (SEO e agenti AI) completata. Fase 6 (verifica) in attesa.**
 
 ---
 
@@ -259,6 +259,9 @@ Legenda: **R** = risposta tua; **P** = mia proposta applicata perché la domanda
 | D45 | Pagine progetto: nella testata **“Torna alla home”** oltre a “Tutti i progetti”. | R |
 | D46 | Pagina `/progetti/` **uguale alla vista a griglia** della home: stesse card (immagine 4:3, bollino del mondo, tipo e anno, titolo), stesso ordine della sfera, tutti i progetti in una pagina; i progetti senza immagine hanno la copertina di riserva col colore del mondo. | R |
 | D47 | Le **Voci** si modificano una per una dal menu “Voci dei progetti”: titolo, copertina (pannello “Copertina”), descrizione, link del video (o file), ordine. Il blocco in home ha un pulsante “Modifica le voci”. | R |
+| D48 | Yoast: rappresentazione “Organizzazione” WeRo con logo; titoli “Titolo — WeRo” come l'originale; meta description dei progetti dal riassunto; breadcrumb (blocco di Yoast) nelle pagine interne; llms.txt attivo; robots.txt senza blocchi (crawler AI consentiti, D28). | Fase 5 |
+| D49 | Schema esteso dal plugin (filtri di Yoast): Organization con descrizione, email, LinkedIn e founder (6.14 S.r.l. con indirizzo e P.IVA, Omnicom Advertising); VideoObject per i progetti video e per le Voci, PodcastEpisode per i podcast, solo quando il video o l'audio c'è davvero. | Fase 5 |
+| D50 | Agenti AI: REST pubblica in sola lettura `wero/v1` (projects, reports, partners, voices, contact) e 4 abilities (`wero/get-projects`, `get-reports`, `get-partners`, `get-contact-info`). Le abilities su `/wp-json/wp-abilities/v1` richiedono un utente collegato (regola di WordPress); sono pronte per l'MCP Adapter, non installato. | Fase 5 |
 | D27 | Search Console non gestita in questo progetto | R (domanda tolta) |
 | D28 | Crawler AI consentiti; robots.txt senza blocchi. Abilities in sola lettura: wero/get-projects, wero/get-reports, wero/get-partners, wero/get-contact-info | P |
 | D29 | Hosting non ancora noto: requisiti minimi documentati (WordPress 6.9+, PHP 8.2+); consigliato uno staging | P |

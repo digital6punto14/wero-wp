@@ -63,6 +63,7 @@ final class Wero_Import {
 		$this->legal_pages();
 		$this->home();
 		$this->navigation();
+		$this->seo();
 		flush_rewrite_rules( false );
 		$this->log[] = 'Fatto.';
 	}
@@ -551,6 +552,11 @@ CF7;
 
 	/** Privacy policy e Cookie policy (testi di 6.14). */
 	private function legal_pages(): void {
+		// WordPress crea già una bozza "Privacy Policy" (slug privacy-policy): la riuso, così l'indirizzo resta /privacy-policy/.
+		$default = get_page_by_path( 'privacy-policy' );
+		if ( $default && ! get_post_meta( $default->ID, '_wero_import', true ) ) {
+			update_post_meta( $default->ID, '_wero_import', 'page:privacy' );
+		}
 		$privacy = $this->upsert(
 			'page',
 			'page:privacy',
@@ -599,9 +605,52 @@ CF7;
 			)
 		);
 		update_post_meta( $id, '_yoast_wpseo_metadesc', $this->data['site']['home_meta'] );
+		update_post_meta( $id, '_yoast_wpseo_title', 'WeRo %%sep%% Il primo Robot Communication Studio' );
 		update_option( 'show_on_front', 'page' );
 		update_option( 'page_on_front', $id );
 		$this->log[] = 'Home: ' . $id;
+	}
+
+	/** Yoast SEO: rappresentazione del sito, titoli e descrizioni per tipo, breadcrumb, llms.txt (Fase 5). */
+	private function seo(): void {
+		if ( ! class_exists( 'WPSEO_Options' ) ) {
+			$this->log[] = 'Yoast SEO non attivo: impostazioni SEO non applicate.';
+			return;
+		}
+		$logo = $this->media( 'wero-mark.png', 'WeRo' );
+		$set  = array(
+			// Rappresentazione del sito: Organizzazione (WeRo, joint venture 6.14 + Omnicom Advertising).
+			'company_or_person'               => 'company',
+			'company_name'                    => 'WeRo',
+			'company_logo'                    => (string) wp_get_attachment_url( $logo ),
+			'company_logo_id'                 => $logo,
+			'website_name'                    => 'WeRo',
+			'alternate_website_name'          => 'WeRo Robot Communication Studio',
+			'org-description'                 => 'Il primo Robot Communication Studio: un ecosistema di partner tra ricerca, business, comunicazione e creatività. Joint venture tra 6.14 e Omnicom Advertising.',
+			'org-email'                       => 'contact@we-ro.it',
+			// Home.
+			'title-home-wpseo'                => 'WeRo %%sep%% Il primo Robot Communication Studio',
+			'metadesc-home-wpseo'             => $this->data['site']['home_meta'],
+			// Progetti (dai tag dell'originale: "Titolo — WeRo").
+			'title-progetto'                  => '%%title%% %%sep%% WeRo',
+			'metadesc-progetto'               => '%%excerpt%%',
+			'schema-article-type-progetto'    => 'Article',
+			'title-ptarchive-progetto'        => 'Progetti %%sep%% WeRo',
+			'metadesc-ptarchive-progetto'     => 'Tutti i progetti di WeRo tra ricerca, eventi, linguaggi e design della robotica.',
+			'title-page'                      => '%%title%% %%sep%% WeRo',
+			'separator'                       => 'sc-mdash',
+			// Breadcrumb (blocco di Yoast nei template interni).
+			'breadcrumbs-enable'              => true,
+			'breadcrumbs-home'                => 'Home',
+			'breadcrumbs-sep'                 => '›',
+		);
+		foreach ( $set as $key => $value ) {
+			WPSEO_Options::set( $key, $value );
+		}
+		// Funzioni del sito: llms.txt per gli agenti AI.
+		WPSEO_Options::set( 'enable_llms_txt', true );
+		// LinkedIn: il plugin lo aggiunge allo schema dalle Impostazioni sito (filtro), qui niente duplicati.
+		$this->log[] = 'Yoast: rappresentazione, titoli, descrizioni, breadcrumb, llms.txt.';
 	}
 
 	/** Menu (wp_navigation) e header che lo usa. */
