@@ -39,10 +39,6 @@ $wero_img = get_theme_file_uri( 'assets/images/patterns/' );
 <!-- /wp:column -->
 
 <!-- wp:column {"width":"320px","className":"wero-notes__aside"} -->
-<div class="wp-block-column wero-notes__aside" style="flex-basis:320px"><!-- wp:paragraph {"className":"wero-side-h","fontSize":"small"} -->
-<p class="wero-side-h has-small-font-size">Ospiti</p>
-<!-- /wp:paragraph -->
-
-<!-- wp:wero/people /--></div>
+<div class="wp-block-column wero-notes__aside" style="flex-basis:320px"><!-- wp:wero/people {"heading":"Ospiti"} /--></div>
 <!-- /wp:column --></div>
 <!-- /wp:columns -->

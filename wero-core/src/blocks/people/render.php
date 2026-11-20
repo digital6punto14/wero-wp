@@ -28,8 +28,13 @@ $wero_people = Fields::relation( $wero_id, 'persone' );
 if ( ! $wero_people ) {
 	return;
 }
+$wero_heading = (string) ( $attributes['heading'] ?? '' );
 ?>
-<ul <?php echo get_block_wrapper_attributes( array( 'class' => 'wero-people' ) ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>>
+<div <?php echo get_block_wrapper_attributes( array( 'class' => 'wero-people-block' ) ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>>
+<?php if ( $wero_heading ) : ?>
+	<p class="wero-people__h"><?php echo esc_html( $wero_heading ); ?></p>
+<?php endif; ?>
+<ul class="wero-people">
 	<?php
 	foreach ( $wero_people as $wero_pid ) :
 		if ( 'persona' !== get_post_type( $wero_pid ) ) {
@@ -44,3 +49,4 @@ if ( ! $wero_people ) {
 		</li>
 	<?php endforeach; ?>
 </ul>
+</div>

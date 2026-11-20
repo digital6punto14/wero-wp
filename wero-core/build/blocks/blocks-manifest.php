@@ -250,13 +250,19 @@ return array(
 		),
 		'title' => 'Persone',
 		'icon' => 'admin-users',
-		'description' => 'Ospiti e relatori collegati al progetto (campo “Persone”). Si modificano nel menu Persone.',
+		'description' => 'Ospiti e relatori collegati al progetto (campo “Persone”), con il loro titolo. Se il progetto non ha persone, il blocco non compare.',
 		'supports' => array(
 			'html' => false
 		),
 		'editorScript' => 'file:./index.js',
 		'style' => 'file:./style-index.css',
-		'render' => 'file:./render.php'
+		'render' => 'file:./render.php',
+		'attributes' => array(
+			'heading' => array(
+				'type' => 'string',
+				'default' => 'Intervengono'
+			)
+		)
 	),
 	'podcast-cover' => array(
 		'$schema' => 'https://schemas.wp.org/trunk/block.json',

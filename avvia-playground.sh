@@ -8,4 +8,5 @@ npx -y @wp-playground/cli@latest server \
   --blueprint=./blueprint.json \
   --mount-before-install="$PWD/wero-theme:/wordpress/wp-content/themes/wero-theme" \
   --mount-before-install="$PWD/wero-core:/wordpress/wp-content/plugins/wero-core" \
+  --mount-before-install="$PWD/contenuti:/wordpress/wp-content/wero-contenuti" \
   --port=9400 --login

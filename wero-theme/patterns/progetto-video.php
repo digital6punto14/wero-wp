@@ -39,10 +39,6 @@ $wero_img = get_theme_file_uri( 'assets/images/patterns/' );
 <!-- wp:wero/chapter {"time":"13:00","seconds":780,"label":"Cosa resta dopo l’evento"} /-->
 <!-- /wp:wero/chapters -->
 
-<!-- wp:paragraph {"className":"wero-side-h","fontSize":"small","style":{"spacing":{"margin":{"top":"28px"}}}} -->
-<p class="wero-side-h has-small-font-size" style="margin-top:28px">Intervengono</p>
-<!-- /wp:paragraph -->
-
-<!-- wp:wero/people /--></div>
+<!-- wp:wero/people {"heading":"Intervengono"} /--></div>
 <!-- /wp:column --></div>
 <!-- /wp:columns -->

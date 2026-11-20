@@ -11,11 +11,17 @@
   ],
   "title": "Persone",
   "icon": "admin-users",
-  "description": "Ospiti e relatori collegati al progetto (campo “Persone”). Si modificano nel menu Persone.",
+  "description": "Ospiti e relatori collegati al progetto (campo “Persone”), con il loro titolo. Se il progetto non ha persone, il blocco non compare.",
   "supports": {
     "html": false
   },
   "editorScript": "file:./index.js",
   "style": "file:./style-index.css",
-  "render": "file:./render.php"
+  "render": "file:./render.php",
+  "attributes": {
+    "heading": {
+      "type": "string",
+      "default": "Intervengono"
+    }
+  }
 }
