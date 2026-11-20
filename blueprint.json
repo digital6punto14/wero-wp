@@ -3,7 +3,7 @@
 	"meta": {
 		"title": "WeRo – ambiente di sviluppo",
 		"author": "WeRo",
-		"description": "WordPress latest, PHP 8.3, italiano, plugin ammessi, tema wero-theme e plugin wero-core (montati dalla CLI), permalink /%postname%/."
+		"description": "WordPress latest, PHP 8.3, italiano, plugin ammessi, permalink /%postname%/. Tema e plugin: letti dal ramo \"sviluppo\" di GitHub; con la CLI (avvia-playground.sh) vengono invece montati dalla cartella locale e il download viene saltato."
 	},
 	"landingPage": "/wp-admin/",
 	"preferredVersions": {
@@ -105,12 +105,34 @@
 			"ifAlreadyInstalled": "skip"
 		},
 		{
-			"step": "activateTheme",
-			"themeFolderName": "wero-theme"
+			"step": "installTheme",
+			"themeData": {
+				"resource": "git:directory",
+				"url": "https://github.com/digital6punto14/wero-wp",
+				"ref": "sviluppo",
+				"refType": "branch",
+				"path": "wero-theme"
+			},
+			"options": {
+				"activate": true,
+				"targetFolderName": "wero-theme"
+			},
+			"ifAlreadyInstalled": "skip"
 		},
 		{
-			"step": "activatePlugin",
-			"pluginPath": "wero-core/wero-core.php"
+			"step": "installPlugin",
+			"pluginData": {
+				"resource": "git:directory",
+				"url": "https://github.com/digital6punto14/wero-wp",
+				"ref": "sviluppo",
+				"refType": "branch",
+				"path": "wero-core"
+			},
+			"options": {
+				"activate": true,
+				"targetFolderName": "wero-core"
+			},
+			"ifAlreadyInstalled": "skip"
 		},
 		{
 			"step": "runPHP",
