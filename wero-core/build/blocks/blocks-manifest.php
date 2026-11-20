@@ -351,7 +351,7 @@ return array(
 		),
 		'title' => 'Meta del progetto',
 		'icon' => 'tag',
-		'description' => 'Mondo, tipo e anno del progetto. Variante “barra” con il link “Tutti i progetti” (testata) o “card” (liste).',
+		'description' => 'Mondo, tipo e anno del progetto. Variante “barra” con i link “Torna alla home” e “Tutti i progetti” (testata) o “card” (liste).',
 		'attributes' => array(
 			'variant' => array(
 				'type' => 'string',
@@ -360,6 +360,10 @@ return array(
 					'card'
 				),
 				'default' => 'bar'
+			),
+			'showHome' => array(
+				'type' => 'boolean',
+				'default' => true
 			)
 		),
 		'supports' => array(

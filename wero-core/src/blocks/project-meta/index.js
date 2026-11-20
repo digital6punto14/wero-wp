@@ -1,17 +1,22 @@
 import { registerBlockType } from '@wordpress/blocks';
-import { useBlockProps } from '@wordpress/block-editor';
-import { Disabled } from '@wordpress/components';
+import { useBlockProps, InspectorControls } from '@wordpress/block-editor';
+import { PanelBody, ToggleControl, Disabled } from '@wordpress/components';
 import ServerSideRender from '@wordpress/server-side-render';
+import { __ } from '@wordpress/i18n';
 import metadata from './block.json';
 import './style.css';
 
-/* Anteprima dal server: i dati arrivano dai campi del contenuto. */
 registerBlockType( metadata.name, {
-	edit: ( { attributes, context } ) => (
+	edit: ( { attributes, setAttributes, context } ) => (
 		<div { ...useBlockProps() }>
-			<Disabled>
-				<ServerSideRender block={ metadata.name } attributes={ attributes } urlQueryArgs={ { post_id: context?.postId || 0 } } />
-			</Disabled>
+			{ attributes.variant === 'bar' && (
+				<InspectorControls>
+					<PanelBody title={ __( 'Barra del progetto', 'wero-core' ) }>
+						<ToggleControl __nextHasNoMarginBottom label={ __( 'Mostra “Torna alla home”', 'wero-core' ) } checked={ attributes.showHome } onChange={ ( showHome ) => setAttributes( { showHome } ) } />
+					</PanelBody>
+				</InspectorControls>
+			) }
+			<Disabled><ServerSideRender block={ metadata.name } attributes={ attributes } urlQueryArgs={ { post_id: context?.postId || 0 } } /></Disabled>
 		</div>
 	),
 	save: () => null,

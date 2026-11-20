@@ -24,6 +24,8 @@ final class Forms {
 	public static function register(): void {
 		add_filter( 'wpcf7_load_js', '__return_false' );
 		add_filter( 'wpcf7_load_css', '__return_false' );
+		// Il markup dei moduli è scritto per il CSS del tema: niente <p> e <br> automatici.
+		add_filter( 'wpcf7_autop_or_not', '__return_false' );
 		add_filter( 'render_block_contact-form-7/contact-form-selector', array( __CLASS__, 'enqueue_on_render' ) );
 		add_filter( 'wero_partner_form_block', array( __CLASS__, 'partner_form_block' ) );
 	}

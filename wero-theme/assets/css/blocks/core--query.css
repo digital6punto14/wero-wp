@@ -18,3 +18,21 @@
 	.wero-related .wp-block-post-template.wero-scroll-mobile::after { content: ""; flex: 0 0 1px; }
 	.wero-related .wp-block-post-template.wero-scroll-mobile > .wp-block-post { flex: 0 0 78%; scroll-snap-align: start; }
 }
+
+/* copertina di riserva dei progetti senza immagine (generata dal plugin): come le card dell'originale */
+.wero-ph-figure { margin: 0; overflow: hidden; border-radius: 20px; background: var(--wp--preset--color--ink); }
+.wero-ph-figure a, .wero-ph-figure img, .wero-ph { display: block; width: 100%; height: 100%; object-fit: cover; }
+.wero-ph--scuro { background: radial-gradient(circle at 1px 1px, rgba(255,255,255,.14) 1px, transparent 1.6px) 0 0 / 12px 12px, linear-gradient(160deg, #2a2230, var(--wp--preset--color--ink)); }
+.wero-ph--sfumatura { background: radial-gradient(circle at 1px 1px, rgba(255,255,255,.2) 1px, transparent 1.6px) 0 0 / 12px 12px, var(--wp--preset--gradient--wero); }
+.wero-ph--contorno { background: radial-gradient(circle at 1px 1px, rgba(255,0,199,.18) 1px, transparent 1.6px) 0 0 / 12px 12px, var(--wp--preset--color--paper-light); }
+.is-style-query-cards .wp-block-post-featured-image { aspect-ratio: 4 / 3; }
+.is-style-query-cards .wp-block-post-featured-image img { height: 100%; object-fit: cover; }
+.is-style-query-cards .wp-block-post-template { align-items: start; }
+
+/* archivio progetti = vista a griglia della home (.pgrid / .pgcard) */
+.is-style-query-cards .wp-block-post { gap: 12px; }
+.is-style-query-cards .wp-block-post .wero-meta--card .wero-meta__info { font-size: 14px; }
+.is-style-query-cards .wp-block-query-pagination-numbers .page-numbers { display: inline-grid; place-items: center; width: 42px; height: 42px; border-radius: 50%; font-size: 15px; font-weight: 600; text-decoration: none; }
+.is-style-query-cards .wp-block-query-pagination-numbers .page-numbers.current { background: var(--wp--preset--gradient--wero); color: #fff; }
+@media (max-width: 900px) { .is-style-query-cards:not(.wero-related) .wp-block-post-template { grid-template-columns: repeat(2, minmax(0, 1fr)) !important; } }
+@media (max-width: 560px) { .is-style-query-cards:not(.wero-related) .wp-block-post-template { grid-template-columns: 1fr !important; } }

@@ -2,7 +2,7 @@
 
 Documento vivo: raccoglie ciò che è stato ricavato dai file, le domande aperte con la proposta consigliata e, man mano, le decisioni prese. Si aggiorna a ogni fase.
 
-Stato: **Decisioni confermate dal cliente il 20/11/2026. Fase 0 confermata il 20/11/2026. Fase 1 completata. Fase 2 (tema) completata. Fase 3 (plugin) completata. Fase 4 (contenuti): piano da approvare.**
+Stato: **Decisioni confermate dal cliente il 20/11/2026. Fase 0 confermata il 20/11/2026. Fase 1 completata. Fase 2 (tema) completata. Fase 3 (plugin) completata. Fase 4 (contenuti) completata. Fase 5 (SEO e agenti AI) in attesa.**
 
 ---
 
@@ -253,6 +253,12 @@ Legenda: **R** = risposta tua; **P** = mia proposta applicata perché la domanda
 | D39 | Il campo “Formato” del progetto non serve: il formato è il **template** scelto nel pannello laterale (4 template). Il campo “Tipo” (Evento, Video, Report…) resta per le etichette. | Fase 3 |
 | D40 | Video e audio esterni (YouTube, Vimeo, Spotify, SoundCloud, Apple Podcasts) si caricano **solo al clic** del visitatore (“facciata”): nessuna richiesta a terze parti all'apertura della pagina. Il collegamento con le categorie di Cookie Consent si verifica nella Fase 6. | Fase 3 |
 | D41 | Loghi SVG (6.14, Italdesign, Eni Joule, Rehabilia, Alto Robotics, logo WeRo): WordPress non accetta SVG nella Libreria media, quindi vengono convertiti in PNG ad alta risoluzione. | Fase 3 |
+| D42 | Gli 8 progetti senza pagina sono **pubblicati** con testo segnaposto (avviso in testa alla pagina), da completare prima della messa online: la sfera resta come l'originale (sostituisce D35). | R |
+| D43 | **Nessuna persona segnaposto**: il blocco Persone (con il suo titolo “Intervengono”/“Ospiti”) resta nascosto finché non si collegano persone vere. | R |
+| D44 | Modulo “Diventa partner”: **due email HTML con lo stile WeRo**. Mail 1 a contact@we-ro.it (riepilogo, pulsante “Rispondi”, Reply-To a chi scrive). Mail 2 di conferma a chi scrive (ringraziamento, riepilogo, link ai progetti, Reply-To contact@we-ro.it). Mittente WeRo <noreply@we-ro.it>. Modelli in `contenuti/email/`. | R |
+| D45 | Pagine progetto: nella testata **“Torna alla home”** oltre a “Tutti i progetti”. | R |
+| D46 | Pagina `/progetti/` **uguale alla vista a griglia** della home: stesse card (immagine 4:3, bollino del mondo, tipo e anno, titolo), stesso ordine della sfera, tutti i progetti in una pagina; i progetti senza immagine hanno la copertina di riserva col colore del mondo. | R |
+| D47 | Le **Voci** si modificano una per una dal menu “Voci dei progetti”: titolo, copertina (pannello “Copertina”), descrizione, link del video (o file), ordine. Il blocco in home ha un pulsante “Modifica le voci”. | R |
 | D27 | Search Console non gestita in questo progetto | R (domanda tolta) |
 | D28 | Crawler AI consentiti; robots.txt senza blocchi. Abilities in sola lettura: wero/get-projects, wero/get-reports, wero/get-partners, wero/get-contact-info | P |
 | D29 | Hosting non ancora noto: requisiti minimi documentati (WordPress 6.9+, PHP 8.2+); consigliato uno staging | P |

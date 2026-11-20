@@ -425,6 +425,9 @@ CF7;
 		$form->set_title( 'Diventa partner' );
 		$props         = $form->get_properties();
 		$props['form'] = $body;
+		$logo  = (string) wp_get_attachment_url( $this->media( 'wero-mark.png', 'WeRo' ) );
+		$email = fn( string $name ) => str_replace( '{{logo}}', esc_url( $logo ), (string) file_get_contents( $this->dir . '/email/' . $name . '.html' ) );
+		// Mail 1: notifica a WeRo (HTML, risposta diretta a chi ha scritto).
 		$props['mail'] = array_merge(
 			(array) $props['mail'],
 			array(
@@ -432,11 +435,26 @@ CF7;
 				'subject'            => '[WeRo] Nuova richiesta di partnership da [nome]',
 				'sender'             => 'WeRo <noreply@we-ro.it>',
 				'recipient'          => 'contact@we-ro.it',
-				'body'               => "Nome: [nome]\nAzienda / Ente: [azienda]\nEmail: [email]\nAmbito: [ambito]\n\nMessaggio:\n[messaggio]\n\n--\nInviato dal modulo “Diventa partner” di [_site_url]",
-				'additional_headers' => 'Reply-To: [email]',
+				'body'               => $email( 'notifica' ),
+				'additional_headers' => 'Reply-To: [nome] <[email]>',
 				'attachments'        => '',
-				'use_html'           => false,
-				'exclude_blank'      => false,
+				'use_html'           => true,
+				'exclude_blank'      => true,
+			)
+		);
+		// Mail 2: conferma a chi ha compilato il modulo (HTML, risposte a contact@we-ro.it).
+		$props['mail_2'] = array_merge(
+			(array) ( $props['mail_2'] ?? array() ),
+			array(
+				'active'             => true,
+				'subject'            => 'Grazie per averci scritto, [nome] – WeRo',
+				'sender'             => 'WeRo <noreply@we-ro.it>',
+				'recipient'          => '[email]',
+				'body'               => $email( 'conferma' ),
+				'additional_headers' => 'Reply-To: WeRo <contact@we-ro.it>',
+				'attachments'        => '',
+				'use_html'           => true,
+				'exclude_blank'      => true,
 			)
 		);
 		$props['messages'] = array_merge(

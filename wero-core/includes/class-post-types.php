@@ -22,6 +22,7 @@ final class Post_Types {
 	 */
 	public static function register(): void {
 		add_action( 'init', array( __CLASS__, 'register_post_types' ) );
+		add_action( 'pre_get_posts', array( __CLASS__, 'archive_order' ) );
 	}
 
 	/**
@@ -114,7 +115,15 @@ final class Post_Types {
 			array_merge(
 				$hidden,
 				array(
-					'labels'        => self::labels( __( 'Voce', 'wero-core' ), __( 'Voci dei progetti', 'wero-core' ), true ),
+					'labels'        => array_merge(
+						self::labels( __( 'Voce', 'wero-core' ), __( 'Voci dei progetti', 'wero-core' ), true ),
+						array(
+							'featured_image'        => __( 'Copertina', 'wero-core' ),
+							'set_featured_image'    => __( 'Imposta la copertina', 'wero-core' ),
+							'remove_featured_image' => __( 'Rimuovi la copertina', 'wero-core' ),
+							'use_featured_image'    => __( 'Usa come copertina', 'wero-core' ),
+						)
+					),
 					'description'   => __( 'Video della sezione “Le voci dei progetti”.', 'wero-core' ),
 					'menu_icon'     => 'dashicons-video-alt3',
 					'menu_position' => 8,
@@ -135,5 +144,25 @@ final class Post_Types {
 				)
 			)
 		);
+	}
+
+	/**
+	 * Archivio /progetti/: stesso ordine e stessi progetti della sfera in home
+	 * (campo "Ordine", poi data), tutti in una pagina come la vista a griglia.
+	 *
+	 * @param \WP_Query $query Query.
+	 */
+	public static function archive_order( \WP_Query $query ): void {
+		if ( is_admin() || ! $query->is_main_query() || ! $query->is_post_type_archive( 'progetto' ) ) {
+			return;
+		}
+		$query->set(
+			'orderby',
+			array(
+				'menu_order' => 'ASC',
+				'date'       => 'DESC',
+			)
+		);
+		$query->set( 'posts_per_page', 40 );
 	}
 }

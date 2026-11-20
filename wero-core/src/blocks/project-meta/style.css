@@ -11,3 +11,4 @@
 .tag-mini { display: inline-block; padding: 5px 12px; border-radius: 999px; font-size: 13px; font-weight: 600; color: #fff; white-space: nowrap; background: var(--wp--preset--color--ink, #15121a); }
 .tag-mini--sfumatura { background: var(--wp--preset--gradient--wero, #ff00c7); }
 .tag-mini--contorno { background: var(--wp--preset--color--paper-light, #fbfaf5); color: var(--wp--preset--color--magenta, #ff00c7); box-shadow: inset 0 0 0 1.5px var(--wp--preset--color--magenta, #ff00c7); }
+.wero-meta__back.is-secondary { padding: 0 16px; border-color: var(--wp--custom--line, rgba(21, 18, 26, .25)); }

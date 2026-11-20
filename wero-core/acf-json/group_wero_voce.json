@@ -8,7 +8,7 @@
             "name": "media_link",
             "aria-label": "",
             "type": "url",
-            "instructions": "",
+            "instructions": "YouTube, Vimeo o l’indirizzo di un file video. Il video parte al clic sulla copertina.",
             "required": 0,
             "conditional_logic": 0,
             "wrapper": {
@@ -76,7 +76,7 @@
     "instruction_placement": "label",
     "hide_on_screen": "",
     "active": true,
-    "description": "La copertina è l’immagine in evidenza.",
+    "description": "Titolo = nome della voce. Copertina = immagine in evidenza (pannello a destra). Ordine = campo “Ordine” in Attributi.",
     "show_in_rest": 1,
     "modified": 1795200000
 }

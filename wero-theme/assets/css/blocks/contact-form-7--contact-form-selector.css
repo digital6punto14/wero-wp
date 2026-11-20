@@ -15,6 +15,8 @@
 .wpcf7 input:focus, .wpcf7 textarea:focus { outline: none; border-color: var(--wp--preset--color--magenta); box-shadow: 0 0 0 4px rgba(255, 0, 199, .12); }
 .wpcf7 textarea { resize: vertical; min-height: 120px; height: 120px; }
 /* ambito: caselle come chip */
+.wpcf7 .wero-chips { display: grid; gap: 6px; }
+.wpcf7 .wero-chips__legend { font-size: 13px; font-weight: 600; }
 .wpcf7 .wero-chips .wpcf7-checkbox { display: flex; flex-wrap: wrap; gap: 8px; }
 .wpcf7 .wero-chips .wpcf7-list-item { margin: 0; }
 .wpcf7 .wero-chips .wpcf7-list-item label { display: inline-block; cursor: pointer; position: relative; }

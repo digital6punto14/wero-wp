@@ -30,7 +30,10 @@ $wero_var   = 'card' === ( $attributes['variant'] ?? 'bar' ) ? 'card' : 'bar';
 ?>
 <div <?php echo get_block_wrapper_attributes( array( 'class' => 'wero-meta wero-meta--' . $wero_var ) ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>>
 	<?php if ( 'bar' === $wero_var ) : ?>
-		<a class="wero-meta__back" href="<?php echo esc_url( (string) get_post_type_archive_link( 'progetto' ) ); ?>"><span aria-hidden="true">←</span> <?php esc_html_e( 'Tutti i progetti', 'wero-core' ); ?></a>
+		<?php if ( ! empty( $attributes['showHome'] ) ) : ?>
+			<a class="wero-meta__back" href="<?php echo esc_url( home_url( '/' ) ); ?>"><span aria-hidden="true">←</span> <?php esc_html_e( 'Torna alla home', 'wero-core' ); ?></a>
+		<?php endif; ?>
+		<a class="wero-meta__back is-secondary" href="<?php echo esc_url( (string) get_post_type_archive_link( 'progetto' ) ); ?>"><?php esc_html_e( 'Tutti i progetti', 'wero-core' ); ?></a>
 	<?php endif; ?>
 	<p class="wero-meta__info"><?php echo Blocks::world_tag( $wero_world, 'bar' === $wero_var ? 'wero-tag' : 'tag-mini' ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?><?php if ( $wero_ty ) : ?><span><?php echo esc_html( $wero_ty ); ?></span><?php endif; ?></p>
 </div>
