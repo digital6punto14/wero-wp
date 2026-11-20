@@ -1,0 +1,29 @@
+/* Gruppo "Mondi": card dei tre mondi (dall'originale .worlds / .world). Contenuto = blocchi core. */
+.is-style-wero-worlds { gap: clamp(20px, 3vw, 40px) !important; }
+.is-style-wero-worlds > .wp-block-group { display: flex; flex-direction: column; gap: 0; padding-top: 20px; border-top: 1.5px solid var(--wp--custom--line, rgba(21, 18, 26, .12)); margin: 0 !important; }
+.is-style-wero-worlds > .wp-block-group > * { margin-block: 0 !important; }
+.is-style-wero-worlds > .wp-block-group > .wp-block-image { margin: 0 0 22px !important; border-radius: 20px; overflow: hidden; background: var(--wp--preset--color--ink, #15121a); }
+.is-style-wero-worlds .wp-block-image img { width: 100%; aspect-ratio: 4 / 3; object-fit: cover; border-radius: 0; transition: transform .6s var(--wp--custom--ease, ease); }
+.is-style-wero-worlds > .wp-block-group:hover .wp-block-image img { transform: scale(1.04); }
+.is-style-wero-worlds h3 { font-size: clamp(26px, 2.4vw, 34px); line-height: 1.05; letter-spacing: -.035em; font-weight: 500; }
+.is-style-wero-worlds > .wp-block-group > h3 + p { margin-top: 14px !important; font-size: 17px; max-width: 34ch; flex: 1; }
+.is-style-wero-worlds > .wp-block-group > .wp-block-buttons { margin-top: 22px !important; }
+.is-style-wero-worlds .wp-block-button__link:hover { background: var(--wp--preset--gradient--wero, #ff00c7) !important; box-shadow: none !important; color: #fff !important; }
+.wero-worlds-dots { display: none; }
+@media (max-width: 900px) {
+	.is-style-wero-worlds, .is-layout-constrained > .is-style-wero-worlds {
+		display: flex !important; gap: 12px !important; overflow-x: auto; scroll-snap-type: x mandatory; overscroll-behavior-x: contain;
+		margin-inline: calc(-1 * var(--wp--custom--gutter, 16px)) !important; padding: 4px var(--wp--custom--gutter, 16px) 12px !important; scroll-padding-inline: var(--wp--custom--gutter, 16px); scrollbar-width: none;
+	}
+	.is-style-wero-worlds::-webkit-scrollbar { display: none; }
+	.is-style-wero-worlds > .wp-block-group { flex: 0 0 86%; scroll-snap-align: start; padding: 14px 14px 20px; border-top: 0; border-radius: 22px; background: var(--wp--preset--color--paper-light, #fbfaf5); }
+	.is-style-wero-worlds > .wp-block-group > .wp-block-image { margin-bottom: 16px !important; border-radius: 14px; }
+	.is-style-wero-worlds .wp-block-image img { aspect-ratio: 16 / 10; }
+	.is-style-wero-worlds > .wp-block-group > :not(.wp-block-image) { margin-inline: 6px !important; max-width: none; }
+	.is-style-wero-worlds h3 { font-size: 24px; }
+	.is-style-wero-worlds > .wp-block-group > h3 + p { font-size: 16px; max-width: none; }
+	.is-style-wero-worlds > .wp-block-group > .wp-block-buttons { margin-top: 16px !important; }
+	.wero-worlds-dots { display: flex; justify-content: center; gap: 8px; margin-top: 12px; }
+	.wero-worlds-dots button { width: 8px; height: 8px; padding: 0; border: 0; border-radius: 99px; background: var(--wp--custom--line, rgba(21, 18, 26, .12)); cursor: pointer; transition: width .3s var(--wp--custom--ease, ease), background .3s; }
+	.wero-worlds-dots button.is-on { width: 24px; background: var(--wp--preset--gradient--wero, #ff00c7); }
+}

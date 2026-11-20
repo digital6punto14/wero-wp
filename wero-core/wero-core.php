@@ -33,6 +33,7 @@ require_once WERO_CORE_DIR . 'includes/class-taxonomies.php';
 require_once WERO_CORE_DIR . 'includes/class-acf.php';
 require_once WERO_CORE_DIR . 'includes/class-fields.php';
 require_once WERO_CORE_DIR . 'includes/class-blocks.php';
+require_once WERO_CORE_DIR . 'includes/class-block-styles.php';
 require_once WERO_CORE_DIR . 'includes/class-bindings.php';
 require_once WERO_CORE_DIR . 'includes/class-theme-bridge.php';
 require_once WERO_CORE_DIR . 'includes/class-editor.php';
@@ -51,6 +52,7 @@ add_action(
 		Taxonomies::register();
 		Acf::register();
 		Blocks::register();
+		Block_Styles::register();
 		Bindings::register();
 		Theme_Bridge::register();
 		Editor::register();

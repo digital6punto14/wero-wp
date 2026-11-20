@@ -153,29 +153,51 @@ final class Data {
 	}
 
 	/**
-	 * Voci dei progetti.
+	 * Voci dei progetti: lette dai blocchi della Home (gruppo con stile "Voci").
+	 * Ogni card: Immagine (copertina, collegata al video) + titolo + descrizione.
 	 *
-	 * @return array<int, array<string, mixed>>
+	 * @return array<int, array<string, string>>
 	 */
 	public static function voices(): array {
-		return array_map(
-			static fn( \WP_Post $v ): array => array(
-				'title'       => get_the_title( $v ),
-				'description' => (string) Fields::post( $v->ID, 'descrizione', '' ),
-				'cover'       => (string) get_the_post_thumbnail_url( $v, 'large' ),
-				'video_url'   => ( Media::of_post( $v->ID ) ?? array( 'url' => '' ) )['url'],
-			),
-			get_posts(
-				array(
-					'post_type'      => 'voce',
-					'post_status'    => 'publish',
-					'posts_per_page' => 50,
-					'orderby'        => 'menu_order',
-					'order'          => 'ASC',
-					'no_found_rows'  => true,
-				)
-			)
-		);
+		$home = (int) get_option( 'page_on_front' );
+		if ( ! $home ) {
+			return array();
+		}
+		$out  = array();
+		$find = static function ( array $blocks ) use ( &$find, &$out ): void {
+			foreach ( $blocks as $b ) {
+				if ( 'core/group' === $b['blockName'] && str_contains( (string) ( $b['attrs']['className'] ?? '' ), 'is-style-wero-voices' ) ) {
+					foreach ( $b['innerBlocks'] as $card ) {
+						$img   = null;
+						$texts = array();
+						foreach ( $card['innerBlocks'] as $inner ) {
+							if ( 'core/image' === $inner['blockName'] && ! $img ) {
+								$img = $inner;
+							} elseif ( $img && in_array( $inner['blockName'], array( 'core/paragraph', 'core/heading' ), true ) ) {
+								$texts[] = trim( wp_strip_all_tags( (string) $inner['innerHTML'] ) );
+							}
+						}
+						if ( ! $img ) {
+							continue;
+						}
+						$html  = (string) $img['innerHTML'];
+						$href  = preg_match( '/<a[^>]+href="([^"]*)"/', $html, $m ) ? html_entity_decode( $m[1] ) : '';
+						$cover = ! empty( $img['attrs']['id'] ) ? (string) wp_get_attachment_image_url( (int) $img['attrs']['id'], 'large' ) : ( preg_match( '/<img[^>]+src="([^"]*)"/', $html, $c ) ? $c[1] : '' );
+						$out[] = array(
+							'title'       => $texts[0] ?? '',
+							'description' => $texts[1] ?? '',
+							'cover'       => $cover,
+							'video_url'   => '#' === $href ? '' : $href,
+						);
+					}
+				}
+				if ( ! empty( $b['innerBlocks'] ) ) {
+					$find( $b['innerBlocks'] );
+				}
+			}
+		};
+		$find( parse_blocks( (string) get_post_field( 'post_content', $home ) ) );
+		return $out;
 	}
 
 	/**

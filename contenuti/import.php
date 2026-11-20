@@ -2,7 +2,7 @@
 /**
  * WeRo — importazione dei contenuti (Fase 4).
  *
- * Ricrea il sito dall'originale HTML: media, mondi, partner, progetti, report, voci,
+ * Ricrea il sito dall'originale HTML: media, mondi, partner, progetti, report,
  * pagine (Home a blocchi, Privacy, Cookie), modulo Contact Form 7, menu, logo, impostazioni.
  *
  * Si può rieseguire: ogni elemento importato è riconosciuto dal metadato `_wero_import`
@@ -57,7 +57,6 @@ final class Wero_Import {
 		$this->partners();
 		$this->projects();
 		$this->reports();
-		$this->voices();
 		$form = $this->form();
 		$this->settings( $form );
 		$this->legal_pages();
@@ -285,10 +284,8 @@ final class Wero_Import {
 			$tid                        = (int) $term['term_id'];
 			$this->worlds[ $w['code'] ] = $tid;
 			$obj                        = 'term_' . $tid;
-			$this->field( 'immagine', $this->media( $w['image'], $w['alt'] ), $obj );
-			$this->field( 'descrizione', $w['desc'], $obj );
+			// Le card dei mondi sono blocchi nella Home: qui solo bollino e ordine dei filtri.
 			$this->field( 'stile', $w['stile'], $obj );
-			$this->field( 'testo_link', 'Vedi i progetti', $obj );
 			$this->field( 'ordine', $w['ordine'], $obj );
 		}
 		$this->log[] = 'Mondi: ' . count( $this->worlds );
@@ -385,23 +382,6 @@ final class Wero_Import {
 			}
 		}
 		$this->log[] = 'Report: ' . count( $this->data['reports'] );
-	}
-
-	/** Voci. */
-	private function voices(): void {
-		foreach ( $this->data['voices'] as $v ) {
-			$id = $this->upsert(
-				'voce',
-				'voce:' . $v['title'],
-				array(
-					'post_title' => $v['title'],
-					'menu_order' => $v['ordine'],
-				),
-				array( 'descrizione' => $v['desc'] )
-			);
-			set_post_thumbnail( $id, $this->media( $v['image'], '' ) );
-		}
-		$this->log[] = 'Voci: ' . count( $this->data['voices'] );
 	}
 
 	/** Modulo "Diventa partner" (Contact Form 7). */

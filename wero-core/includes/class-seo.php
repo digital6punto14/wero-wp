@@ -7,7 +7,7 @@
  *   presi dalle Impostazioni sito (un solo punto di modifica).
  * - Progetto video: VideoObject; progetto podcast: PodcastEpisode — solo se il video
  *   o l'audio c'è davvero (contenuto visibile in pagina).
- * - Home: VideoObject per ogni Voce che ha un video.
+ * - Home: VideoObject per ogni card del gruppo “Voci” che ha un video collegato.
  *
  * Filtri Yoast usati: wpseo_schema_organization, wpseo_schema_organization_social_profiles,
  * wpseo_schema_graph.
@@ -201,28 +201,13 @@ final class Seo {
 		}
 
 		if ( is_front_page() ) {
-			foreach ( get_posts(
-				array(
-					'post_type'      => 'voce',
-					'post_status'    => 'publish',
-					'posts_per_page' => 12,
-					'orderby'        => 'menu_order',
-					'order'          => 'ASC',
-				)
-			) as $i => $v ) {
-				$media = Media::of_post( $v->ID );
+			$date = (string) get_the_modified_date( 'c', (int) get_option( 'page_on_front' ) );
+			foreach ( Data::voices() as $i => $v ) {
+				$media = Media::parse( $v['video_url'] );
 				if ( ! $media || ! in_array( $media['kind'], array( 'video', 'embed' ), true ) ) {
 					continue;
 				}
-				$graph[] = self::video_node(
-					$page . '#voce-' . ( $i + 1 ),
-					get_the_title( $v ),
-					(string) Fields::post( $v->ID, 'descrizione', '' ),
-					(string) get_the_post_thumbnail_url( $v, 'large' ),
-					(string) get_the_date( 'c', $v ),
-					$media,
-					$page
-				);
+				$graph[] = self::video_node( $page . '#voce-' . ( $i + 1 ), $v['title'], $v['description'], $v['cover'], $date, $media, $page );
 			}
 		}
 		return $graph;

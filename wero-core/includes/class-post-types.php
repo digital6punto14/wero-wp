@@ -1,6 +1,7 @@
 <?php
 /**
- * Tipi di contenuto: Progetto, Report, Partner, Voce, Persona.
+ * Tipi di contenuto: Progetto, Report, Partner, Persona.
+ * (Le Voci dei progetti e le card dei Mondi sono blocchi nella pagina Home.)
  *
  * Registrati nel codice (non dall'interfaccia ACF) per restare sotto controllo di versione.
  * Solo i Progetti hanno pagine pubbliche; gli altri alimentano i blocchi della home.
@@ -107,27 +108,6 @@ final class Post_Types {
 					'menu_icon'     => 'dashicons-groups',
 					'menu_position' => 7,
 					'supports'      => array( 'title', 'custom-fields', 'page-attributes' ),
-				)
-			)
-		);
-		register_post_type(
-			'voce',
-			array_merge(
-				$hidden,
-				array(
-					'labels'        => array_merge(
-						self::labels( __( 'Voce', 'wero-core' ), __( 'Voci dei progetti', 'wero-core' ), true ),
-						array(
-							'featured_image'        => __( 'Copertina', 'wero-core' ),
-							'set_featured_image'    => __( 'Imposta la copertina', 'wero-core' ),
-							'remove_featured_image' => __( 'Rimuovi la copertina', 'wero-core' ),
-							'use_featured_image'    => __( 'Usa come copertina', 'wero-core' ),
-						)
-					),
-					'description'   => __( 'Video della sezione “Le voci dei progetti”.', 'wero-core' ),
-					'menu_icon'     => 'dashicons-video-alt3',
-					'menu_position' => 8,
-					'supports'      => array( 'title', 'thumbnail', 'custom-fields', 'page-attributes' ),
 				)
 			)
 		);

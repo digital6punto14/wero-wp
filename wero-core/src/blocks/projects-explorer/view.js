@@ -731,7 +731,18 @@
     c.addEventListener('click', function () { setFilter(c.dataset.filter); });
   });
   /* link dei Mondi (blocco wero/worlds) e qualsiasi elemento con data-wero-filter */
-  document.addEventListener('click', function (e) { var a = e.target.closest('[data-wero-filter]'); if (a) setFilter(a.dataset.weroFilter); });
+  document.addEventListener('click', function (e) {
+    var a = e.target.closest('[data-wero-filter], a[href*="#progetti?mondo="]');
+    if (!a) return;
+    var slug = a.dataset.weroFilter || (a.getAttribute('href').split('#progetti?mondo=')[1] || '').split(/[&#]/)[0];
+    if (!slug) return;
+    /* i pulsanti delle card dei Mondi (blocchi della Home) portano alla sezione Progetti già filtrata */
+    if (!a.dataset.weroFilter) { e.preventDefault(); var t = document.getElementById('progetti'); if (t) t.scrollIntoView({ behavior: 'smooth' }); history.replaceState(null, '', '#progetti'); }
+    setFilter(slug);
+  });
+  /* arrivo da un link esterno del tipo /#progetti?mondo=slug */
+  var mHash = location.hash.match(/^#progetti\?mondo=([\w-]+)/);
+  if (mHash) setFilter(mHash[1]);
 
   var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 

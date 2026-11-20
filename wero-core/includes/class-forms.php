@@ -36,13 +36,26 @@ final class Forms {
 	 * @param string $content Markup.
 	 */
 	public static function enqueue_on_render( string $content ): string {
+		// Nei temi a blocchi il template si rende prima di wp_head, quando CF7 non ha
+		// ancora registrato i suoi script: li carico su wp_enqueue_scripts (dopo CF7).
+		if ( did_action( 'wp_enqueue_scripts' ) ) {
+			self::enqueue_assets();
+		} else {
+			add_action( 'wp_enqueue_scripts', array( __CLASS__, 'enqueue_assets' ), 20 );
+		}
+		return $content;
+	}
+
+	/**
+	 * Script e stili di CF7 (solo nelle pagine con un modulo).
+	 */
+	public static function enqueue_assets(): void {
 		if ( function_exists( 'wpcf7_enqueue_scripts' ) ) {
 			wpcf7_enqueue_scripts();
 		}
 		if ( function_exists( 'wpcf7_enqueue_styles' ) ) {
 			wpcf7_enqueue_styles();
 		}
-		return $content;
 	}
 
 	/**
