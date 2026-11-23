@@ -14,6 +14,7 @@ Documenti collegati:
 - `DIFFERENZE.md`: cosa cambia rispetto all'HTML originale.
 - `DECISIONI.md`: tutte le decisioni (D1–D52).
 - `RIEPILOGO-LAVORO.md`: riepilogo del lavoro, struttura dei file e gestione di GitHub.
+- `PROMPT-RIVISTO.md`: il prompt iniziale riscritto con quanto imparato.
 - `verifica/VERIFICA.md`: esito dei controlli della fase 6.
 
 ---
