@@ -255,5 +255,6 @@ phpcs --standard=WordPress wero-theme wero-core --ignore=node_modules,build,vend
 Crea `consegna/wero-theme.zip` e `consegna/wero-core.zip`, senza `src/`, `node_modules/`, file di build e log.
 
 ## 6. Aggiornamenti
-- **Tema e plugin WeRo:** non sono nella directory di WordPress, quindi non si aggiornano da soli. Per una nuova versione alza `Version` in `style.css` / `wero-core.php` (e `VERSION`), rifai lo zip e caricalo da Plugin › Aggiungi nuovo › Carica (WordPress chiede se sostituire).
+- **Tema e plugin WeRo:** non sono nella directory di WordPress, quindi non si aggiornano da soli. Per una nuova versione alza `Version` in `style.css` / `wero-core.php` (e `VERSION`, e `Stable tag` in `readme.txt`), rifai lo zip e caricalo da Plugin › Aggiungi nuovo › Carica (WordPress chiede se sostituire).
+- **Compatibilità con una nuova versione di WordPress:** procedura in PROCEDURA-AGGIORNAMENTI.md, sezione 7.
 - **Contenuti:** restano nel database; aggiornare tema o plugin non li tocca. Disinstallare `wero-core` (non solo disattivarlo) cancella solo l'opzione `wero_settings`: progetti, report e partner restano.
