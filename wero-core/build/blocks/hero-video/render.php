@@ -9,6 +9,8 @@
  * @package WeroCore
  */
 
+defined( 'ABSPATH' ) || exit;
+
 use Wero\Core\Media;
 
 $wero_media  = Media::parse( (string) ( $attributes['mediaUrl'] ?? '' ) );

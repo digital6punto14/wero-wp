@@ -205,6 +205,12 @@ final class Settings {
 				'label'   => __( 'Comparsa morbida delle sezioni allo scroll', 'wero-core' ),
 				'section' => 'anim',
 			),
+			'transitions'     => array(
+				'type'    => 'checkbox',
+				'default' => 1,
+				'label'   => __( 'Transizione morbida tra le pagine (View Transitions)', 'wero-core' ),
+				'section' => 'anim',
+			),
 			// Moduli e funzioni.
 			'partner_form'    => array(
 				'type'    => 'cf7',

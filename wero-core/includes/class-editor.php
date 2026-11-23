@@ -90,6 +90,7 @@ final class Editor {
 		$class      = (string) ( $block->context['query']['className'] ?? '' );
 		$is_related = str_contains( (string) ( $block->parsed_block['attrs']['className'] ?? '' ), 'wero-scroll-mobile' );
 		if ( ( $is_related || str_contains( $class, 'wero-related' ) ) && is_singular( 'progetto' ) ) {
+			// Esclude un solo contenuto (quello aperto) da una query di 3 elementi: impatto trascurabile.
 			$query['post__not_in'] = array_merge( (array) ( $query['post__not_in'] ?? array() ), array( get_queried_object_id() ) );
 			// Stesso ordine della sfera in home (campo Ordine), non gli ultimi creati.
 			$query['orderby'] = array(

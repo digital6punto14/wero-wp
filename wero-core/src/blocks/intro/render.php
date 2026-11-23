@@ -7,6 +7,8 @@
  * @package WeroCore
  */
 
+defined( 'ABSPATH' ) || exit;
+
 if ( ! \Wero\Core\Theme_Bridge::intro_active() ) {
 	return;
 }

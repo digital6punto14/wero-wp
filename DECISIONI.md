@@ -226,7 +226,7 @@ Legenda: **R** = risposta tua; **P** = mia proposta applicata perché la domanda
 | D17 | Space Grotesk ospitato sul sito (niente Google Fonts) | P |
 | D18 | Nessuna style variation scura | R |
 | D19 | Animazioni: tutte tenute come nella tabella B, tranne: n. 1 Intro solo alla prima visita della sessione; n. 17 player del podcast con blocco Audio core con stile (o incorporato, vedi D15); n. 20 selettore "prima / dopo" eliminato | P |
-| D20 | Animazioni nuove: solo N1 (comparsa morbida delle sezioni allo scroll, solo CSS) | P |
+| D20 | Animazioni nuove: **N1** (comparsa morbida delle sezioni allo scroll, solo CSS con `animation-timeline`) e **N3** (transizione tra pagine con la View Transitions API, solo CSS, menu fermo durante il passaggio). Entrambe spente con “movimento ridotto” e disattivabili da Impostazioni › WeRo › Animazioni. | R (N3 aggiunta il 23/11) |
 
 ### Form, email, cookie, immagini
 | # | Decisione | Fonte |
@@ -242,7 +242,7 @@ Legenda: **R** = risposta tua; **P** = mia proposta applicata perché la domanda
 | D25 | Il sito nuovo non sostituisce URL esistenti (nessun redirect). Slug: `/progetti/nome-progetto/`, `/report/nome-report/`. | P |
 | D26 | Schema: Organization "WeRo", **joint venture tra 6.14 S.r.l. e Omnicom Advertising** (founder / parentOrganization), non attività locale. Dati di 6.14 dalla privacy: 6.14 S.r.l., Via Don Bosco 31, 20139 Milano, C.F./P.I. 07376100967. Ragione sociale e P.IVA propri di WeRo, se esistono, restano campi da compilare nelle Impostazioni sito. | R |
 | D30 | Privacy e Cookie policy: **testi di 6.14 S.r.l.** forniti dal cliente (titolare del trattamento 6.14 S.r.l., info@6punto14.com), salvati in `contenuti/` e importati come pagine WordPress nella Fase 4, linkati nel footer, nel form e nel banner. | R |
-| D31 | Testi legali: approvate le 5 correzioni elencate sotto ("Da verificare nei testi legali"), già applicate in `contenuti/cookie-policy.md`. Emoji di WordPress disattivati dal plugin. | R |
+| D31 | Testi legali: approvate le 5 correzioni elencate sotto ("Da verificare nei testi legali"), già applicate in `contenuti/cookie-policy.md`. Emoji di WordPress disattivati dal plugin. | R | Confermate dal cliente il 23/11/2026.
 | D32 | WeRo **non ha ragione sociale né P.IVA proprie**: nello schema WeRo è un'Organization senza vatID, con founder 6.14 S.r.l. (dati completi) e Omnicom Advertising. Il footer non mostra una P.IVA di WeRo. | R |
 | D33 | Google Analytics 4: **nessun ID inserito da noi**. Il cliente installerà il plugin ufficiale di Google (Site Kit by Google). Note: è un plugin fuori dall'elenco ammesso, aggiunto su indicazione del cliente; va configurato in modo che GA4 parta solo dopo il consenso (Consent Mode di Site Kit + categoria "Analitici" di Cookie Consent). Il plugin custom non aggiunge codice di Analytics. | R |
 | D34 | Archivio `/progetti/` con la griglia di tutti i progetti, raggiunto dal link "Tutti i progetti" | R |

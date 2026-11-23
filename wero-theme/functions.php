@@ -65,6 +65,23 @@ function wero_theme_enqueue_styles(): void {
 add_action( 'wp_enqueue_scripts', 'wero_theme_enqueue_styles' );
 
 /**
+ * N3 — transizione tra pagine con la View Transitions API (solo CSS, nativa del browser).
+ * Si spegne dalle Impostazioni sito (filtro wero_theme_feature, funzione "transitions").
+ */
+function wero_theme_enqueue_transitions(): void {
+	if ( ! wero_theme_feature( 'transitions' ) ) {
+		return;
+	}
+	wp_enqueue_style(
+		'wero-theme-transitions',
+		get_theme_file_uri( 'assets/css/view-transitions.css' ),
+		array(),
+		WERO_THEME_VERSION
+	);
+}
+add_action( 'wp_enqueue_scripts', 'wero_theme_enqueue_transitions' );
+
+/**
  * CSS per blocco: ogni file assets/css/blocks/{namespace}--{blocco}.css
  * (es. core--navigation.css) viene caricato solo nelle pagine in cui quel blocco è presente.
  */

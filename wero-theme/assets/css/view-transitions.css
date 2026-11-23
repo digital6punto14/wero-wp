@@ -1,0 +1,13 @@
+/* =========================================================
+   N3 — transizione tra pagine (View Transitions API, solo CSS)
+   I browser che la supportano fanno una dissolvenza breve tra una pagina
+   e l'altra del sito; gli altri cambiano pagina come sempre.
+   Il menu a pillola resta fermo durante il passaggio.
+   Niente transizione con "movimento ridotto".
+   ========================================================= */
+@media (prefers-reduced-motion: no-preference) {
+	@view-transition { navigation: auto; }
+	.wero-header { view-transition-name: wero-header; }
+	::view-transition-old(root),
+	::view-transition-new(root) { animation-duration: .35s; animation-timing-function: cubic-bezier(.2, .8, .2, 1); }
+}

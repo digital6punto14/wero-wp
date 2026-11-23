@@ -7,6 +7,8 @@
  * @package WeroCore
  */
 
+defined( 'ABSPATH' ) || exit;
+
 use Wero\Core\Fields;
 
 $wero_group = (string) ( $attributes['group'] ?? 'founder' );

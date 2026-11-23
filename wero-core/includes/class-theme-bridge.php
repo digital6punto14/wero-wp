@@ -101,7 +101,7 @@ final class Theme_Bridge {
 	 * @param string $feature Nome.
 	 */
 	public static function feature( bool $enabled, string $feature ): bool {
-		if ( in_array( $feature, array( 'background', 'cursor', 'reveal' ), true ) ) {
+		if ( in_array( $feature, array( 'background', 'cursor', 'reveal', 'transitions' ), true ) ) {
 			return $enabled && Settings::animation( $feature );
 		}
 		return $enabled;

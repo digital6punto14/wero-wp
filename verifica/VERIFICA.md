@@ -34,7 +34,7 @@ Legenda:
 | 18 | Accessibilità (axe-core, WCAG 2.2 AA) su home e pagine interne, desktop e mobile | ⚠️ | Nessuna violazione, salvo il contrasto del magenta `#ff00c7` su fondo chiaro nei testi piccoli (vedi sotto). La galleria a scorrimento ora si usa da tastiera. |
 | 19 | Nessun errore o notice con WP_DEBUG | ✅ | Registro vuoto per tema e plugin. Restano solo gli avvisi del Playground che non raggiunge wordpress.org per aggiornamenti e traduzioni. |
 | 20 | PHPCS (WordPress Coding Standards 3) | ✅ | Tema e plugin: 0 errori, 0 avvisi. L'importatore ha solo note di documentazione. |
-| 21 | Plugin Check | — | Non eseguito: è un plugin non compreso tra quelli ammessi. Lo eseguo se lo autorizzi. |
+| 21 | Plugin Check (plugin ufficiale, installato solo nel sito di prova locale) | ✅ | Su `wero-core`: 0 errori, 1 avviso di prestazioni (`post__not_in` in “Altri progetti”, query di 3 elementi: trascurabile, commentato nel codice). Corretti durante la verifica: protezione dall’accesso diretto in 14 file dei blocchi, readme.txt aggiunto (in inglese, come richiede la directory), file nascosto in languages/ rimosso. |
 | 22 | Lighthouse, home (mobile) | ⚠️ | Performance 80, Accessibilità 97, Best practices 100, SEO 92. LCP 2,2 s, CLS 0, TBT 480 ms. |
 | 23 | Lighthouse, progetto (mobile) | ✅ | Performance 93, Accessibilità 96, Best practices 100, SEO 92. LCP 2,7 s, CLS 0, TBT 110 ms. |
 
@@ -66,6 +66,6 @@ Il magenta `#ff00c7` su fondo crema ha un contrasto di 3,3:1, mentre il minimo A
 - **Menu su mobile:** usa la tendina del blocco Navigazione core, ristilizzata.
 - **Player del podcast:** è il player del browser, con lo stile del sito.
 - **Intro del logo:** compare solo alla prima visita della sessione.
-- **Animazione nuova:** comparsa morbida delle sezioni allo scroll (N1).
+- **Animazioni nuove:** comparsa morbida delle sezioni allo scroll (N1) e transizione morbida tra le pagine con la View Transitions API (N3). Entrambe solo CSS, spente con “movimento ridotto” e disattivabili da Impostazioni › WeRo.
 
 **Contenuti:** gli 8 progetti pubblicati con testo segnaposto non hanno ancora immagine.

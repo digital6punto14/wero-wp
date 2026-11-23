@@ -7,6 +7,8 @@
  * @package WeroCore
  */
 
+defined( 'ABSPATH' ) || exit;
+
 $wero_label = (string) ( $attributes['label'] ?? '' );
 if ( '' === $wero_label ) {
 	return;

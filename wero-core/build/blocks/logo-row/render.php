@@ -8,6 +8,8 @@
  * @package WeroCore
  */
 
+defined( 'ABSPATH' ) || exit;
+
 use Wero\Core\Fields;
 
 $wero_posts = get_posts(

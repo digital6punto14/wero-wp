@@ -11,6 +11,8 @@
  * @package WeroCore
  */
 
+defined( 'ABSPATH' ) || exit;
+
 use Wero\Core\Fields;
 use Wero\Core\Taxonomies;
 
