@@ -314,6 +314,8 @@ Il banner dei cookie è gestito da Cookie Consent, voce **Cookiez** nel menu a s
 
 ## 13. Aggiornamenti e backup
 
+La procedura completa, passo per passo e con l'elenco dei controlli, è in **PROCEDURA-AGGIORNAMENTI.md**. Qui sotto il riassunto.
+
 **Backup prima di tutto.** Usa il backup dell'hosting (giornaliero, con almeno 14 giorni di storico). Prima di ogni aggiornamento importante fanne uno a mano.
 
 **Aggiornamenti di WordPress e dei plugin** (Bacheca › Aggiornamenti)
