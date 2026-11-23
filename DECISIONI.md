@@ -2,7 +2,7 @@
 
 Documento vivo: raccoglie ciò che è stato ricavato dai file, le domande aperte con la proposta consigliata e, man mano, le decisioni prese. Si aggiorna a ogni fase.
 
-Stato: **Decisioni confermate dal cliente il 20/11/2026. Fase 0 confermata il 20/11/2026. Fase 1 completata. Fase 2 (tema) completata. Fase 3 (plugin) completata. Fase 4 (contenuti) completata. Fase 5 (SEO e agenti AI) completata. Fase 6 (verifica) completata: vedi verifica/VERIFICA.md. Fase 7 (consegna) in attesa.**
+Stato: **Decisioni confermate dal cliente il 20/11/2026. Fase 0 confermata il 20/11/2026. Fase 1 completata. Fase 2 (tema) completata. Fase 3 (plugin) completata. Fase 4 (contenuti) completata. Fase 5 (SEO e agenti AI) completata. Fase 6 (verifica) completata: vedi verifica/VERIFICA.md. Fase 7 (consegna) completata il 23/11/2026: vedi README.md e GUIDA-UTILIZZO.md.**
 
 ---
 
@@ -242,7 +242,7 @@ Legenda: **R** = risposta tua; **P** = mia proposta applicata perché la domanda
 | D25 | Il sito nuovo non sostituisce URL esistenti (nessun redirect). Slug: `/progetti/nome-progetto/`, `/report/nome-report/`. | P |
 | D26 | Schema: Organization "WeRo", **joint venture tra 6.14 S.r.l. e Omnicom Advertising** (founder / parentOrganization), non attività locale. Dati di 6.14 dalla privacy: 6.14 S.r.l., Via Don Bosco 31, 20139 Milano, C.F./P.I. 07376100967. Ragione sociale e P.IVA propri di WeRo, se esistono, restano campi da compilare nelle Impostazioni sito. | R |
 | D30 | Privacy e Cookie policy: **testi di 6.14 S.r.l.** forniti dal cliente (titolare del trattamento 6.14 S.r.l., info@6punto14.com), salvati in `contenuti/` e importati come pagine WordPress nella Fase 4, linkati nel footer, nel form e nel banner. | R |
-| D31 | Testi legali: approvate le 5 correzioni elencate sotto ("Da verificare nei testi legali"), già applicate in `contenuti/cookie-policy.md`. Emoji di WordPress disattivati dal plugin. | R | Confermate dal cliente il 23/11/2026.
+| D31 | Testi legali: approvate le 5 correzioni elencate sotto ("Da verificare nei testi legali"), già applicate in `contenuti/cookie-policy.md`. Emoji di WordPress disattivati dal plugin. | R (confermate il 23/11/2026) |
 | D32 | WeRo **non ha ragione sociale né P.IVA proprie**: nello schema WeRo è un'Organization senza vatID, con founder 6.14 S.r.l. (dati completi) e Omnicom Advertising. Il footer non mostra una P.IVA di WeRo. | R |
 | D33 | Google Analytics 4: **nessun ID inserito da noi**. Il cliente installerà il plugin ufficiale di Google (Site Kit by Google). Note: è un plugin fuori dall'elenco ammesso, aggiunto su indicazione del cliente; va configurato in modo che GA4 parta solo dopo il consenso (Consent Mode di Site Kit + categoria "Analitici" di Cookie Consent). Il plugin custom non aggiunge codice di Analytics. | R |
 | D34 | Archivio `/progetti/` con la griglia di tutti i progetti, raggiunto dal link "Tutti i progetti" | R |
@@ -263,6 +263,7 @@ Legenda: **R** = risposta tua; **P** = mia proposta applicata perché la domanda
 | D49 | Schema esteso dal plugin (filtri di Yoast): Organization con descrizione, email, LinkedIn e founder (6.14 S.r.l. con indirizzo e P.IVA, Omnicom Advertising); VideoObject per i progetti video e per le Voci, PodcastEpisode per i podcast, solo quando il video o l'audio c'è davvero. | Fase 5 |
 | D50 | Agenti AI: REST pubblica in sola lettura `wero/v1` (projects, reports, partners, voices, contact) e 4 abilities (`wero/get-projects`, `get-reports`, `get-partners`, `get-contact-info`). Le abilities su `/wp-json/wp-abilities/v1` richiedono un utente collegato (regola di WordPress); sono pronte per l'MCP Adapter, non installato. | Fase 5 |
 | D51 | **Mondi e Voci si modificano direttamente nella Home con i blocchi Gutenberg**, niente sezioni a parte: ogni sezione è un Gruppo che contiene un Gruppo per card (Immagine, Titolo, Testo, Pulsante/link). Gruppo con stile “Mondi” (card a griglia, a scorrimento con puntini su mobile; il pulsante “Vedi i progetti” ha il link `#progetti?mondo=slug` e filtra la sfera) e stile “Voci” (la copertina è un’Immagine collegata al video: YouTube, Vimeo o file; il video parte al clic). Rimossi il tipo di contenuto Voce e i blocchi wero/worlds e wero/voices; la tassonomia Mondo resta per bollini e filtri dei progetti (campi: stile, ordine). Schema VideoObject e REST `wero/v1/voices` leggono le card della Home. | R |
+| D52 | Contrasto del magenta `#ff00c7` sui testi piccoli (3,3:1, sotto il minimo AA di 4,5:1): **resta com'è**, fedele all'originale. Riguarda il bollino “Language & Design” e l'etichetta nelle card della sfera. Si può cambiare in qualsiasi momento da Impostazioni › WeRo › Aspetto o dagli Stili globali. | R (23/11/2026) |
 | D27 | Search Console non gestita in questo progetto | R (domanda tolta) |
 | D28 | Crawler AI consentiti; robots.txt senza blocchi. Abilities in sola lettura: wero/get-projects, wero/get-reports, wero/get-partners, wero/get-contact-info | P |
 | D29 | Hosting non ancora noto: requisiti minimi documentati (WordPress 6.9+, PHP 8.2+); consigliato uno staging | P |

@@ -5,3 +5,4 @@ node_modules/
 html-source/skills-lock.json
 html-source/.claude/
 html-source/.agents/
+!consegna/*.zip

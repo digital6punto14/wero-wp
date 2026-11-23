@@ -44,7 +44,7 @@ Legenda:
 - **TBT della home:** viene dalla sfera 3D, la stessa dell'originale.
 - **Categoria “agentic browsing”:** cerca un “ARD manifest”, che non fa parte dei requisiti. Non lo aggiungo senza indicazioni.
 
-## Contrasto del magenta (da decidere)
+## Contrasto del magenta (deciso: resta com'è, D52)
 
 Il magenta `#ff00c7` su fondo crema ha un contrasto di 3,3:1, mentre il minimo AA per i testi piccoli è 4,5:1. Riguarda:
 - il bollino “Language & Design” (stile “Contorno”);
@@ -53,6 +53,8 @@ Il magenta `#ff00c7` su fondo crema ha un contrasto di 3,3:1, mentre il minimo A
 È un colore dell'originale. Le opzioni:
 - **a)** lasciarlo così;
 - **b)** usare un magenta più scuro (per esempio `#c2009a`, circa 4,6:1) solo per i testi piccoli su fondo chiaro, lasciando sfumature e titoli come sono.
+
+Il cliente ha scelto **a)** il 23/11/2026.
 
 ## Differenze rispetto all'HTML
 
