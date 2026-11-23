@@ -219,6 +219,123 @@ Il codice controlla già le funzioni più recenti prima di usarle (`function_exi
 1. Se è grave (pagine rotte, errore critico), **ripristina il backup** fatto prima dell'aggiornamento di WordPress. In alternativa, tieni WordPress com'è e disattiva gli aggiornamenti automatici principali finché la correzione non è pronta.
 2. Riproduci il problema nel sito di prova con la stessa versione di WordPress e segui la procedura qui sopra.
 
+### Master prompt per Claude Code
+
+Per far fare il controllo e l'aggiornamento a Claude Code:
+1. apri una sessione sul repository `digital6punto14/wero-wp`;
+2. compila i campi tra parentesi quadre;
+3. incolla il testo qui sotto.
+
+Claude Code lavora in due tempi:
+- **prima** controlla e ti consegna un rapporto, poi si ferma;
+- **dopo** la tua conferma corregge, prova e prepara la nuova versione.
+
+Non tocca il sito online e non aggiorna WordPress al posto tuo.
+
+````markdown
+# RUOLO
+Sei uno sviluppatore WordPress senior e mantieni il tema a blocchi `wero-theme` e il plugin `wero-core` del sito WeRo (https://we-ro.it). Lavori in Claude Code sul repository digital6punto14/wero-wp. Rispondi in italiano.
+
+# OBIETTIVO
+Verificare se tema e plugin WeRo sono compatibili con le versioni nuove di WordPress e dei plugin del sito. Se serve, produrre una nuova versione corretta di `wero-theme` e `wero-core`, provata in WordPress Playground e pronta da caricare.
+
+# PARAMETRI
+- VERSIONE WORDPRESS DA PROVARE: [es. 7.2 | latest | beta]
+- VERSIONE WORDPRESS ATTUALE DEL SITO ONLINE: [es. 7.1.5]
+- VERSIONE PHP DEL SITO ONLINE: [es. 8.3]
+- ALTRI CAMBIAMENTI DA CONSIDERARE: [es. Yoast 29, ACF 7 — oppure "controlla tu le ultime versioni"]
+- PROBLEMI GIÀ NOTATI SUL SITO: [descrizione + screenshot, oppure "nessuno"]
+- RAMO DI PARTENZA: sviluppo
+
+# PRIMA DI INIZIARE
+1. Leggi README.md, DECISIONI.md, PROCEDURA-AGGIORNAMENTI.md (sezione 7: tabella delle parti sensibili), RIEPILOGO-CLASSI-CSS.md e verifica/VERIFICA.md. Sono le regole del progetto: non contraddirle.
+2. Carica le skill WordPress/agent-skills: wordpress-router, wp-block-themes, wp-block-development, wp-plugin-development, wp-playground, blueprint, wp-abilities-api, wp-plugin-directory-guidelines.
+3. Crea il ramo `aggiornamento-wp-[versione]` da `sviluppo`.
+
+# FASE A — CONTROLLO (poi FERMATI)
+1. Fonti ufficiali. Raccogli cosa cambia, citando ogni fonte con il link:
+   - per WordPress: Field Guide e Dev Notes della versione (make.wordpress.org/core);
+   - per Yoast SEO, ACF, Contact Form 7, Site Mailer, Cookie Consent e Image Optimizer: changelog su wordpress.org, con i requisiti minimi di WordPress e PHP.
+   Considera solo ciò che tocca le parti della tabella “parti sensibili”. Non inventare: se una fonte non è chiara, dillo.
+2. Controllo del codice. Cerca nel codice di `wero-theme` e `wero-core` ogni funzione, hook, filtro, classe CSS core o chiave di theme.json citata come deprecata, rinominata o cambiata.
+3. Prova reale in Playground:
+   - avvia il sito di prova con la versione da provare: in `blueprint.json` → `preferredVersions.wp`, poi `./avvia-playground.sh`, con `NODE_USE_ENV_PROXY=1` e `NODE_EXTRA_CA_CERTS` se c'è un proxy; per l'importazione usa runPHP, non WP-CLI;
+   - apri e salva gli screenshot (1440 e 375 px) di: home, un progetto per ciascun template (articolo, articolo complesso, video, podcast), `/progetti/`, privacy, una pagina 404;
+   - nell'editor apri Home, un progetto e il Site Editor (header e footer) e conta i blocchi non validi;
+   - leggi `wero-core/debug.log`;
+   - esegui PHPCS (WordPress Coding Standards) e Plugin Check su `wero-core`. Plugin Check va installato solo nel sito di prova, mai nel blueprint;
+   - confronta gli screenshot con `verifica/confronto/`.
+4. Rapporto. Scrivi `verifica/AGGIORNAMENTO-[versione].md` con:
+   - tabella pass/fail degli stessi controlli di verifica/VERIFICA.md;
+   - elenco dei problemi trovati, ognuno con: gravità (bloccante / da correggere / estetico), file e riga, causa, fonte ufficiale, correzione proposta;
+   - cosa NON è stato possibile verificare (email, banner dei cookie, Image Optimizer: solo online);
+   - la tua raccomandazione: nessuna modifica necessaria / nuova versione di correzione / attendere un aggiornamento di un plugin.
+
+Mostrami il rapporto e FERMATI. Non correggere nulla prima della mia conferma.
+
+# FASE B — CORREZIONE (dopo la mia conferma)
+Regole:
+- Correggi solo i problemi approvati. Niente miglioramenti non richiesti, niente cambi di design.
+- Il codice deve funzionare sia con la versione di WordPress attuale del sito sia con quella nuova: proteggi le funzioni nuove con `function_exists()` / `class_exists()`.
+- Rispetta la separazione: aspetto nel tema, tutto il resto nel plugin; `functions.php` solo supporti ed enqueue.
+- Restano vietati blocchi HTML personalizzati, shortcode e page builder. Yoast resta l'unico strumento SEO. Si usano solo le funzioni di ACF gratuito.
+- Blocchi WeRo:
+  - aggiorna `@wordpress/scripts` e ricompila: `cd wero-core && npm install --save-dev @wordpress/scripts@latest && npm run build`;
+  - se cambi attributi, mantieni la compatibilità con i contenuti salvati (attributi vecchi o `deprecated`);
+  - fai il commit anche di `build/`.
+- Pattern: se cambia il markup di un blocco core, rigenera il markup dall'editor e riportalo nel file del pattern.
+- Non installare plugin nuovi senza chiedere.
+
+Verifica dopo le correzioni:
+- ripeti tutta la prova della Fase A, punto 3;
+- il risultato deve essere:
+  - 0 blocchi non validi;
+  - registro senza deprecated o notice di tema e plugin;
+  - PHPCS a 0 errori;
+  - Plugin Check senza errori nuovi;
+  - aspetto uguale agli screenshot di riferimento (le differenze vanno spiegate).
+
+Nuova versione:
+- alza il numero di versione:
+  - correzione di compatibilità: 0.1.0 → 0.1.1;
+  - funzioni nuove: 0.2.0 (solo se le ho chieste);
+- i punti da cambiare:
+  - `wero-theme/style.css` (`Version`, `Tested up to`);
+  - `wero-core/wero-core.php` (`Version` e costante `VERSION`);
+  - `wero-core/readme.txt` (`Stable tag`, `Tested up to`, sezione Changelog);
+  - se cambiano i requisiti minimi, `Requires at least` / `Requires PHP` ovunque, e avvisami;
+- rigenera gli zip con `./crea-zip.sh`;
+- aggiorna i documenti:
+  - `verifica/AGGIORNAMENTO-[versione].md` con l'esito finale;
+  - DECISIONI.md (nuova decisione numerata: cosa è cambiato e perché);
+  - la riga del registro in PROCEDURA-AGGIORNAMENTI.md (sezione 8);
+  - README, RIEPILOGO-CLASSI-CSS o GUIDA-UTILIZZO solo se qualcosa che descrivono è cambiato davvero.
+
+# CONSEGNA
+- Commit con messaggio in italiano sul ramo `aggiornamento-wp-[versione]` e push. Non unire a `sviluppo` e non aprire pull request finché non lo chiedo.
+- Link di anteprima Playground del ramo nuovo. Nel `blueprint.json` del ramo:
+  - cambia i tre `"ref": "sviluppo"` in `"ref": "aggiornamento-wp-[versione]"`, così l'anteprima installa il codice nuovo;
+  - imposta `preferredVersions.wp` sulla versione provata.
+
+  Il link è `https://playground.wordpress.net/?blueprint-url=https://raw.githubusercontent.com/digital6punto14/wero-wp/aggiornamento-wp-[versione]/blueprint.json`. Prima dell'unione in `sviluppo` rimetti `"ref": "sviluppo"` e `"wp": "latest"`.
+- Riepilogo breve:
+  - cosa è cambiato, file per file;
+  - esito dei controlli;
+  - zip da caricare;
+  - ordine di installazione sul sito: backup → zip del plugin e del tema → controllo rapido → aggiornamento di WordPress → controllo completo;
+  - cosa va controllato online.
+
+# NON FARE
+- Non toccare il sito online, non usare credenziali del sito, non aggiornare WordPress al posto mio.
+- Non cancellare contenuti, campi ACF o impostazioni.
+- Non modificare `contenuti/` salvo che serva all'ambiente di prova, e spiegalo.
+- Non procedere oltre la Fase A senza la mia conferma.
+````
+
+**Uso periodico (facoltativo)**
+- Lo stesso prompt si può programmare una volta al mese, con VERSIONE WORDPRESS DA PROVARE impostata su `latest`, fermandosi alla Fase A.
+- Così ricevi solo il rapporto e decidi tu se procedere.
+
 ## 8. Registro degli aggiornamenti
 
 Tieni una riga per ogni aggiornamento, anche in un semplice foglio. Serve a capire cosa è cambiato quando qualcosa smette di funzionare.
