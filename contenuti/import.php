@@ -408,6 +408,23 @@ final class Wero_Import {
 			$this->log[] = 'Contact Form 7 non attivo: modulo non creato.';
 			return 0;
 		}
+		// Il modulo di esempio che CF7 crea all'attivazione non serve.
+		// phpcs:ignore WordPress.WP.I18n.TextDomainMismatch, WordPress.WP.I18n.MissingTranslatorsComment -- stesso titolo, tradotto, che usa Contact Form 7.
+		foreach ( array_unique( array( 'Contact form 1', 'Modulo di contatto 1', sprintf( __( 'Contact form %d', 'contact-form-7' ), 1 ) ) ) as $sample_title ) {
+			$samples = get_posts(
+				array(
+					'post_type'      => 'wpcf7_contact_form',
+					'title'          => $sample_title,
+					'posts_per_page' => 5,
+					'fields'         => 'ids',
+				)
+			);
+			foreach ( $samples as $sample ) {
+				if ( ! get_post_meta( $sample, '_wero_import', true ) ) {
+					wp_trash_post( $sample );
+				}
+			}
+		}
 		$id   = $this->find( 'wpcf7_contact_form', 'form:partner' );
 		$form = $id ? WPCF7_ContactForm::get_instance( $id ) : WPCF7_ContactForm::get_template( array( 'title' => 'Diventa partner' ) );
 		$body = <<<'CF7'

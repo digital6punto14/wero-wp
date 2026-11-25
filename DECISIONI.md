@@ -2,7 +2,7 @@
 
 Documento vivo: raccoglie ciò che è stato ricavato dai file, le domande aperte con la proposta consigliata e, man mano, le decisioni prese. Si aggiorna a ogni fase.
 
-Stato: **Decisioni confermate dal cliente il 20/11/2026. Fase 0 confermata il 20/11/2026. Fase 1 completata. Fase 2 (tema) completata. Fase 3 (plugin) completata. Fase 4 (contenuti) completata. Fase 5 (SEO e agenti AI) completata. Fase 6 (verifica) completata: vedi verifica/VERIFICA.md. Fase 7 (consegna) completata il 23/11/2026: vedi README.md e GUIDA-UTILIZZO.md. Modifiche del 25/11/2026: D53–D57.**
+Stato: **Decisioni confermate dal cliente il 20/11/2026. Fase 0 confermata il 20/11/2026. Fase 1 completata. Fase 2 (tema) completata. Fase 3 (plugin) completata. Fase 4 (contenuti) completata. Fase 5 (SEO e agenti AI) completata. Fase 6 (verifica) completata: vedi verifica/VERIFICA.md. Fase 7 (consegna) completata il 23/11/2026: vedi README.md e GUIDA-UTILIZZO.md. Modifiche del 25/11/2026: D53–D58. Pronto per l'installazione: vedi INSTALLAZIONE.md.**
 
 ---
 
@@ -269,6 +269,7 @@ Legenda: **R** = risposta tua; **P** = mia proposta applicata perché la domanda
 | D55 | **Foto a scorrimento nei progetti**: galleria “A scorrimento” (la stessa della home) in fondo al contenuto di partenza di tutti e 4 i template; vuota non compare sul sito. Pattern “Progetto – Foto a scorrimento” per aggiungerla ai progetti esistenti. | R (25/11/2026) |
 | D56 | **Progetti video: il video è la prima cosa della pagina**, sopra breadcrumb, titolo e testo. | R (25/11/2026) |
 | D57 | **Tutte le foto aggiornabili facilmente** dalla Libreria media: immagini dei blocchi (home, pagine, progetti), immagine in evidenza (progetti, report, persone), logo dei partner, copertina dell'hero e foto delle gallerie. I loghi del footer sono blocchi Immagine nel Site Editor (Aspetto › Editor › Footer › Sostituisci). | R (25/11/2026) |
+| D58 | **Installazione senza WP-CLI**: plugin temporaneo `wero-installer` (Strumenti › Installa contenuti WeRo) che controlla i requisiti ed esegue `contenuti/import.php`; imposta i permalink, toglie il modulo di esempio di CF7 e chiede conferma prima di una seconda importazione. Si elimina dopo l'uso. Procedura in INSTALLAZIONE.md, provata su un WordPress pulito il 25/11/2026. | R (25/11/2026) |
 | D27 | Search Console non gestita in questo progetto | R (domanda tolta) |
 | D28 | Crawler AI consentiti; robots.txt senza blocchi. Abilities in sola lettura: wero/get-projects, wero/get-reports, wero/get-partners, wero/get-contact-info | P |
 | D29 | Hosting non ancora noto: requisiti minimi documentati (WordPress 6.9+, PHP 8.2+); consigliato uno staging | P |

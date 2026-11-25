@@ -8,6 +8,7 @@ Sito di **WeRo Robot Communication Studio** (`https://we-ro.it`) convertito dall
 | `wero-core` | Tutto il resto: tipi di contenuto, campi ACF, 14 blocchi, sorgenti dei binding, impostazioni, form, schema per Yoast, REST e abilities | Funziona con qualsiasi tema; senza `wero-theme` perde solo l'aspetto |
 
 Documenti collegati:
+- `INSTALLAZIONE.md`: procedura di installazione sul sito online e controlli prima della pubblicazione.
 - `GUIDA-UTILIZZO.md`: guida per chi modifica il sito, con screenshot.
 - `PLUGIN-IMPOSTAZIONI.md`: i 6 plugin e le impostazioni da applicare.
 - `RIEPILOGO-CLASSI-CSS.md`: token, classi, file CSS/JS e convenzioni.
@@ -22,22 +23,22 @@ Documenti collegati:
 
 ## 1. Requisiti e installazione
 
-**Requisiti**
-- WordPress **7.1+** e PHP **8.3+**: li richiedono le versioni attuali di Contact Form 7 e Yoast (D37). Tema e plugin da soli funzionano già con WordPress 6.9 e PHP 8.2.
-- Plugin: Yoast SEO, Advanced Custom Fields (versione gratuita), Contact Form 7, Site Mailer, Cookie Consent (`cookiez`), Image Optimizer.
+La procedura completa, passo per passo e provata su un WordPress pulito, è in **INSTALLAZIONE.md**. In breve:
 
-**Installazione su un sito vuoto**
-1. Installa e attiva i 6 plugin dalla bacheca (Plugin › Aggiungi nuovo).
-2. Carica `consegna/wero-core.zip` (Plugin › Aggiungi nuovo › Carica plugin) e attivalo.
-3. Carica `consegna/wero-theme.zip` (Aspetto › Temi › Aggiungi tema › Carica tema) e attivalo.
-4. Imposta i permalink su “Nome articolo” (Impostazioni › Permalink).
-5. Contenuti: importali con `contenuti/import.php` (vedi sotto) oppure crea le pagine dai pattern.
-6. Applica le impostazioni dei plugin da `PLUGIN-IMPOSTAZIONI.md` e collega Site Mailer, Cookie Consent e Image Optimizer ai rispettivi account.
+1. **Requisiti:** WordPress **7.1+** e PHP **8.3+** (D37), HTTPS. Tema e plugin da soli funzionano già con WordPress 6.9 e PHP 8.2.
+2. **Plugin:** installa e attiva Advanced Custom Fields (gratuito), Contact Form 7, Yoast SEO, Site Mailer, Cookie Consent (`cookiez`), Image Optimizer.
+3. **Tema e plugin WeRo:** carica e attiva `consegna/wero-theme.zip`, `consegna/wero-core.zip` e `consegna/wero-installer.zip`.
+4. **Contenuti:** Strumenti › **Installa contenuti WeRo** › Importa i contenuti, poi elimina il plugin dell'installer. In alternativa, con WP-CLI:
+   ```bash
+   wp eval-file contenuti/import.php
+   ```
+   L'importatore (`contenuti/import.php`) è rieseguibile: ogni elemento ha la meta `_wero_import` e viene aggiornato, non duplicato.
+5. **Servizi:** collega Site Mailer, Cookie Consent e Image Optimizer (PLUGIN-IMPOSTAZIONI.md).
 
-**Importare i contenuti dell'originale.** `contenuti/import.php` crea mondi, partner, progetti, report (con PDF segnaposto), moduli CF7 “Diventa partner” e “Scarica i report”, impostazioni, pagine legali, pagina “Scarica i report”, home, menu e impostazioni di Yoast. È idempotente: rieseguirlo aggiorna, non duplica (ogni elemento ha la meta `_wero_import`). Va eseguito una volta, da WP-CLI:
+**Rifare i pacchetti** dopo una modifica (tema, plugin e installer con dentro `contenuti/`):
 
 ```bash
-wp eval-file contenuti/import.php
+./crea-zip.sh
 ```
 
 **Anteprima in WordPress Playground (nel browser, niente da installare):**
@@ -78,6 +79,8 @@ wero-core/             plugin
   assets/editor/       sorgente JS dei binding per l'editor
   acf-json/            5 gruppi di campi ACF in JSON
 contenuti/             importatore, dati, media, email HTML, testi legali
+installer/             plugin temporaneo “WeRo – Installazione contenuti” (zip con contenuti/)
+consegna/              i tre zip da caricare in WordPress
 blueprint.json         Playground: installa plugin, tema, plugin WeRo e contenuti
 ```
 
@@ -256,7 +259,7 @@ phpcs --standard=WordPress wero-theme wero-core --ignore=node_modules,build,vend
 ./crea-zip.sh
 ```
 
-Crea `consegna/wero-theme.zip` e `consegna/wero-core.zip`, senza `src/`, `node_modules/`, file di build e log.
+Crea `consegna/wero-theme.zip`, `consegna/wero-core.zip` (senza `src/`, `node_modules/`, file di build e log) e `consegna/wero-installer.zip` (installer con una copia di `contenuti/`).
 
 ## 6. Aggiornamenti
 - **Tema e plugin WeRo:** non sono nella directory di WordPress, quindi non si aggiornano da soli. Per una nuova versione alza `Version` in `style.css` / `wero-core.php` (e `VERSION`, e `Stable tag` in `readme.txt`), rifai lo zip e caricalo da Plugin › Aggiungi nuovo › Carica (WordPress chiede se sostituire).
