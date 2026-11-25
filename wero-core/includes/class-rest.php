@@ -2,7 +2,7 @@
 /**
  * REST in sola lettura per agenti AI e integrazioni: namespace wero/v1.
  *
- * Solo GET, solo dati già pubblici nel sito. Report, partner e voci non hanno
+ * Solo GET, solo dati già pubblici nel sito. Report e partner non hanno
  * pagine pubbliche, quindi la REST standard di WordPress non li mostra a chi
  * non è collegato: queste rotte li espongono in forma pulita e senza scrittura.
  *
@@ -71,7 +71,6 @@ final class Rest {
 				),
 			)
 		);
-		register_rest_route( self::NS, '/voices', $read + array( 'callback' => static fn() => rest_ensure_response( Data::voices() ) ) );
 		register_rest_route( self::NS, '/contact', $read + array( 'callback' => static fn() => rest_ensure_response( Data::contact() ) ) );
 	}
 }

@@ -3,7 +3,7 @@
  * Plugin Name:       WeRo Core
  * Plugin URI:        https://we-ro.it
  * Description:       Struttura dei contenuti, campi, blocchi, impostazioni e SEO del sito WeRo. Indipendente dal tema: resta valido anche cambiando tema.
- * Version:           0.1.0
+ * Version:           0.2.0
  * Requires at least: 6.9
  * Requires PHP:      8.2
  * Author:            WeRo
@@ -19,7 +19,7 @@ namespace Wero\Core;
 
 defined( 'ABSPATH' ) || exit;
 
-const VERSION = '0.1.0';
+const VERSION = '0.2.0';
 const FILE    = __FILE__;
 define( 'WERO_CORE_DIR', plugin_dir_path( __FILE__ ) );
 define( 'WERO_CORE_URL', plugin_dir_url( __FILE__ ) );
@@ -38,6 +38,7 @@ require_once WERO_CORE_DIR . 'includes/class-bindings.php';
 require_once WERO_CORE_DIR . 'includes/class-theme-bridge.php';
 require_once WERO_CORE_DIR . 'includes/class-editor.php';
 require_once WERO_CORE_DIR . 'includes/class-forms.php';
+require_once WERO_CORE_DIR . 'includes/class-reports.php';
 require_once WERO_CORE_DIR . 'includes/class-media.php';
 require_once WERO_CORE_DIR . 'includes/class-data.php';
 require_once WERO_CORE_DIR . 'includes/class-seo.php';
@@ -57,6 +58,7 @@ add_action(
 		Theme_Bridge::register();
 		Editor::register();
 		Forms::register();
+		Reports::register();
 		Seo::register();
 		Rest::register();
 		Abilities::register();

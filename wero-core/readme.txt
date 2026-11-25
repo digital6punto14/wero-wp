@@ -4,7 +4,7 @@ Tags: blocks, custom post types, acf, seo, abilities
 Requires at least: 6.9
 Tested up to: 7.1
 Requires PHP: 8.2
-Stable tag: 0.1.0
+Stable tag: 0.2.0
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -32,6 +32,11 @@ Advanced Custom Fields is needed to edit the fields. Yoast SEO, Contact Form 7, 
 3. Open Settings › WeRo and review the data.
 
 == Changelog ==
+
+= 0.2.0 =
+* Report download page: Contact Form 7 form with automatic list of downloadable reports, PDF links on the page and by email, notification to the site owner.
+* Report timeline buttons lead to the download page with the report preselected.
+* Home "Voices" section removed (now video projects): group style, REST route and schema removed.
 
 = 0.1.0 =
 * First release.

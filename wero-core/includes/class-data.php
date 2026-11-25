@@ -96,7 +96,8 @@ final class Data {
 					'year'        => (string) Fields::post( $r->ID, 'anno', '' ),
 					'status'      => (string) Fields::post( $r->ID, 'stato', 'pubblicato' ),
 					'description' => (string) Fields::post( $r->ID, 'descrizione', '' ),
-					'pdf'         => Fields::file_url( Fields::post( $r->ID, 'pdf', 0 ) ),
+					// Il PDF si scarica dalla pagina con il modulo (D54): niente link diretto.
+					'download'    => Reports::is_downloadable( $r->ID ) ? Reports::page_url( $r->ID ) : '',
 					'world'       => $w ? $w->name : '',
 					'project_url' => $proj ? (string) get_permalink( $proj[0] ) : '',
 				);
@@ -149,54 +150,6 @@ final class Data {
 				'logo'        => Fields::image_url( Fields::post( $p->ID, 'logo', 0 ), 'medium' ),
 			);
 		}
-		return $out;
-	}
-
-	/**
-	 * Voci dei progetti: lette dai blocchi della Home (gruppo con stile "Voci").
-	 * Ogni card: Immagine (copertina, collegata al video) + titolo + descrizione.
-	 *
-	 * @return array<int, array<string, string>>
-	 */
-	public static function voices(): array {
-		$home = (int) get_option( 'page_on_front' );
-		if ( ! $home ) {
-			return array();
-		}
-		$out  = array();
-		$find = static function ( array $blocks ) use ( &$find, &$out ): void {
-			foreach ( $blocks as $b ) {
-				if ( 'core/group' === $b['blockName'] && str_contains( (string) ( $b['attrs']['className'] ?? '' ), 'is-style-wero-voices' ) ) {
-					foreach ( $b['innerBlocks'] as $card ) {
-						$img   = null;
-						$texts = array();
-						foreach ( $card['innerBlocks'] as $inner ) {
-							if ( 'core/image' === $inner['blockName'] && ! $img ) {
-								$img = $inner;
-							} elseif ( $img && in_array( $inner['blockName'], array( 'core/paragraph', 'core/heading' ), true ) ) {
-								$texts[] = trim( wp_strip_all_tags( (string) $inner['innerHTML'] ) );
-							}
-						}
-						if ( ! $img ) {
-							continue;
-						}
-						$html  = (string) $img['innerHTML'];
-						$href  = preg_match( '/<a[^>]+href="([^"]*)"/', $html, $m ) ? html_entity_decode( $m[1] ) : '';
-						$cover = ! empty( $img['attrs']['id'] ) ? (string) wp_get_attachment_image_url( (int) $img['attrs']['id'], 'large' ) : ( preg_match( '/<img[^>]+src="([^"]*)"/', $html, $c ) ? $c[1] : '' );
-						$out[] = array(
-							'title'       => $texts[0] ?? '',
-							'description' => $texts[1] ?? '',
-							'cover'       => $cover,
-							'video_url'   => '#' === $href ? '' : $href,
-						);
-					}
-				}
-				if ( ! empty( $b['innerBlocks'] ) ) {
-					$find( $b['innerBlocks'] );
-				}
-			}
-		};
-		$find( parse_blocks( (string) get_post_field( 'post_content', $home ) ) );
 		return $out;
 	}
 

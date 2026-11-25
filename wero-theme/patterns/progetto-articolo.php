@@ -42,3 +42,5 @@ $wero_img = get_theme_file_uri( 'assets/images/patterns/' );
 <!-- wp:paragraph -->
 <p>Testo di chiusura del progetto, con i prossimi passi e i riferimenti utili.</p>
 <!-- /wp:paragraph -->
+
+<!-- wp:pattern {"slug":"wero-theme/foto-progetto"} /-->

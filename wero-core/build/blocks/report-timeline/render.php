@@ -11,6 +11,7 @@ defined( 'ABSPATH' ) || exit;
 
 use Wero\Core\Blocks;
 use Wero\Core\Fields;
+use Wero\Core\Reports;
 use Wero\Core\Taxonomies;
 
 $wero_reports = get_posts(
@@ -55,13 +56,19 @@ $wero_class = 'wero-rtl-block' . ( empty( $attributes['sticky'] ) ? ' is-static'
 			<ol class="rtl__track" aria-label="<?php esc_attr_e( 'Timeline dei report', 'wero-core' ); ?>">
 				<?php
 				foreach ( $wero_reports as $wero_i => $wero_r ) :
-					$wero_year   = (string) Fields::post( $wero_r->ID, 'anno' );
-					$wero_state  = (string) Fields::post( $wero_r->ID, 'stato', 'pubblicato' );
-					$wero_next   = 'in-arrivo' === $wero_state;
-					$wero_world  = Taxonomies::world_of( $wero_r->ID );
-					$wero_pdf    = Fields::file_url( Fields::post( $wero_r->ID, 'pdf', 0 ) );
-					$wero_label  = (string) Fields::post( $wero_r->ID, 'testo_pulsante', $wero_next ? __( 'Avvisami', 'wero-core' ) : __( 'Scarica il PDF', 'wero-core' ) );
-					$wero_link   = (string) Fields::post( $wero_r->ID, 'link_pulsante', '/#partner' );
+					$wero_year  = (string) Fields::post( $wero_r->ID, 'anno' );
+					$wero_state = (string) Fields::post( $wero_r->ID, 'stato', 'pubblicato' );
+					$wero_next  = 'in-arrivo' === $wero_state;
+					$wero_world = Taxonomies::world_of( $wero_r->ID );
+					$wero_label = (string) Fields::post( $wero_r->ID, 'testo_pulsante', $wero_next ? __( 'Avvisami', 'wero-core' ) : __( 'Scarica il report', 'wero-core' ) );
+					$wero_link  = (string) Fields::post( $wero_r->ID, 'link_pulsante', '' );
+					// Report pubblicati: pagina di download con il report già scelto (D54), se non è indicato un altro link.
+					if ( ! $wero_next && '' === $wero_link && Reports::is_downloadable( $wero_r->ID ) ) {
+						$wero_link = Reports::page_url( $wero_r->ID );
+					}
+					if ( $wero_next && '' === $wero_link ) {
+						$wero_link = '/#partner';
+					}
 					$wero_proj   = Fields::relation( $wero_r->ID, 'progetto' );
 					$wero_cover  = get_the_post_thumbnail(
 						$wero_r,
@@ -94,8 +101,10 @@ $wero_class = 'wero-rtl-block' . ( empty( $attributes['sticky'] ) ? ' is-static'
 								<div class="rtl__actions report">
 									<?php if ( $wero_next ) : ?>
 										<a class="btn btn--line" href="<?php echo esc_url( $wero_link ); ?>"><?php echo esc_html( $wero_label ); ?></a>
+									<?php elseif ( '' !== $wero_link ) : ?>
+										<a class="btn btn--grad" href="<?php echo esc_url( $wero_link ); ?>"><?php echo esc_html( $wero_label ); ?></a>
 									<?php else : ?>
-										<a class="btn btn--grad" href="<?php echo $wero_pdf ? esc_url( $wero_pdf ) : '#'; ?>" download><?php echo esc_html( $wero_label ); ?></a>
+										<span class="btn btn--line is-disabled" aria-disabled="true"><?php esc_html_e( 'PDF in preparazione', 'wero-core' ); ?></span>
 									<?php endif; ?>
 									<?php if ( $wero_proj ) : ?>
 										<a class="report__more" href="<?php echo esc_url( get_permalink( $wero_proj[0] ) ); ?>"><?php esc_html_e( 'Scopri il progetto', 'wero-core' ); ?></a>

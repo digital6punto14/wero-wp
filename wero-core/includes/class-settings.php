@@ -219,6 +219,20 @@ final class Settings {
 				'section' => 'tools',
 				'help'    => __( 'Modulo di Contact Form 7 usato dalla sezione “Diventa partner”.', 'wero-core' ),
 			),
+			'report_form'     => array(
+				'type'    => 'cf7',
+				'default' => 0,
+				'label'   => __( 'Modulo “Scarica i report”', 'wero-core' ),
+				'section' => 'tools',
+				'help'    => __( 'Modulo di Contact Form 7 della pagina di download: l’elenco dei report si compila da solo con i Report pubblicati che hanno un PDF.', 'wero-core' ),
+			),
+			'report_page'     => array(
+				'type'    => 'page',
+				'default' => 0,
+				'label'   => __( 'Pagina “Scarica i report”', 'wero-core' ),
+				'section' => 'tools',
+				'help'    => __( 'Pagina a cui portano i pulsanti “Scarica il report” della timeline.', 'wero-core' ),
+			),
 			'disable_emoji'   => array(
 				'type'    => 'checkbox',
 				'default' => 1,
@@ -283,6 +297,7 @@ final class Settings {
 			$type = match ( $f['type'] ) {
 				'checkbox' => 'boolean',
 				'cf7'      => 'integer',
+				'page'     => 'integer',
 				default    => 'string',
 			};
 			$props[ $key ] = array( 'type' => $type );
@@ -355,6 +370,7 @@ final class Settings {
 					$out[ $key ] = array_key_exists( (string) $v, $f['choices'] ) ? (string) $v : $f['default'];
 					break;
 				case 'cf7':
+				case 'page':
 					$out[ $key ] = absint( $v );
 					break;
 				default:
@@ -458,6 +474,17 @@ final class Settings {
 					printf( '<option value="%d" %s>%s</option>', (int) $form->ID, selected( (int) $value, (int) $form->ID, false ), esc_html( get_the_title( $form ) ) );
 				}
 				echo '</select>';
+				break;
+			case 'page':
+				wp_dropdown_pages(
+					array(
+						'id'                => esc_attr( $id ),
+						'name'              => esc_attr( $name ),
+						'selected'          => (int) $value,
+						'show_option_none'  => esc_html__( '— nessuna —', 'wero-core' ),
+						'option_none_value' => '0',
+					)
+				);
 				break;
 			default:
 				$type = in_array( $f['type'], array( 'email', 'url' ), true ) ? $f['type'] : 'text';

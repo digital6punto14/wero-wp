@@ -24,3 +24,18 @@
 	.wp-block-gallery.is-style-gallery-scroller > .wp-block-image { height: 56vw; border-radius: 22px; }
 	.wero-scroller-nav { display: none; }
 }
+
+/* Galleria vuota (es. foto del progetto non ancora caricate): non compare sul sito */
+.wp-block-gallery.is-style-gallery-scroller:not(:has(.wp-block-image)) { display: none !important; }
+
+/* Galleria dentro il testo di un progetto (non a tutta larghezza): scorre nella colonna del testo */
+.wp-block-gallery.is-style-gallery-scroller:not(.alignfull) {
+	--edge: 0px;
+	padding-inline: 0 !important;
+	margin-inline: 0;
+}
+.wp-block-gallery.is-style-gallery-scroller:not(.alignfull) > .wp-block-image { height: clamp(220px, 26vw, 380px); border-radius: 22px; }
+.wp-block-gallery.is-style-gallery-scroller:not(.alignfull) + .wero-scroller-nav { margin: 16px 0 0; max-width: none; }
+@media (max-width: 900px) {
+	.wp-block-gallery.is-style-gallery-scroller:not(.alignfull) > .wp-block-image { height: 52vw; }
+}

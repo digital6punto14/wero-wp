@@ -62,9 +62,11 @@ final class Wero_Import {
 		$this->partners();
 		$this->projects();
 		$this->reports();
-		$form = $this->form();
-		$this->settings( $form );
+		$form   = $this->form();
+		$report = $this->report_form();
+		$this->settings( $form, $report );
 		$this->legal_pages();
+		$this->report_page();
 		$this->home();
 		$this->navigation();
 		$this->seo();
@@ -251,7 +253,15 @@ final class Wero_Import {
 		}
 		ob_start();
 		include $file;
-		$markup = (string) ob_get_clean();
+		return $this->expand( (string) ob_get_clean() );
+	}
+
+	/**
+	 * Espande i pattern annidati (<!-- wp:pattern {"slug":"wero-theme/…"} /-->) in blocchi modificabili.
+	 *
+	 * @param string $markup Markup.
+	 */
+	private function expand( string $markup ): string {
 		return preg_replace_callback(
 			'#<!-- wp:pattern \{"slug":"wero-theme/([a-z0-9-]+)"\} /-->#',
 			fn( $m ) => $this->pattern( $m[1] ),
@@ -323,9 +333,11 @@ final class Wero_Import {
 	private function projects(): void {
 		foreach ( $this->data['projects'] as $p ) {
 			$content = match ( $p['content'] ) {
-				'generative-bionics' => (string) file_get_contents( $this->dir . '/blocchi/generative-bionics.html' ),
+				'generative-bionics' => $this->expand( (string) file_get_contents( $this->dir . '/blocchi/generative-bionics.html' ) ),
 				'video'              => $this->pattern( 'progetto-video' ),
 				'podcast'            => $this->pattern( 'progetto-podcast' ),
+				// Ex “Voci” della home (D53): descrizione + foto a scorrimento; il video va nel campo del progetto.
+				'voce'               => "<!-- wp:paragraph -->\n<p>" . esc_html( $p['body'] ?? '' ) . "</p>\n<!-- /wp:paragraph -->\n\n" . $this->pattern( 'foto-progetto' ),
 				default              => $this->pattern( 'progetto-articolo' ),
 			};
 			if ( empty( $p['completo'] ) ) {
@@ -378,6 +390,7 @@ final class Wero_Import {
 					'descrizione'    => $r['desc'],
 					'testo_pulsante' => $r['testo_pulsante'],
 					'link_pulsante'  => $r['link_pulsante'],
+					'pdf'            => ! empty( $r['pdf'] ) ? $this->media( $r['pdf'], '' ) : 0,
 				)
 			);
 			wp_set_object_terms( $id, array( $this->worlds[ $r['world'] ] ?? 0 ), 'mondo' );
@@ -466,16 +479,119 @@ CF7;
 	}
 
 	/**
+	 * Modulo "Scarica i report" (Contact Form 7, D54).
+	 *
+	 * L'elenco dei report non è scritto nel modulo: `data:wero_reports` lo fa compilare
+	 * al plugin con i Report pubblicati che hanno un PDF; `default:get` spunta il report
+	 * arrivato dal pulsante della timeline (?report=Titolo).
+	 */
+	private function report_form(): int {
+		if ( ! class_exists( 'WPCF7_ContactForm' ) ) {
+			return 0;
+		}
+		$id   = $this->find( 'wpcf7_contact_form', 'form:report' );
+		$form = $id ? WPCF7_ContactForm::get_instance( $id ) : WPCF7_ContactForm::get_template( array( 'title' => 'Scarica i report' ) );
+		$body = <<<'CF7'
+<div class="wero-form-row">
+<label>Nome *[text* nome autocomplete:name]</label>
+<label>Email *[email* email autocomplete:email]</label>
+</div>
+<div class="wero-form-row">
+<label>Azienda / Ente[text azienda autocomplete:organization]</label>
+<label>Ruolo[text ruolo autocomplete:organization-title]</label>
+</div>
+<div class="wero-chips wero-chips--reports"><span class="wero-chips__legend">Report da scaricare *</span>[checkbox* report use_label_element default:get data:wero_reports]</div>
+[acceptance privacy]Ho letto l'<a href="/privacy-policy/" target="_blank">informativa privacy</a>[/acceptance]
+[submit "Scarica i report"]
+CF7;
+		$form->set_title( 'Scarica i report' );
+		$props         = $form->get_properties();
+		$props['form'] = $body;
+		$logo          = (string) wp_get_attachment_url( $this->media( 'wero-mark.png', 'WeRo' ) );
+		$email         = fn( string $name ) => str_replace( '{{logo}}', esc_url( $logo ), (string) file_get_contents( $this->dir . '/email/' . $name . '.html' ) );
+		// Mail 1: avviso al gestore del sito a ogni download.
+		$props['mail'] = array_merge(
+			(array) $props['mail'],
+			array(
+				'active'             => true,
+				'subject'            => '[WeRo] Download report: [report] – [nome]',
+				'sender'             => 'WeRo <noreply@we-ro.it>',
+				'recipient'          => 'contact@we-ro.it',
+				'body'               => $email( 'notifica-report' ),
+				'additional_headers' => 'Reply-To: [nome] <[email]>',
+				'attachments'        => '',
+				'use_html'           => true,
+				'exclude_blank'      => true,
+			)
+		);
+		// Mail 2: a chi ha compilato, con i link ai PDF scelti.
+		$props['mail_2']   = array_merge(
+			(array) ( $props['mail_2'] ?? array() ),
+			array(
+				'active'             => true,
+				'subject'            => 'I report di WeRo che hai richiesto',
+				'sender'             => 'WeRo <noreply@we-ro.it>',
+				'recipient'          => '[email]',
+				'body'               => $email( 'conferma-report' ),
+				'additional_headers' => 'Reply-To: WeRo <contact@we-ro.it>',
+				'attachments'        => '',
+				'use_html'           => true,
+				'exclude_blank'      => true,
+			)
+		);
+		$props['messages'] = array_merge(
+			(array) $props['messages'],
+			array(
+				'mail_sent_ok'      => 'Grazie! I link per scaricare i report sono qui sotto e te li abbiamo inviati anche per email.',
+				'mail_sent_ng'      => 'Si è verificato un errore durante l’invio. Riprova più tardi o scrivi a contact@we-ro.it.',
+				'validation_error'  => 'Controlla i campi evidenziati e riprova.',
+				'spam'              => 'Si è verificato un errore durante l’invio. Riprova più tardi.',
+				'accept_terms'      => 'Per scaricare i report devi accettare l’informativa privacy.',
+				'invalid_required'  => 'Compila questo campo.',
+				'invalid_too_long'  => 'Il testo è troppo lungo.',
+				'invalid_too_short' => 'Il testo è troppo corto.',
+				'invalid_email'     => 'Inserisci un indirizzo email valido.',
+			)
+		);
+		$form->set_properties( $props );
+		$form->save();
+		$id = (int) $form->id();
+		update_post_meta( $id, '_wero_import', 'form:report' );
+		$this->log[] = 'Modulo report CF7: ' . $id;
+		return $id;
+	}
+
+	/** Pagina "Scarica i report" (pattern del tema con il modulo) e impostazione collegata. */
+	private function report_page(): void {
+		$id = $this->upsert(
+			'page',
+			'page:scarica-report',
+			array(
+				'post_title'   => 'Scarica i report',
+				'post_name'    => 'scarica-report',
+				'post_content' => $this->pattern( 'pagina-scarica-report' ),
+			)
+		);
+		update_post_meta( $id, '_yoast_wpseo_metadesc', 'Scarica i report di WeRo sulla robotica: ricerca, percezione pubblica e comunicazione dei robot.' );
+		$s                = (array) get_option( 'wero_settings', array() );
+		$s['report_page'] = $id;
+		update_option( 'wero_settings', $s );
+		$this->log[] = 'Pagina Scarica i report: ' . $id;
+	}
+
+	/**
 	 * Impostazioni sito del plugin.
 	 *
-	 * @param int $form Modulo partner.
+	 * @param int $form   Modulo partner.
+	 * @param int $report Modulo "Scarica i report".
 	 */
-	private function settings( int $form ): void {
+	private function settings( int $form, int $report = 0 ): void {
 		$s = (array) get_option( 'wero_settings', array() );
 		if ( class_exists( '\\Wero\\Core\\Settings' ) ) {
 			$s = array_merge( \Wero\Core\Settings::defaults(), $s );
 		}
 		$s['partner_form'] = $form;
+		$s['report_form']  = $report;
 		update_option( 'wero_settings', $s );
 	}
 
@@ -587,7 +703,7 @@ CF7;
 
 	/** Home a blocchi (sezioni del tema espanse) e impostata come home statica. */
 	private function home(): void {
-		$sections = array( 'home-hero', 'home-chi-siamo', 'home-mondi', 'home-progetti', 'home-report', 'home-voci', 'home-perche', 'home-partner' );
+		$sections = array( 'home-hero', 'home-chi-siamo', 'home-mondi', 'home-progetti', 'home-report', 'home-perche', 'home-partner' );
 		$markup   = implode( "\n\n", array_map( array( $this, 'pattern' ), $sections ) );
 		$id       = $this->upsert(
 			'page',
@@ -654,7 +770,6 @@ CF7;
 			'Mondi'     => '/#mondi',
 			'Progetti'  => '/#progetti',
 			'Report'    => '/#report',
-			'Voci'      => '/#voci',
 			'Perché'    => '/#perche',
 		);
 		$items = array();

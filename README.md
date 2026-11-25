@@ -34,7 +34,7 @@ Documenti collegati:
 5. Contenuti: importali con `contenuti/import.php` (vedi sotto) oppure crea le pagine dai pattern.
 6. Applica le impostazioni dei plugin da `PLUGIN-IMPOSTAZIONI.md` e collega Site Mailer, Cookie Consent e Image Optimizer ai rispettivi account.
 
-**Importare i contenuti dell'originale.** `contenuti/import.php` crea mondi, partner, progetti, report, modulo CF7, impostazioni, pagine legali, home, menu e impostazioni di Yoast. È idempotente: rieseguirlo aggiorna, non duplica (ogni elemento ha la meta `_wero_import`). Va eseguito una volta, da WP-CLI:
+**Importare i contenuti dell'originale.** `contenuti/import.php` crea mondi, partner, progetti, report (con PDF segnaposto), moduli CF7 “Diventa partner” e “Scarica i report”, impostazioni, pagine legali, pagina “Scarica i report”, home, menu e impostazioni di Yoast. È idempotente: rieseguirlo aggiorna, non duplica (ogni elemento ha la meta `_wero_import`). Va eseguito una volta, da WP-CLI:
 
 ```bash
 wp eval-file contenuti/import.php
@@ -73,7 +73,8 @@ wero-core/             plugin
   includes/            una classe per area (vedi tabella)
   src/blocks/          sorgenti dei 14 blocchi (@wordpress/scripts)
   build/blocks/        blocchi compilati (quelli che WordPress carica)
-  assets/styles/       CSS/JS degli stili di Gruppo “Mondi” e “Voci”
+  assets/styles/       CSS/JS dello stile di Gruppo “Mondi”
+  assets/forms/        JS del modulo “Scarica i report” (link ai PDF dopo l'invio)
   assets/editor/       sorgente JS dei binding per l'editor
   acf-json/            5 gruppi di campi ACF in JSON
 contenuti/             importatore, dati, media, email HTML, testi legali
@@ -90,11 +91,12 @@ blueprint.json         Playground: installa plugin, tema, plugin WeRo e contenut
 | `Acf` | class-acf.php | Punto di caricamento e salvataggio dei JSON in `acf-json/`; avviso se ACF manca | `acf/settings/load_json`, `acf/settings/save_json`, `admin_notices` |
 | `Fields` | class-fields.php | Lettura dei campi con fallback se ACF è spento | — |
 | `Blocks` | class-blocks.php | Registra i 14 blocchi dal manifest e la categoria “WeRo” | `init`, `block_categories_all` |
-| `Block_Styles` | class-block-styles.php | Stili di Gruppo “Mondi” e “Voci”, CSS/JS caricati solo se usati | `init`, `render_block_core/group`, `enqueue_block_assets` |
+| `Block_Styles` | class-block-styles.php | Stile di Gruppo “Mondi”, CSS/JS caricati solo se usato | `init`, `render_block_core/group`, `enqueue_block_assets` |
 | `Bindings` | class-bindings.php | Sorgenti `wero/site` e `wero/field` | `init`, `enqueue_block_editor_assets` |
 | `Theme_Bridge` | class-theme-bridge.php | Colori e font delle impostazioni dentro theme.json; interruttori delle animazioni; intro; emoji | `wp_theme_json_data_theme`, `wero_theme_feature`, `body_class`, `wp_head` |
 | `Editor` | class-editor.php | Blocchi esclusi (HTML, Shortcode, Classico), categorie dei pattern, blocco della struttura della home per gli Editor, query “Altri progetti”, copertina di riserva | `allowed_block_types_all`, `block_editor_settings_all`, `query_loop_block_query_vars`, `render_block_core/post-featured-image` |
 | `Forms` | class-forms.php | CF7: CSS/JS solo dove c'è un modulo, niente `autop`, modulo scelto nelle impostazioni | `wpcf7_load_js`, `wpcf7_load_css`, `wpcf7_autop_or_not`, `render_block_contact-form-7/contact-form-selector`, `wero_partner_form_block` |
+| `Reports` | class-reports.php | Download dei report (D54): elenco automatico dei report scaricabili nel modulo CF7 (`data:wero_reports`), codice email `[_wero_report_links]`, link della timeline alla pagina di download, script che mostra i link dopo l'invio | `wpcf7_form_tag_data_option`, `wpcf7_special_mail_tags`, `wero_report_form_block` |
 | `Media` | class-media.php | Riconosce file, YouTube, Vimeo, Spotify, SoundCloud, Apple Podcasts; incorporamento solo al clic | — |
 | `Data` | class-data.php | Fonte unica dei dati per REST, abilities e schema | — |
 | `Seo` | class-seo.php | Estende il grafo di Yoast: Organization, founder, VideoObject, PodcastEpisode | `wpseo_schema_organization`, `wpseo_schema_organization_social_profiles`, `wpseo_schema_graph` |
@@ -112,14 +114,15 @@ blueprint.json         Playground: installa plugin, tema, plugin WeRo e contenut
 |---|---|---|
 | Testo delle pagine e dei progetti | Blocchi | Editor a blocchi |
 | Dati dei progetti (anno, tipo, mondo, media, persone…) | Campi ACF + tassonomia | Pannello sotto l'editor del progetto |
-| Mondi e Voci della home | Blocchi Gruppo con stile “Mondi” / “Voci” | Home, nell'editor (D51) |
+| Mondi della home | Blocchi Gruppo con stile “Mondi” | Home, nell'editor (D51) |
+| Foto dei progetti | Galleria “A scorrimento” nel contenuto | Editor del progetto (D55) |
 | Partner, report, persone | Tipi di contenuto + ACF | Menu della bacheca |
 | Email, LinkedIn, founder, colori, animazioni | Opzione `wero_settings` | Impostazioni › WeRo |
 | Title, description, schema, breadcrumb, sitemap, llms.txt | Yoast | Yoast SEO e pannello Yoast nell'editor |
 
 ### SEO e agenti AI
 - **Yoast è l'unico strumento SEO.** Il plugin non stampa meta né JSON-LD: aggiunge dati al grafo di Yoast con i suoi filtri.
-- REST `wero/v1` (pubblica, sola lettura): `/projects`, `/reports`, `/partners`, `/voices`, `/contact`.
+- REST `wero/v1` (pubblica, sola lettura): `/projects`, `/reports` (con il link alla pagina di download, non al PDF), `/partners`, `/contact`.
 - Abilities (Abilities API di WordPress, sola lettura, `show_in_rest`): `wero/get-projects`, `wero/get-reports`, `wero/get-partners`, `wero/get-contact-info`. Su `/wp-json/wp-abilities/v1` richiedono un utente collegato. Sono marcate `mcp.public`: se in futuro si installa l'MCP Adapter ufficiale di WordPress, un client MCP (per esempio Claude) le vede come strumenti senza altro codice.
 
 ---
@@ -132,6 +135,7 @@ blueprint.json         Playground: installa plugin, tema, plugin WeRo e contenut
 |---|---|---|---|
 | `wero_theme_feature` | tema, `functions.php` | `bool $enabled` (predefinito true), `string $feature` | Accende o spegne una funzione visiva: `background`, `cursor`, `reveal`, `transitions`, `nav-spy`. Il plugin lo collega alle Impostazioni › WeRo. |
 | `wero_partner_form_block` | pattern `home-partner.php` | `string $markup` (predefinito vuoto) | Markup del blocco del modulo “Diventa partner”. Il plugin restituisce il blocco CF7 del modulo scelto nelle impostazioni. |
+| `wero_report_form_block` | pattern `pagina-scarica-report.php` | `string $markup` (predefinito vuoto) | Markup del blocco del modulo “Scarica i report” (modulo scelto in Impostazioni › WeRo). |
 | `option_wero_settings` | core WordPress | `array $value` | Il plugin lo usa per unire sempre i valori predefiniti: un'impostazione nuova non è mai vuota. |
 
 Esempio: spegnere il cursore “computer vision” da un altro plugin.
@@ -150,7 +154,7 @@ Sono quelli nella tabella delle classi. Riepilogo per origine:
 - **WordPress:** `init`, `plugins_loaded`, `admin_init`, `admin_menu`, `rest_api_init`, `wp_head`, `wp_enqueue_scripts`, `enqueue_block_assets`, `enqueue_block_editor_assets`, `pre_get_posts`, `body_class`, `allowed_block_types_all`, `block_categories_all`, `block_editor_settings_all`, `query_loop_block_query_vars`, `render_block_*`, `wp_theme_json_data_theme`, `wp_abilities_api_categories_init`, `wp_abilities_api_init`, `emoji_svg_url`.
 - **Yoast:** `wpseo_schema_organization`, `wpseo_schema_organization_social_profiles`, `wpseo_schema_graph`.
 - **ACF:** `acf/settings/load_json`, `acf/settings/save_json`.
-- **Contact Form 7:** `wpcf7_load_js`, `wpcf7_load_css`, `wpcf7_autop_or_not`.
+- **Contact Form 7:** `wpcf7_load_js`, `wpcf7_load_css`, `wpcf7_autop_or_not`, `wpcf7_form_tag_data_option`, `wpcf7_special_mail_tags`; nel browser l'evento `wpcf7mailsent`.
 - **Tema:** `after_setup_theme`, `wp_enqueue_scripts`, `init` (CSS per blocco), `render_block` (script legati a un blocco), `wp_head` (preload del font).
 
 ---

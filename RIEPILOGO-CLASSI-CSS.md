@@ -129,6 +129,10 @@ Gli stati usano `is-…` (`is-open`, `is-active`, `is-playing`).
 | `wero-meta--card`, `wero-meta__info` | Card dei progetti | core--query.css | Bollino del mondo, tipo e anno nella card |
 | `wero-footer`, `wero-footer__logos`, `wero-footer__logo`, `wero-footer__h`, `wero-footer__bottom` | Pattern footer | core--group.css | Footer scuro |
 | `wero-form-row`, `wero-chips`, `wero-chips__legend` | Dentro il modulo CF7 | contact-form-7--….css | Due campi affiancati, scelte a “chip” |
+| `wero-chips--reports` | Modulo “Scarica i report” | contact-form-7--….css | Report da scegliere a riga intera, con pallino di selezione |
+| `wero-download-form` | Pattern “Pagina – Scarica i report” | — (usa lo stile Vetro) | Pannello del modulo |
+| `wero-downloads`, `__title`, `__list`, `__name`, `__link`, `__note` | Creati da report-download.js dopo l’invio | contact-form-7--….css | Riquadro con i link ai PDF scelti |
+| `wero-project-photos` | Pattern “Progetto – Foto a scorrimento” | core--gallery.css (regole `:not(.alignfull)`) | Galleria a scorrimento dentro il testo di un progetto; vuota non compare |
 | `wero-scroller-nav` | Creata da gallery-scroller.js | core--gallery.css | Frecce della galleria a scorrimento |
 
 ### Classi del body e della pagina (aggiunte dal codice)
@@ -181,7 +185,6 @@ Stile del **pulsante predefinito** (pillola con sfumatura e alone): in theme.jso
 | Classe | Nome | CSS/JS | Cosa fa |
 |---|---|---|---|
 | `is-style-wero-worlds` | Mondi | wero-worlds.css / .js | Card dei mondi in griglia; su mobile a scorrimento con puntini (`wero-worlds-dots`); il pulsante filtra la sfera |
-| `is-style-wero-voices` | Voci | wero-voices.css / .js | Card video; la copertina collegata al video avvia il player al clic (`wero-voice-player`, `wero-voice-note`) |
 
 ### Varianti dei blocchi del plugin
 - `wero/project-meta`, attributo `variant`: `card` (bollini) o `bar` (barra della testata con “Torna alla home” / “Tutti i progetti”).
@@ -206,7 +209,7 @@ Non ci sono varianti di blocco registrate in JS (`registerBlockVariation`).
 | `.projects`, `.sphere`, `.pviews`, `.pinfo`, `.plist`, `.pgrid`, `.filters`, `.pager` | Blocco `wero/projects-explorer` (`.wero-explorer`) |
 | `.why`, `.why__side`, `.why__body` | Colonne `.wero-why` |
 | `.rtl`, `.report`, `.report__cover` | Blocco `wero/report-timeline` (`.wero-rtl-block`) |
-| `.voices`, `.voice` | Gruppo `is-style-wero-voices` con Gruppi-card |
+| `.voices`, `.voice` | Eliminate: le Voci sono diventate progetti video (D53) |
 | `.partners`, `.pgroup`, `.partner`, `.pcard` | Blocco `wero/partners` |
 | `.collab`, `.tilted`, `.legend` | Blocco `wero/logo-row` |
 | `.split` | Colonne `.wero-split` |
@@ -274,7 +277,7 @@ Pesi misurati sui file di questa versione: originale / compresso gzip.
 | `project-meta` style | 1,8 KB | 0,6 KB | Testata e card dei progetti |
 | altri 6 blocchi (style) | 0,2–0,8 KB ciascuno | 0,2–0,5 KB | Solo dove c'è il blocco |
 | `wero-worlds` css / js | 3,1 / 1,2 KB | 1,0 / 0,6 KB | Solo con un Gruppo “Mondi” |
-| `wero-voices` css / js | 2,1 / 2,7 KB | 0,8 / 1,3 KB | Solo con un Gruppo “Voci” |
+| `assets/forms/report-download.js` | 2,2 KB | 0,9 KB | Solo nella pagina con il modulo “Scarica i report” |
 | `assets/editor/bindings.js` | 0,8 KB | 0,5 KB | Solo nell'editor |
 
 **Come si caricano**
@@ -334,7 +337,7 @@ Sempre dentro `.wpcf7`, così non tocca altri moduli fuori dal sito:
 | File CSS per blocco | `{namespace}--{blocco}.css` | `core--navigation.css` |
 | Handle degli asset | `wero-theme-…`, `wero-style-…` | `wero-theme-site` |
 | Blocchi | `wero/{nome}` | `wero/project-meta` |
-| Pattern | `wero-theme/{area}-{nome}` | `wero-theme/home-voci` |
+| Pattern | `wero-theme/{area}-{nome}` | `wero-theme/home-mondi` |
 | Token | slug in kebab-case | `paper-light`, `heading-story` |
 | Variabili | Solo quelle di theme.json; locali con `--wero-` | `--wero-edge` |
 | Lingua | Commenti, etichette e nomi visibili in italiano; codice e classi in inglese o italiano breve | — |

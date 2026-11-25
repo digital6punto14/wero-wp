@@ -42,3 +42,5 @@ $wero_img = get_theme_file_uri( 'assets/images/patterns/' );
 <!-- wp:wero/people {"heading":"Intervengono"} /--></div>
 <!-- /wp:column --></div>
 <!-- /wp:columns -->
+
+<!-- wp:pattern {"slug":"wero-theme/foto-progetto"} /-->

@@ -69,12 +69,20 @@ Requisiti del server: **WordPress 7.1+ e PHP 8.3+** (D37).
   - oggetto “Grazie per averci scritto, [nome] – WeRo”;
   - HTML; Reply-To `contact@we-ro.it`.
 - ✔ Messaggi in italiano, tra cui “Grazie! Ti ricontatteremo presto.”, “Compila questo campo.” e “Per inviare la richiesta devi accettare l'informativa privacy.”.
-- ✔ Modulo collegato in Impostazioni › WeRo › Moduli e funzioni.
+- ✔ Modulo **“Scarica i report”** (D54), nella pagina `/scarica-report/`:
+  - campi Nome*, Email*, Azienda / Ente, Ruolo, Report da scaricare*, privacy obbligatoria; pulsante “Scarica i report”;
+  - l'elenco dei report è il campo `[checkbox* report use_label_element default:get data:wero_reports]`: lo compila il plugin con i Report pubblicati che hanno un PDF, e spunta quello arrivato dal pulsante della timeline. **Non scrivere i report a mano nel modulo**;
+  - **Mail 1** al gestore (`contact@we-ro.it`): oggetto “[WeRo] Download report: [report] – [nome]”, con nome, email, azienda, ruolo, report, data; Reply-To a chi ha scaricato;
+  - **Mail 2** a chi compila: “I report di WeRo che hai richiesto”, con i link ai PDF (`[_wero_report_links]`);
+  - dopo l'invio i link compaiono anche sulla pagina.
+- ✔ Moduli collegati in Impostazioni › WeRo › Moduli e funzioni (modulo partner, modulo report, pagina “Scarica i report”).
 - ✔ CSS e JS di CF7 caricati **solo** nelle pagine con il modulo. Se ne occupa il plugin WeRo, non serve nessun filtro in `wp-config.php`.
 
 **Da fare**
 - ☐ Cancella il modulo di esempio **“Contact form 1”** che CF7 crea all'attivazione: il sito non lo usa.
-- ☐ Contact › Contact Forms › Diventa partner › scheda Mail: se l'indirizzo che riceve cambia, aggiorna il campo **A** della Mail 1 e il **Reply-To** della Mail 2.
+- ☐ Contact › Contact Forms › Diventa partner › scheda Mail: se l'indirizzo che riceve cambia, aggiorna il campo **A** della Mail 1 e il **Reply-To** della Mail 2. Stessa cosa nel modulo **Scarica i report** (campo **A** della Mail 1).
+- ☐ Sostituisci i due **PDF segnaposto** dei report con quelli definitivi (Report › campo “File PDF”).
+- ☐ Privacy: il modulo dei report raccoglie nome, email, azienda e ruolo per inviare i PDF e avvisare WeRo. Fai verificare al titolare che l'informativa copra anche questo uso.
 - ☐ Il dominio del mittente (`noreply@we-ro.it`) deve essere lo stesso del sito e verificato in Site Mailer, altrimenti le email finiscono nello spam.
 - ☐ Antispam (facoltativo): CF7 supporta Cloudflare Turnstile o reCAPTCHA (Contact › Integration). Sono servizi di terze parti: se li attivi, aggiungili alla cookie policy e a Cookie Consent.
 - ☐ Fai un invio di prova dal sito online e controlla che arrivino **entrambe** le email.
@@ -136,6 +144,8 @@ Nel Playground è solo installato e attivo.
 | Aspetto | Colori, font | Vuoti: si usano quelli del tema | Solo se cambia l'identità |
 | Animazioni | Interruttore generale, intro, intro solo alla prima visita, sfondo a pixel, cursore, comparsa allo scroll, transizioni tra pagine | Tutte attive | — |
 | Moduli e funzioni | Modulo “Diventa partner” | Diventa partner | — |
+| | Modulo “Scarica i report” | Scarica i report | — |
+| | Pagina “Scarica i report” | Scarica i report (`/scarica-report/`) | — |
 | | Disattiva gli emoji | Attivo | — |
 
 ## Plugin da non installare

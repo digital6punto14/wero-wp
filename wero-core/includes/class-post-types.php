@@ -1,7 +1,7 @@
 <?php
 /**
  * Tipi di contenuto: Progetto, Report, Partner, Persona.
- * (Le Voci dei progetti e le card dei Mondi sono blocchi nella pagina Home.)
+ * (Le card dei Mondi sono blocchi nella pagina Home; le ex “Voci” sono progetti video, D53.)
  *
  * Registrati nel codice (non dall'interfaccia ACF) per restare sotto controllo di versione.
  * Solo i Progetti hanno pagine pubbliche; gli altri alimentano i blocchi della home.

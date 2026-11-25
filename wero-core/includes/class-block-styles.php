@@ -3,8 +3,6 @@
  * Stili di blocco del plugin per le sezioni fatte con blocchi core.
  *
  * - core/group "Mondi": card a griglia su desktop, a scorrimento con i puntini su mobile.
- * - core/group "Voci": card video; l'immagine (copertina) collegata al video
- *   apre il player al clic, senza caricare YouTube/Vimeo prima.
  *
  * Testi, immagini e link restano blocchi Gutenberg modificabili nella pagina.
  * CSS e JS si caricano solo se la pagina contiene un gruppo con quello stile.
@@ -28,7 +26,6 @@ final class Block_Styles {
 	 */
 	private const STYLES = array(
 		'wero-worlds' => 'Mondi: card (scorrono su mobile)',
-		'wero-voices' => 'Voci: video al clic sulla copertina',
 	);
 
 	/**

@@ -74,3 +74,5 @@ $wero_img = get_theme_file_uri( 'assets/images/patterns/' );
 <!-- /wp:buttons --></div>
 <!-- /wp:group --></div>
 <!-- /wp:group -->
+
+<!-- wp:pattern {"slug":"wero-theme/foto-progetto"} /-->

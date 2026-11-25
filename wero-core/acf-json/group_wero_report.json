@@ -56,7 +56,7 @@
             "name": "testo_pulsante",
             "aria-label": "",
             "type": "text",
-            "instructions": "",
+            "instructions": "Vuoto = “Scarica il report” (pubblicato) o “Avvisami” (in arrivo).",
             "required": 0,
             "conditional_logic": 0,
             "wrapper": {
@@ -66,7 +66,7 @@
             },
             "default_value": "",
             "maxlength": "",
-            "placeholder": "Scarica il PDF",
+            "placeholder": "Scarica il report",
             "prepend": "",
             "append": ""
         },
@@ -96,7 +96,7 @@
             "name": "pdf",
             "aria-label": "",
             "type": "file",
-            "instructions": "Dalla Libreria media.",
+            "instructions": "Dalla Libreria media. Con il PDF caricato e lo stato “Pubblicato”, il report compare da solo nel modulo della pagina “Scarica i report”.",
             "required": 0,
             "conditional_logic": 0,
             "wrapper": {
@@ -112,11 +112,11 @@
         },
         {
             "key": "field_d76abdb86c751",
-            "label": "Link del pulsante (se il report è in arrivo)",
+            "label": "Link del pulsante (facoltativo)",
             "name": "link_pulsante",
             "aria-label": "",
             "type": "url",
-            "instructions": "",
+            "instructions": "Vuoto = pagina “Scarica i report” con questo report già scelto (pubblicato) oppure il modulo “Diventa partner” (in arrivo).",
             "required": 0,
             "conditional_logic": 0,
             "wrapper": {
@@ -125,7 +125,7 @@
                 "id": ""
             },
             "default_value": "",
-            "placeholder": "/#partner"
+            "placeholder": ""
         },
         {
             "key": "field_2a282c3e70b29",
@@ -175,5 +175,5 @@
     "active": true,
     "description": "Report della timeline in home.",
     "show_in_rest": 1,
-    "modified": 1795200000
+    "modified": 1795614570
 }

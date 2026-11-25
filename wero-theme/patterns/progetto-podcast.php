@@ -42,3 +42,5 @@ $wero_img = get_theme_file_uri( 'assets/images/patterns/' );
 <div class="wp-block-column wero-notes__aside" style="flex-basis:320px"><!-- wp:wero/people {"heading":"Ospiti"} /--></div>
 <!-- /wp:column --></div>
 <!-- /wp:columns -->
+
+<!-- wp:pattern {"slug":"wero-theme/foto-progetto"} /-->

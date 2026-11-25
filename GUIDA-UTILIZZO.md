@@ -62,14 +62,11 @@ Il titolo “Home” in cima si vede solo nell'editor: serve a riconoscere la pa
 | I tre mondi | Ogni card è un Gruppo: immagine, titolo, testo e pulsante si cambiano direttamente. Il link “Vedi i progetti” ha la forma `#progetti?mondo=robotics-intelligence` (o `conversation-events`, `language-design`) e filtra la sfera. |
 | Progetti (sfera) | Non si modifica qui: legge i **Progetti** (sezione 6) |
 | Perché / Chi siamo | Testi e immagini direttamente |
-| Report (timeline) | Legge i **Report** (sezione 6) |
-| Le voci dei progetti | Ogni card è un Gruppo: la copertina è un'Immagine con il **link al video** (YouTube, Vimeo o file). Per cambiare il video: seleziona l'immagine › icona del link › incolla il nuovo indirizzo. |
+| Report (timeline) | Legge i **Report** (sezione 6). Il pulsante “Scarica il report” porta alla pagina **Scarica i report** |
 | Partner e collaboratori | Leggono i **Partner** (sezione 6) |
 | Diventa partner | Testi direttamente; il modulo si modifica in Contact (sezione 10) |
 
-![Card delle Voci nell'editor](guida/28-voci-editor.jpg)
-
-**Aggiungere una card** a Mondi o Voci: seleziona una card dalla vista elenco › menu a tre puntini › **Duplica**, poi cambia testi, immagine e link.
+**Aggiungere una card** ai Mondi: seleziona una card dalla vista elenco › menu a tre puntini › **Duplica**, poi cambia testi, immagine e link.
 
 **Annullare.** `Ctrl+Z` (Mac `Cmd+Z`) annulla l'ultima modifica. Per tornare a una versione salvata: pannello a destra › **Revisioni**.
 
@@ -81,7 +78,7 @@ I **pattern** sono sezioni già pronte con lo stile del sito.
 2. Si apre una pagina vuota con lo sfondo e i font del sito.
 3. Scrivi il titolo.
 4. Per aggiungere sezioni: clicca **+** in alto a sinistra › scheda **Pattern** › categoria:
-   - **WeRo – Home**: le sezioni della home (mondi, perché, chi siamo, voci, partner…);
+   - **WeRo – Home**: le sezioni della home (mondi, perché, chi siamo, partner…);
    - **WeRo – Sezioni comuni**: blocchi racconto testo + immagine, galleria foto, fascia dei collaboratori;
    - **WeRo – Progetti**: contenuti di partenza dei 4 formati di progetto.
 5. Clicca il pattern per inserirlo, poi sostituisci testi e immagini.
@@ -94,7 +91,7 @@ I **pattern** sono sezioni già pronte con lo stile del sito.
 | Blocco | Stili |
 |---|---|
 | Pulsante | Predefinito (sfumatura), Scuro, Contorno, Contorno chiaro, Chip |
-| Gruppo | Card chiara, Pannello scuro, Vetro, Mondi, Voci |
+| Gruppo | Card chiara, Pannello scuro, Vetro, Mondi |
 | Titolo / Paragrafo | Sfumatura; il Paragrafo ha anche Bollino |
 | Immagine / Video | Arrotondata grande |
 | Galleria | A scorrimento |
@@ -176,12 +173,31 @@ Ogni progetto ha:
 4. Compila i campi sotto l'editor e il **Riassunto**.
 5. **Pubblica.** Il progetto compare subito nella sfera, nella griglia, in `/progetti/` e in “Altri progetti”.
 
+**Video.** Nei progetti con template **Video** il video è la prima cosa della pagina, subito sotto il menu. Il link si inserisce nel campo **Link del video o dell'audio** (scheda “Video o audio”); la copertina è l'**immagine in evidenza** (o il campo “Copertina” della stessa scheda). Il video parte solo quando il visitatore preme play.
+
+**Foto a scorrimento.** In fondo al testo di ogni progetto c'è una **Galleria** con lo stile “A scorrimento”, la stessa della home. Finché è vuota non compare sul sito.
+1. Clicca la galleria nell'editor (o selezionala dalla Vista elenco).
+2. **Aggiungi** › **Libreria media** (o **Carica** per foto nuove) e scegli le foto. Si possono scegliere più foto insieme.
+3. Per cambiarne l'ordine trascinale; per toglierne una selezionala e premi Canc.
+4. Ogni foto ha il suo **testo alternativo** (pannello a destra).
+
+In un progetto creato prima di questa novità, la galleria si aggiunge con **+** › Pattern › **Progetto – Foto a scorrimento**.
+
 **Ordine nella sfera e nella griglia:** campo **Ordine** nel pannello a destra (scheda Progetto). Più basso il numero, prima compare.
 
 **Gli 8 progetti con testo segnaposto** hanno un avviso in testa alla pagina. Prima della messa online sostituisci il testo e togli il blocco dell'avviso.
 
 ### Report
-**Report** nel menu. Campi: anno, stato (**Pubblicato** o **In arrivo**), testo e link del pulsante, descrizione, **PDF** (dalla Libreria media) e progetto collegato. La timeline della home li ordina per anno. Con stato “In arrivo” il pulsante porta al modulo (“Avvisami”).
+**Report** nel menu. Campi: anno, stato (**Pubblicato** o **In arrivo**), testo e link del pulsante, descrizione, **PDF** (dalla Libreria media), progetto collegato e **immagine in evidenza** (la copertina nella timeline). La timeline della home li ordina per anno.
+
+**Come si scaricano.** Il pulsante “Scarica il report” della timeline non scarica subito il PDF: porta alla pagina **Scarica i report** (`/scarica-report/`) con quel report già spuntato. Lì il visitatore lascia nome, email, azienda e ruolo, può spuntare anche gli altri report e, dopo l'invio:
+- vede subito i link per scaricare i PDF scelti;
+- riceve gli stessi link per email;
+- il gestore del sito riceve un'email con chi ha scaricato e quali report.
+
+**Aggiungere un report nuovo:** Report › Aggiungi nuovo › titolo, anno, stato **Pubblicato**, descrizione, **File PDF** e immagine in evidenza › Pubblica. Compare da solo nella timeline e nell'elenco del modulo: non serve toccare il modulo. Un report **In arrivo** o senza PDF compare nella timeline ma non nel modulo.
+
+I due PDF caricati adesso sono **segnaposto**: sostituiscili con quelli definitivi dal campo “File PDF” di ciascun report.
 
 ![Elenco dei report](guida/16-report.jpg)
 
@@ -258,7 +274,9 @@ Yoast gestisce titoli, descrizioni, anteprime social, dati strutturati, sitemap 
 | Copertina progetto (card) | 4:3 | 1600×1200 |
 | Immagine in evidenza / social | 1,91:1 | 1200×630 |
 | Card Mondi | 4:3 | 1200×900 |
-| Card Voci | 16:9 | 1280×720 |
+| Foto a scorrimento dei progetti | 3:2 (o 3:4 in verticale) | 1800×1200 |
+| Copertina del video (immagine in evidenza dei progetti video) | 16:9 | 1920×1080 |
+| Copertina dei report | 4:3 | 1200×900 |
 | Logo partner | libera | almeno 400px di larghezza, fondo trasparente |
 | Foto persone | 1:1 | 400×400 |
 
@@ -266,7 +284,11 @@ Yoast gestisce titoli, descrizioni, anteprime social, dati strutturati, sitemap 
 
 ## 10. Modulo contatti ed email
 
-Il modulo **“Diventa partner”** è in **Contact › Contact Forms**. Le schermate di Contact Form 7 possono essere in inglese finché WordPress non scarica la traduzione italiana: Form = Modulo, Mail = Email, Messages = Messaggi.
+I moduli sono in **Contact › Contact Forms**:
+- **Diventa partner** (home, sezione partner);
+- **Scarica i report** (pagina `/scarica-report/`). L'elenco dei report è il campo `[checkbox* report use_label_element default:get data:wero_reports]`: **non va cambiato**, si compila da solo con i Report pubblicati. Le sue email sono una al gestore (“Qualcuno ha scaricato un report”) e una a chi compila, con i link ai PDF (codice `[_wero_report_links]`).
+
+I due moduli sono collegati al sito da **Impostazioni › WeRo › Moduli e funzioni**. Le schermate di Contact Form 7 possono essere in inglese finché WordPress non scarica la traduzione italiana: Form = Modulo, Mail = Email, Messages = Messaggi.
 
 Se nell'elenco c'è anche **“Contact form 1”**, è il modulo di esempio che Contact Form 7 crea da solo: non è usato dal sito e si può cancellare.
 
@@ -339,8 +361,14 @@ Controlla di aver cliccato **Salva**. Poi ricarica la pagina con `Ctrl+F5` (Mac 
 **Non riesco a spostare o cancellare una sezione della home.**
 Gli Editor possono cambiare testi e immagini della home, non la sua struttura (D6). Serve un amministratore.
 
-**Come cambio il video di una Voce?**
-Seleziona l'immagine della card › icona del link nella barra del blocco › incolla il nuovo link (YouTube, Vimeo o file) › Salva.
+**Come cambio il video di un progetto?**
+Apri il progetto › sotto l'editor, scheda **Video o audio** › campo **Link del video o dell'audio** › incolla il link (YouTube, Vimeo o file) › Aggiorna.
+
+**Dove sono finite le Voci della home?**
+Sono diventate tre progetti con template Video (“When robotics become care”, “When robotics meet the world of work”, “When robots enter our space”), in Progetti. Manca solo il link al video.
+
+**Come aggiungo un report scaricabile?**
+Report › Aggiungi nuovo, stato **Pubblicato** e **File PDF** caricato: compare da solo nella timeline e nel modulo “Scarica i report”.
 
 **Come aggiungo un logo nella riga dei collaboratori?**
 Partner › Aggiungi nuovo › titolo, logo, tipo (Business o Ricerca), “Founder” no › Pubblica.

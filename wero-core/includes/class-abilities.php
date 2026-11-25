@@ -135,7 +135,7 @@ final class Abilities {
 			'wero/get-reports',
 			array(
 				'label'               => __( 'Report di WeRo', 'wero-core' ),
-				'description'         => __( 'Report pubblicati e in arrivo: titolo, anno, stato, descrizione, PDF e progetto collegato.', 'wero-core' ),
+				'description'         => __( 'Report pubblicati e in arrivo: titolo, anno, stato, descrizione, pagina di download (con modulo) e progetto collegato.', 'wero-core' ),
 				'category'            => 'wero',
 				'output_schema'       => self::list_of(
 					array(
@@ -143,7 +143,7 @@ final class Abilities {
 						'year'        => $str,
 						'status'      => $str,
 						'description' => $str,
-						'pdf'         => $str,
+						'download'    => $str,
 						'world'       => $str,
 						'project_url' => $str,
 					)

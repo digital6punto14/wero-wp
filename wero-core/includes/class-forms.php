@@ -5,6 +5,7 @@
  * - CSS e JS di CF7 caricati solo nelle pagine che contengono un modulo
  *   (filtri wpcf7_load_js / wpcf7_load_css + caricamento quando il blocco viene reso).
  * - Blocco del modulo "Diventa partner" per il pattern del tema (filtro wero_partner_form_block).
+ * - form_block(): markup del blocco CF7 di un modulo, usato anche per “Scarica i report”.
  *
  * @package WeroCore
  */
@@ -59,12 +60,21 @@ final class Forms {
 	}
 
 	/**
-	 * Markup del blocco CF7 del modulo scelto in Impostazioni sito.
+	 * Markup del blocco CF7 del modulo “Diventa partner” scelto in Impostazioni sito.
 	 *
 	 * @param string $markup Markup predefinito.
 	 */
 	public static function partner_form_block( string $markup ): string {
-		$id = (int) Settings::get( 'partner_form' );
+		return self::form_block( (int) Settings::get( 'partner_form' ), $markup );
+	}
+
+	/**
+	 * Markup del blocco di Contact Form 7 per un modulo.
+	 *
+	 * @param int    $id     ID del modulo.
+	 * @param string $markup Markup da restituire se il modulo non c'è.
+	 */
+	public static function form_block( int $id, string $markup = '' ): string {
 		if ( ! $id || ! function_exists( 'wpcf7_contact_form' ) ) {
 			return $markup;
 		}

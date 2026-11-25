@@ -39,10 +39,11 @@ Un sito WordPress con lo stesso aspetto, in cui ogni testo, immagine, progetto, 
 - **Riga dei loghi** aggiornabile ed estendibile senza limiti: ogni logo è un Partner.
 - **Email:** due email HTML con lo stile WeRo per il modulo, la notifica a WeRo e la conferma a chi scrive.
 - **Pagine progetto:** “Torna alla home” nei progetti; archivio `/progetti/` a griglia come la vista della home.
-- **Home:** Mondi e Voci modificabili direttamente nella home con i blocchi Gutenberg.
+- **Home:** Mondi e Voci modificabili direttamente nella home con i blocchi Gutenberg (le Voci poi spostate nei progetti, D53).
 - **Animazioni nuove:** comparsa delle sezioni allo scroll (N1) e transizione tra pagine (N3), entrambe disattivabili.
 - **Controllo in più:** Plugin Check, installato solo nel sito di prova.
 - **Contrasto del magenta:** lasciato com'è, fedele all'originale (D52).
+- **25/11:** Voci tolte dalla home e trasformate in progetti video; pagina “Scarica i report” con modulo, email al gestore e link ai PDF; foto a scorrimento nei progetti; video in cima ai progetti video; tutte le foto dalla Libreria media (D53–D57).
 
 ### Numeri finali
 | Controllo | Risultato |
@@ -101,7 +102,7 @@ wero-wp/
 │   ├── acf-json/              5 gruppi di campi ACF (progetto, report, partner, persona, mondo)
 │   ├── src/blocks/            sorgenti dei 14 blocchi
 │   ├── build/blocks/          blocchi compilati (quelli che WordPress usa)
-│   ├── assets/                stili di Gruppo “Mondi” e “Voci”, script dell'editor
+│   ├── assets/                stile di Gruppo “Mondi”, script dell'editor e del modulo report
 │   └── package.json           build dei blocchi con @wordpress/scripts
 │
 ├── contenuti/                 CONTENUTI DA IMPORTARE

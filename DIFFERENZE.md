@@ -23,13 +23,21 @@ Il sito WordPress riproduce l'originale (`html-source/`): layout, colori, tipogr
 | 15 | Persone (“Intervengono”, “Ospiti”) | Nomi d'esempio | Il blocco resta nascosto finché non si collegano persone vere | D43 |
 | 16 | Emoji di WordPress | — | Disattivati (uno script e un cookie in meno) | D31 |
 
+### Modifiche del 25/11/2026 (dopo la consegna)
+| Dove | Originale | WordPress | Decisione |
+|---|---|---|---|
+| Sezione “Le voci dei progetti” della home | Tre card video | **Tolta**; le tre Voci sono progetti con template Video | D53 |
+| Pulsante “Scarica il PDF” dei report | Scaricava il file | “Scarica il report” porta alla pagina **Scarica i report** con modulo; link ai PDF sulla pagina e per email; email al gestore | D54 |
+| Pagine progetto | Nessuno slider | Foto a scorrimento (come in home) in fondo al testo | D55 |
+| Pagina progetto video | Titolo, poi video | **Video in cima**, poi titolo e testo | D56 |
+
 ## 2. Differenze dovute a WordPress
 
 | Dove | Cosa cambia | Perché |
 |---|---|---|
 | Menu sotto i 1080px | Tendina del blocco Navigazione core, ristilizzata per sembrare quella originale. Apertura e chiusura, focus e tasto Esc sono gestiti da WordPress. | Il menu si modifica dal Site Editor senza codice |
 | Galleria foto degli eventi | Blocco Galleria core con stile “A scorrimento”; ora si usa anche da tastiera (frecce e Tab) | Le foto si cambiano dalla Libreria media |
-| Mondi e Voci | Gruppi di blocchi core con stile, non markup fisso | D51: ogni card si modifica direttamente nella home |
+| Mondi | Gruppi di blocchi core con stile, non markup fisso | D51: ogni card si modifica direttamente nella home |
 | Classi CSS | Nomi diversi (`wero-…`, `is-style-…`) | Mappa completa in RIEPILOGO-CLASSI-CSS.md, sezione 5 |
 | Altezza delle pagine | Tra il 90% e il 104% dell'originale | Effetto delle voci sopra (breadcrumb, link legali, avviso segnaposto) e degli spazi di theme.json arrotondati ai token |
 | Markup | Wrapper in più dei blocchi (`wp-block-…`, `is-layout-…`) | Struttura standard dei blocchi; non cambia l'aspetto |

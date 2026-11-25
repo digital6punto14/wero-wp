@@ -59,6 +59,6 @@ final class Acf {
 		if ( function_exists( 'acf_get_field_groups' ) || ! current_user_can( 'activate_plugins' ) ) {
 			return;
 		}
-		echo '<div class="notice notice-warning"><p>' . esc_html__( 'WeRo Core: attiva Advanced Custom Fields per modificare i campi di progetti, report, partner e voci. I blocchi continuano a mostrare i dati già salvati.', 'wero-core' ) . '</p></div>';
+		echo '<div class="notice notice-warning"><p>' . esc_html__( 'WeRo Core: attiva Advanced Custom Fields per modificare i campi di progetti, report, partner e persone. I blocchi continuano a mostrare i dati già salvati.', 'wero-core' ) . '</p></div>';
 	}
 }

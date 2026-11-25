@@ -42,3 +42,42 @@
 .wpcf7 form.sent .wpcf7-response-output { color: #0b8a4a; }
 .wpcf7 form.invalid .wpcf7-response-output, .wpcf7 form.failed .wpcf7-response-output, .wpcf7 form.spam .wpcf7-response-output { color: #c4004a; }
 @media (max-width: 560px) { .wpcf7 .wero-form-row { grid-template-columns: 1fr; } }
+
+/* Modulo “Scarica i report”: elenco dei report come scelte a riga intera */
+.wpcf7 .wero-chips--reports .wpcf7-checkbox { flex-direction: column; align-items: stretch; }
+.wpcf7 .wero-chips--reports .wpcf7-list-item label { display: block; }
+.wpcf7 .wero-chips--reports .wpcf7-list-item-label { display: block; border-radius: var(--wp--preset--border-radius--small, 14px); text-align: left; }
+
+/* Link ai PDF dopo l'invio (creati da report-download.js del plugin) */
+.wero-downloads {
+	margin-top: var(--wp--preset--spacing--medium);
+	padding: clamp(20px, 3vw, 28px);
+	border-radius: var(--wp--preset--border-radius--medium, 22px);
+	background: var(--wp--preset--color--paper-light);
+	box-shadow: inset 0 0 0 1px var(--wp--custom--line);
+	outline: none;
+}
+.wero-downloads:focus-visible { outline: 3px solid var(--wp--preset--color--magenta); outline-offset: 3px; }
+.wero-downloads__title { margin: 0 0 12px; font-size: var(--wp--preset--font-size--large); font-weight: 500; letter-spacing: -0.02em; }
+.wero-downloads__list { list-style: none; margin: 0; padding: 0; }
+.wero-downloads__list li {
+	display: flex; align-items: center; justify-content: space-between; gap: 16px; flex-wrap: wrap;
+	padding: 14px 0; border-bottom: 1px solid var(--wp--custom--line);
+}
+.wero-downloads__name { font-weight: 500; }
+.wero-downloads__link {
+	display: inline-flex; align-items: center; padding: 10px 20px; border-radius: 999px;
+	background: var(--wp--preset--gradient--wero); color: #fff !important; font-weight: 600; font-size: 15px; text-decoration: none;
+	box-shadow: var(--wp--preset--shadow--glow); transition: transform .2s var(--wp--custom--ease);
+}
+.wero-downloads__link:hover { transform: translateY(-2px); }
+.wero-downloads__note { margin: 14px 0 0; font-size: var(--wp--preset--font-size--small); color: var(--wp--preset--color--ink-soft); }
+@media (prefers-reduced-motion: reduce) { .wero-downloads__link { transition: none; } }
+.wpcf7 .wero-chips--reports .wpcf7-list-item-label { display: flex; align-items: center; gap: 12px; padding: 12px 16px; font-size: 15px; }
+.wpcf7 .wero-chips--reports .wpcf7-list-item-label::before {
+	content: ""; flex: 0 0 20px; height: 20px; border-radius: 50%;
+	box-shadow: inset 0 0 0 1.5px currentColor; transition: background .2s, box-shadow .2s;
+}
+.wpcf7 .wero-chips--reports input:checked + .wpcf7-list-item-label::before {
+	background: var(--wp--preset--gradient--wero); box-shadow: inset 0 0 0 5px var(--wp--preset--color--ink);
+}

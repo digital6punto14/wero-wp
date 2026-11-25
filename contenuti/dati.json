@@ -1,5 +1,5 @@
 {
-	"_nota": "Dati importati da contenuti/import.php (Fase 4). Testi e alt dall’originale html-source.",
+	"_nota": "Dati importati da contenuti/import.php (Fase 4). Testi e alt dall’originale html-source. Le tre “Voci” della home sono diventate progetti video (D53). I PDF dei report sono segnaposto da sostituire.",
 	"worlds": [
 		{
 			"code": "ri",
@@ -351,6 +351,69 @@
 			"meta": null,
 			"ordine": 11,
 			"completo": false
+		},
+		{
+			"title": "When robotics become care",
+			"world": "ce",
+			"tipo": "Video",
+			"anno": 2025,
+			"icona": "hand",
+			"descrizione_breve": "Come la robotica può prendersi cura delle persone.",
+			"excerpt": "Come la robotica può prendersi cura delle persone.",
+			"template": "progetto-video",
+			"content": "voce",
+			"body": "Come la robotica può prendersi cura delle persone: assistenza, riabilitazione e tecnologie indossabili che restituiscono autonomia nella vita di tutti i giorni.",
+			"image": "voce-care.webp",
+			"image_alt": "Copertina del video “When robotics become care”",
+			"con": "",
+			"episodio": "",
+			"media_durata": "",
+			"meta": null,
+			"ordine": 12,
+			"completo": true,
+			"voce": true
+		},
+		{
+			"title": "When robotics meet the world of work",
+			"world": "ce",
+			"tipo": "Video",
+			"anno": 2025,
+			"icona": "gear",
+			"descrizione_breve": "Robot e persone che lavorano fianco a fianco.",
+			"excerpt": "Robot e persone che lavorano fianco a fianco.",
+			"template": "progetto-video",
+			"content": "voce",
+			"body": "Robot e persone che lavorano fianco a fianco: cosa cambia nelle fabbriche, negli uffici e nelle competenze, e come costruire una collaborazione basata sulla fiducia.",
+			"image": "voce-work.webp",
+			"image_alt": "Copertina del video “When robotics meet the world of work”",
+			"con": "",
+			"episodio": "",
+			"media_durata": "",
+			"meta": null,
+			"ordine": 13,
+			"completo": true,
+			"voce": true
+		},
+		{
+			"title": "When robots enter our space",
+			"world": "ce",
+			"tipo": "Video",
+			"anno": 2025,
+			"icona": "robot",
+			"descrizione_breve": "Quando i robot escono dai laboratori ed entrano in case, negozi e città.",
+			"excerpt": "Quando i robot escono dai laboratori ed entrano in case, negozi e città.",
+			"template": "progetto-video",
+			"content": "voce",
+			"body": "Quando i robot escono dai laboratori ed entrano in case, negozi e città: come progettare una convivenza chiara, sicura e comprensibile per tutti.",
+			"image": "voce-space.webp",
+			"image_alt": "Copertina del video “When robots enter our space”",
+			"con": "",
+			"episodio": "",
+			"media_durata": "",
+			"meta": null,
+			"ordine": 14,
+			"completo": true,
+			"voce": true
 		}
 	],
 	"reports": [
@@ -361,9 +424,10 @@
 			"stato": "pubblicato",
 			"desc": "Report sull’accessibilità della robotica e sul suo impatto nella vita delle persone.",
 			"ordine": 0,
-			"testo_pulsante": "Scarica il PDF",
+			"testo_pulsante": "",
 			"link_pulsante": "",
-			"progetto": "Accessible Robotics"
+			"progetto": "Accessible Robotics",
+			"pdf": "report-accessible-robotics.pdf"
 		},
 		{
 			"title": "How can we disrupt robotics perceptions",
@@ -372,9 +436,10 @@
 			"stato": "pubblicato",
 			"desc": "Come cambiare la percezione dei robot: da macchine a “tools for human beings”.",
 			"ordine": 1,
-			"testo_pulsante": "Scarica il PDF",
+			"testo_pulsante": "",
 			"link_pulsante": "",
-			"progetto": "How can we disrupt robotics perceptions"
+			"progetto": "How can we disrupt robotics perceptions",
+			"pdf": "report-how-can-we-disrupt-robotics-perceptions.pdf"
 		},
 		{
 			"title": "Il prossimo report",
@@ -385,27 +450,8 @@
 			"ordine": 2,
 			"testo_pulsante": "Avvisami",
 			"link_pulsante": "/#partner",
-			"progetto": ""
-		}
-	],
-	"voices": [
-		{
-			"title": "When robotics become care",
-			"image": "voce-care.webp",
-			"desc": "Come la robotica può prendersi cura delle persone: assistenza, riabilitazione e tecnologie indossabili che restituiscono autonomia nella vita di tutti i giorni.",
-			"ordine": 0
-		},
-		{
-			"title": "When robotics meet the world of work",
-			"image": "voce-work.webp",
-			"desc": "Robot e persone che lavorano fianco a fianco: cosa cambia nelle fabbriche, negli uffici e nelle competenze, e come costruire una collaborazione basata sulla fiducia.",
-			"ordine": 1
-		},
-		{
-			"title": "When robots enter our space",
-			"image": "voce-space.webp",
-			"desc": "Quando i robot escono dai laboratori ed entrano in case, negozi e città: come progettare una convivenza chiara, sicura e comprensibile per tutti.",
-			"ordine": 2
+			"progetto": "",
+			"pdf": ""
 		}
 	],
 	"site": {
