@@ -173,7 +173,11 @@ Ogni progetto ha:
 4. Compila i campi sotto l'editor e il **Riassunto**.
 5. **Pubblica.** Il progetto compare subito nella sfera, nella griglia, in `/progetti/` e in “Altri progetti”.
 
-**Video.** Nei progetti con template **Video** il video è la prima cosa della pagina, subito sotto il menu. Il link si inserisce nel campo **Link del video o dell'audio** (scheda “Video o audio”); la copertina è l'**immagine in evidenza** (o il campo “Copertina” della stessa scheda). Il video parte solo quando il visitatore preme play.
+**Video.** Nei progetti con template **Video** il video è la prima cosa della pagina, subito sotto il menu. Si inserisce nella scheda **Video o audio** sotto l'editor, in uno dei due modi:
+- **Video su YouTube (o Vimeo):** incolla il link della pagina del video nel campo **Link del video (YouTube, Vimeo) o dell'audio**, per esempio `https://www.youtube.com/watch?v=…` o `https://youtu.be/…`. YouTube si carica solo quando il visitatore preme play (nella modalità di privacy avanzata di YouTube, youtube-nocookie.com).
+- **Video caricato sul sito:** nel campo **Oppure carica il video sul sito** scegli **Aggiungi file** e carica l'MP4 (o scegli un video già nella Libreria media). Formato consigliato MP4 H.264; il peso massimo dipende dall'hosting. Se c'è un file caricato, ha la precedenza sul link.
+
+La copertina mostrata prima del play è il campo **Copertina del player** o, se vuoto, l'**immagine in evidenza**. Il video parte solo quando il visitatore preme play.
 
 **Foto a scorrimento.** In fondo al testo di ogni progetto c'è una **Galleria** con lo stile “A scorrimento”, la stessa della home. Finché è vuota non compare sul sito.
 1. Clicca la galleria nell'editor (o selezionala dalla Vista elenco).
@@ -362,7 +366,7 @@ Controlla di aver cliccato **Salva**. Poi ricarica la pagina con `Ctrl+F5` (Mac 
 Gli Editor possono cambiare testi e immagini della home, non la sua struttura (D6). Serve un amministratore.
 
 **Come cambio il video di un progetto?**
-Apri il progetto › sotto l'editor, scheda **Video o audio** › campo **Link del video o dell'audio** › incolla il link (YouTube, Vimeo o file) › Aggiorna.
+Apri il progetto › sotto l'editor, scheda **Video o audio** › incolla il link YouTube o Vimeo nel campo **Link del video**, oppure carica l'MP4 nel campo **Oppure carica il video sul sito** › Aggiorna.
 
 **Dove sono finite le Voci della home?**
 Sono diventate tre progetti con template Video (“When robotics become care”, “When robotics meet the world of work”, “When robots enter our space”), in Progetti. Manca solo il link al video.

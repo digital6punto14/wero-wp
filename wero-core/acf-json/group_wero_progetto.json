@@ -177,11 +177,11 @@
         },
         {
             "key": "field_a0966cb8b4a9a",
-            "label": "Link del video o dell’audio",
+            "label": "Link del video (YouTube, Vimeo) o dell’audio",
             "name": "media_link",
             "aria-label": "",
             "type": "url",
-            "instructions": "Qualsiasi link: YouTube, Vimeo, Spotify, SoundCloud, Apple Podcasts o un file. Se carichi un file qui sotto, ha la precedenza.",
+            "instructions": "Video su YouTube o Vimeo: incolla il link della pagina del video (es. https://www.youtube.com/watch?v=… o https://youtu.be/…). Audio: link di Spotify, SoundCloud o Apple Podcasts. Per un video caricato sul sito usa il campo qui sotto.",
             "required": 0,
             "conditional_logic": 0,
             "wrapper": {
@@ -194,11 +194,11 @@
         },
         {
             "key": "field_048ead1fb8781",
-            "label": "Oppure carica il file",
+            "label": "Oppure carica il video (o l’audio) sul sito",
             "name": "media_file",
             "aria-label": "",
             "type": "file",
-            "instructions": "",
+            "instructions": "Video ospitato sul sito: MP4 (H.264) consigliato, anche WebM o MOV; per l’audio MP3 o M4A. Il peso massimo dipende dall’hosting. Se carichi un file, ha la precedenza sul link.",
             "required": 0,
             "conditional_logic": 0,
             "wrapper": {
@@ -451,5 +451,5 @@
     "active": true,
     "description": "Dati strutturati dei progetti. Il testo resta nei blocchi.",
     "show_in_rest": 1,
-    "modified": 1795200000
+    "modified": 1795615556
 }
