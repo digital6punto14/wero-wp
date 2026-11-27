@@ -35,7 +35,9 @@
     var bend = (Math.min(85, Math.max(5, o.curve)) * Math.PI) / 180;
     var A = o.aspectRatio;
 
-    root.style.containerType = 'size';
+    // Misure in pixel dalla larghezza e altezza del contenitore (W, H), non in unità cqw/cqh:
+    // così la riga funziona anche dove le unità dei container non esistono (Safari < 16, Chrome < 105).
+    var W = 0, H = 0;
     var style = document.createElement('style');
     var band = document.createElement('div');
     band.className = 'tilted__band';
@@ -44,11 +46,10 @@
     root.append(style, band);
 
     // ogni lunghezza è un multiplo dell'altezza del tile
-    function u(n) {
-      return 'calc(' + r4(n) + ' * min(' + o.tileHeight + 'cqh, ' + r4(MAX_WIDTH / A) + 'cqw))';
-    }
+    function tileH() { return Math.min((o.tileHeight / 100) * H, ((MAX_WIDTH / A) / 100) * W); }
+    function u(n) { return r4(n * tileH()) + 'px'; }
     var R = 100 * arc(bend);
-    var radius = r4(R) + 'cqw';
+    var radius = '0px';
     function turn(d) { return 'translateZ(' + radius + ') rotateY(' + r4(d) + 'deg) translateZ(-' + radius + ')'; }
 
     // precarica tutte le immagini
@@ -58,6 +59,7 @@
     var shown = {};
 
     function build(L) {
+      radius = r4((R / 100) * W) + 'px';
       var hide = r4(((L.sweep - L.limit) / (2 * L.sweep || 1)) * 100);
       style.textContent =
         '@keyframes ' + orbit + '{' +
@@ -69,7 +71,7 @@
       var share = A / SLICES;
       var duration = L.columns * o.speed;
       var mask = 'linear-gradient(90deg,transparent,#000 ' + o.fade + '%,#000 ' + (100 - o.fade) + '%,transparent)';
-      band.style.perspective = r4(R * CAMERA) + 'cqw';
+      band.style.perspective = r4((R * CAMERA / 100) * W) + 'px';
       band.style.perspectiveOrigin = '50% ' + o.axis + '%';
       band.style.maskImage = mask;
       band.style.webkitMaskImage = mask;
@@ -122,15 +124,23 @@
       }
     }
 
-    var ro = new ResizeObserver(function (entries) {
-      var r = entries[0].contentRect;
-      var next = measure(r.width, r.height, o.tileHeight, A, o.gap, bend);
-      if (layout && layout.columns === next.columns && layout.sweep === next.sweep && layout.unit === next.unit) return;
-      layout = next;
+    function resize(width, height) {
+      width = Math.round(width); height = Math.round(height);
+      if (!width || !height || (width === W && height === H)) return;
+      W = width; H = height;
+      layout = measure(W, H, o.tileHeight, A, o.gap, bend);
       build(layout);
       band.style.opacity = '1';
-    });
-    ro.observe(root);
+    }
+    var ro = null;
+    if (window.ResizeObserver) {
+      ro = new ResizeObserver(function (entries) { var r = entries[0].contentRect; resize(r.width, r.height); });
+      ro.observe(root);
+    } else {
+      var check = function () { var r = root.getBoundingClientRect(); resize(r.width, r.height); };
+      check();
+      window.addEventListener('resize', check);
+    }
 
     // fuori schermo: pausa le animazioni
     var io = new IntersectionObserver(function (en) {
@@ -140,7 +150,7 @@
     });
     io.observe(root);
 
-    return { destroy: function () { ro.disconnect(); io.disconnect(); style.remove(); band.remove(); } };
+    return { destroy: function () { if (ro) ro.disconnect(); io.disconnect(); style.remove(); band.remove(); } };
   }
 
   /* ---- WordPress: tessere generate dal logo caricato (logo bianco + etichetta) ---- */
@@ -161,9 +171,15 @@
       if (img) {
         var bw = 300, bh = 150, s = Math.min(bw / img.naturalWidth, bh / img.naturalHeight);
         var dw = img.naturalWidth * s, dh = img.naturalHeight * s;
-        x.filter = 'brightness(0) invert(1)';
-        x.drawImage(img, (TILE_W - dw) / 2, 130 + (bh - dh) / 2, dw, dh);
-        x.filter = 'none';
+        // Logo bianco: sagoma riempita di bianco con il canale alfa del logo.
+        // (Non si usa ctx.filter: in Safari è disattivato di serie in tutte le versioni.)
+        var m = document.createElement('canvas'); m.width = Math.max(1, Math.ceil(dw)); m.height = Math.max(1, Math.ceil(dh));
+        var y = m.getContext('2d');
+        y.drawImage(img, 0, 0, dw, dh);
+        y.globalCompositeOperation = 'source-in';
+        y.fillStyle = '#fff';
+        y.fillRect(0, 0, m.width, m.height);
+        x.drawImage(m, (TILE_W - dw) / 2, 130 + (bh - dh) / 2);
       }
       try { return { src: c.toDataURL('image/png'), alt: t.alt }; } catch (e) { return { src: t.src, alt: t.alt }; }
     });

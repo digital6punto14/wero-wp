@@ -141,6 +141,8 @@ Gli stati usano `is-…` (`is-open`, `is-active`, `is-playing`).
 | `wero-reveal` (body) | Plugin, se “Comparsa allo scroll” è attiva | Abilita N1 |
 | `intro-on` / `intro-skip` (html) | Plugin, script in `<head>` prima del primo disegno | Mostra o salta l'intro |
 | `bg-glow`, `dot-trail` | background.js, cursor.js | Canvas dello sfondo a pixel e del cursore |
+| `wero-legacy` (html) | Controllo in `<head>` del tema (functions.php), solo nei browser senza `:where()` | Attiva `assets/css/legacy.css`: versione semplificata di pulsanti, link, stili dei blocchi e larghezze |
+| `is-empty` (galleria) | gallery-scroller.js | Nasconde la galleria “A scorrimento” senza foto anche dove manca `:has()` |
 
 ### Blocchi del plugin (classi interne, non da usare a mano)
 | Blocco | Classe radice | Parti principali |
@@ -246,6 +248,7 @@ Pesi misurati sui file di questa versione: originale / compresso gzip.
 | File | Peso | gzip | Quando si carica |
 |---|---|---|---|
 | `assets/css/site.css` | 3,9 KB | 1,7 KB | Tutte le pagine (e nell'editor) |
+| `assets/css/legacy.css` | 3,3 KB | 1,1 KB | **Solo** nei browser senza `:where()` (Safari < 14, Chrome < 88), caricato dal controllo in `<head>` |
 | `assets/css/view-transitions.css` | 0,7 KB | 0,4 KB | Tutte le pagine, se “Transizioni tra pagine” è attiva |
 | `blocks/core--navigation.css` | 4,8 KB | 1,4 KB | Con il blocco Navigazione |
 | `blocks/core--query.css` | 3,6 KB | 1,1 KB | Con il blocco Query |

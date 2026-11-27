@@ -13,7 +13,7 @@ zip -qr consegna/wero-theme.zip wero-theme \
 
 zip -qr consegna/wero-core.zip wero-core \
   -x 'wero-core/node_modules/*' 'wero-core/src/*' 'wero-core/package.json' \
-     'wero-core/package-lock.json' '*.log' '*/.DS_Store' '*.map'
+     'wero-core/package-lock.json' 'wero-core/tools/*' '*.log' '*/.DS_Store' '*.map'
 
 # Installer: il file del plugin + una copia di contenuti/ nella stessa cartella.
 tmp="$(mktemp -d)"

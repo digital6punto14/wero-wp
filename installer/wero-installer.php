@@ -2,7 +2,7 @@
 /**
  * Plugin Name:       WeRo – Installazione contenuti
  * Description:       Importa una sola volta i contenuti iniziali del sito WeRo (progetti, report, partner, pagine, moduli, menu, impostazioni). Da eliminare dopo l'uso.
- * Version:           0.2.0
+ * Version:           0.2.1
  * Requires at least: 6.9
  * Requires PHP:      8.2
  * Author:            WeRo

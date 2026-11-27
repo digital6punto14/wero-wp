@@ -27,6 +27,7 @@
 
 /* Galleria vuota (es. foto del progetto non ancora caricate): non compare sul sito */
 .wp-block-gallery.is-style-gallery-scroller:not(:has(.wp-block-image)) { display: none !important; }
+.wp-block-gallery.is-style-gallery-scroller.is-empty { display: none !important; } /* stesso effetto senza :has (Safari < 15.4, Chrome < 105): classe messa da gallery-scroller.js */
 
 /* Galleria dentro il testo di un progetto (non a tutta larghezza): scorre nella colonna del testo */
 .wp-block-gallery.is-style-gallery-scroller:not(.alignfull) {

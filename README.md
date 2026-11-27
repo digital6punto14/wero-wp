@@ -15,6 +15,7 @@ Documenti collegati:
 - `DIFFERENZE.md`: cosa cambia rispetto all'HTML originale.
 - `DECISIONI.md`: tutte le decisioni (D1–D52).
 - `RIEPILOGO-LAVORO.md`: riepilogo del lavoro, struttura dei file e gestione di GitHub.
+- `verifica/compatibilita-browser.html`: compatibilità con Safari, Safari iOS, Chrome e Android, versioni e anni.
 - `PROCEDURA-AGGIORNAMENTI.md`: cosa fare a ogni aggiornamento di WordPress, plugin e PHP.
 - `PROMPT-RIVISTO.md`: il prompt iniziale riscritto con quanto imparato.
 - `verifica/VERIFICA.md`: esito dei controlli della fase 6.
@@ -196,7 +197,7 @@ Sono quelli nella tabella delle classi. Riepilogo per origine:
    ```bash
    cd wero-core && npm install && npm run build
    ```
-   Lo script genera `build/blocks/nome/` e aggiorna `build/blocks/blocks-manifest.php`. `Blocks::register()` registra tutto il manifest con `wp_register_block_types_from_metadata_collection`: non c'è altro da aggiungere in PHP.
+   Lo script genera `build/blocks/nome/` e aggiorna `build/blocks/blocks-manifest.php`. Subito dopo (`postbuild`) `tools/legacy-views.js` converte gli script `view.js` per i browser elencati in `browserslist` di `package.json` (Safari/iOS 12+, Chrome 70+): non scrivere a mano sintassi che lì non esiste senza ricompilare. `Blocks::register()` registra tutto il manifest con `wp_register_block_types_from_metadata_collection`: non c'è altro da aggiungere in PHP.
 3. Fai il commit anche di `build/`: è ciò che WordPress carica (lo zip non contiene `src/` né `node_modules/`).
 
 ### …un campo ACF (plugin)

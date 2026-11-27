@@ -17,7 +17,7 @@ define( 'WERO_THEME_VERSION', wp_get_theme( get_template() )->get( 'Version' ) )
 /**
  * Indica se una funzione visiva del tema è attiva.
  *
- * @param string $feature Nome: background, cursor, reveal, nav-spy.
+ * @param string $feature Nome: background, cursor, reveal, transitions.
  * @return bool
  */
 function wero_theme_feature( string $feature ): bool {
@@ -63,6 +63,22 @@ function wero_theme_enqueue_styles(): void {
 	);
 }
 add_action( 'wp_enqueue_scripts', 'wero_theme_enqueue_styles' );
+
+/**
+ * Versione semplificata per browser vecchi (Safari/iOS < 14, Chrome < 88):
+ * un controllo di una riga in <head> verifica se il browser conosce :where();
+ * se non lo conosce aggiunge la classe wero-legacy e carica assets/css/legacy.css.
+ * Nei browser recenti il file non viene scaricato.
+ */
+function wero_theme_enqueue_legacy_check(): void {
+	wp_register_script( 'wero-theme-legacy', false, array(), WERO_THEME_VERSION, false );
+	wp_enqueue_script( 'wero-theme-legacy' );
+	wp_add_inline_script(
+		'wero-theme-legacy',
+		'(function(d){try{d.querySelector(":where(html)")}catch(e){d.documentElement.className+=" wero-legacy";var l=d.createElement("link");l.rel="stylesheet";l.href=' . wp_json_encode( add_query_arg( 'ver', WERO_THEME_VERSION, get_theme_file_uri( 'assets/css/legacy.css' ) ) ) . ';d.head.appendChild(l)}})(document);'
+	);
+}
+add_action( 'wp_enqueue_scripts', 'wero_theme_enqueue_legacy_check', 1 );
 
 /**
  * N3 — transizione tra pagine con la View Transitions API (solo CSS, nativa del browser).
@@ -138,7 +154,8 @@ add_action( 'wp_enqueue_scripts', 'wero_theme_enqueue_scripts' );
 
 /**
  * Script legati a un blocco: caricati solo quando il blocco è nella pagina.
- * - Navigazione: voce attiva che segue lo scorrimento della home.
+ * - Navigazione: voce attiva che segue lo scorrimento della home e ripiego
+ *   del menu mobile per i browser senza import map (Safari/iOS < 16.4).
  * - Galleria con stile "A scorrimento": frecce avanti/indietro.
  *
  * @param string $content Markup del blocco.
@@ -147,7 +164,7 @@ add_action( 'wp_enqueue_scripts', 'wero_theme_enqueue_scripts' );
  */
 function wero_theme_enqueue_block_scripts( string $content, array $block ): string {
 	$map  = array(
-		'core/navigation' => array( 'nav', 'nav-spy' ),
+		'core/navigation' => array( 'nav', '' ), // Sempre: contiene il ripiego del menu mobile per i browser senza import map.
 		'core/gallery'    => array( 'gallery-scroller', '' ),
 	);
 	$name = $block['blockName'] ?? '';

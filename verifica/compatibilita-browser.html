@@ -3,7 +3,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600&family=Inter:wght@400;500;600&display=swap">
 <style>
-/* Layout: report a colonna unica, tabelle per browser in testa, schede dei problemi sotto, fonti in fondo. */
+/* Layout: report a colonna unica, verdetto per browser in testa, tabelle per versione, interventi fatti, fonti in fondo. */
 :root {
 	--bg: #f6f4ee;
 	--surface: #ffffff;
@@ -43,15 +43,12 @@ p { margin: 0; max-width: 68ch; }
 .meta { font-size: 13px; color: var(--muted); margin-top: 14px; }
 .eyebrow { font-size: 12px; text-transform: uppercase; letter-spacing: .08em; color: var(--accent); font-weight: 600; }
 section { display: grid; gap: 14px; }
-
-/* verdetto */
 .verdict { display: grid; grid-template-columns: repeat(auto-fit, minmax(230px, 1fr)); gap: 14px; }
 .vcard { background: var(--surface); border: 1px solid var(--line); border-radius: 14px; padding: 18px; display: grid; gap: 6px; align-content: start; }
 .vcard .who { font-family: var(--display); font-size: 17px; font-weight: 600; }
-.vcard .big { font-family: var(--display); font-size: 26px; font-weight: 500; letter-spacing: -0.02em; }
+.vcard .big { font-family: var(--display); font-size: 24px; font-weight: 500; letter-spacing: -0.02em; }
+.vcard .was { font-size: 13px; color: var(--muted); }
 .vcard .sub { font-size: 14px; color: var(--muted); }
-
-/* tabelle */
 .tablewrap { overflow-x: auto; border: 1px solid var(--line); border-radius: 14px; background: var(--surface); }
 table { border-collapse: collapse; width: 100%; min-width: 640px; font-size: 14.5px; }
 th, td { text-align: left; padding: 11px 14px; border-bottom: 1px solid var(--line); vertical-align: top; }
@@ -65,8 +62,6 @@ td.y { white-space: nowrap; font-variant-numeric: tabular-nums; color: var(--mut
 .bad { background: var(--bad-bg); color: var(--bad); }
 .plus { background: var(--plus-bg); color: var(--plus); }
 caption { caption-side: top; text-align: left; padding: 14px 14px 4px; font-family: var(--display); font-size: 18px; font-weight: 600; }
-
-/* problemi */
 .issues { display: grid; gap: 14px; }
 .issue { background: var(--surface); border: 1px solid var(--line); border-radius: 14px; padding: 18px 20px; display: grid; gap: 10px; }
 .issue header { display: flex; gap: 10px; align-items: baseline; flex-wrap: wrap; justify-content: space-between; }
@@ -83,10 +78,10 @@ a { color: var(--accent); }
 
 <main class="page">
 	<header>
-		<div class="eyebrow">WeRo · sito WordPress · tema e plugin 0.2.0</div>
+		<div class="eyebrow">WeRo · sito WordPress · tema e plugin 0.2.1</div>
 		<h1>Compatibilità con i browser</h1>
-		<p class="lead">Fino a quale versione, e di quale anno, il sito funziona su Safari (Mac), Safari iOS, Android e Chrome. Analisi del codice che il sito invia davvero al browser (WordPress 7.1.5, tema, plugin WeRo, Contact Form 7, Yoast), confrontato con i dati di caniuse.com e MDN.</p>
-		<p class="meta">27 novembre 2026 · dati caniuse-lite 1.0.30001828 e @mdn/browser-compat-data · 31 file CSS/JS e 72 blocchi in linea su 8 pagine</p>
+		<p class="lead">Fino a quale versione, e di quale anno, il sito funziona su Safari (Mac), Safari iOS, Android e Chrome, dopo le correzioni del 27 novembre 2026. Analisi del codice che il sito invia davvero al browser (WordPress 7.1.5, tema, plugin WeRo, Contact Form 7, Yoast), confrontato con i dati di caniuse.com e MDN.</p>
+		<p class="meta">27 novembre 2026 · dati caniuse-lite 1.0.30001828 e @mdn/browser-compat-data · 31 file CSS/JS e 72 blocchi in linea su 8 pagine · effetti verificati con simulazioni in Chromium</p>
 	</header>
 
 	<section aria-labelledby="sintesi">
@@ -94,26 +89,30 @@ a { color: var(--accent); }
 		<div class="verdict">
 			<div class="vcard">
 				<span class="who">Safari Mac</span>
-				<span class="big">16.4+ · 2023</span>
-				<span class="sub">Tutto funziona. Dalla 14 (2020) il sito si usa, con i limiti descritti sotto. Prima della 14 non si usa.</span>
+				<span class="big">Completo da 14.1 · 2021</span>
+				<span class="was">Prima delle correzioni: 16.4 · 2023</span>
+				<span class="sub">Versione semplificata ma usabile anche su Safari 12–14.0 (2018–2020).</span>
 			</div>
 			<div class="vcard">
 				<span class="who">Safari iOS (iPhone, iPad)</span>
-				<span class="big">16.4+ · 2023</span>
-				<span class="sub">Tutto funziona. Su iOS 16.0–16.3 il menu non si apre; su iOS 15 anche la riga dei loghi resta vuota.</span>
+				<span class="big">Completo da 14.5 · 2021</span>
+				<span class="was">Prima delle correzioni: 16.4 · 2023</span>
+				<span class="sub">Ora funziona tutto anche su iPhone 6s, 7 e SE fermi a iOS 15. Versione semplificata su iOS 12–14.4.</span>
 			</div>
 			<div class="vcard">
 				<span class="who">Chrome (computer)</span>
-				<span class="big">105+ · 2022</span>
-				<span class="sub">Tutto funziona. Si aggiorna da solo: le versioni vecchie sono circa l'1% degli utenti Chrome.</span>
+				<span class="big">Completo da 88 · 2021</span>
+				<span class="was">Prima delle correzioni: 105 · 2022</span>
+				<span class="sub">Versione semplificata ma usabile su Chrome 70–87 (2018–2020).</span>
 			</div>
 			<div class="vcard">
 				<span class="who">Android (Chrome, Samsung Internet)</span>
-				<span class="big">105+ · 2022</span>
-				<span class="sub">Chrome Android come Chrome. Samsung Internet: tutto dalla 20 (2023).</span>
+				<span class="big">Completo da 88 · 2021</span>
+				<span class="was">Prima delle correzioni: 105 · 2022</span>
+				<span class="sub">Samsung Internet completo dalla 15 (2021), prima era dalla 20 (2023).</span>
 			</div>
 		</div>
-		<p class="note">Il limite più basso di tutti lo fissano WordPress e Contact Form 7: i loro script usano JavaScript del 2020–2021 e il CSS di WordPress usa i selettori <code>:where()</code>/<code>:is()</code>. Sotto Safari 14 e Chrome 85–88 il sito non si usa, indipendentemente dal tema WeRo.</p>
+		<p class="note">Risolto anche un difetto che toccava <strong>tutti i Safari, compresi i più recenti</strong>: i loghi della riga curva dei collaboratori non diventavano bianchi, perché Safari non applica i filtri del canvas (<code>ctx.filter</code> è disattivato di serie in ogni versione).</p>
 	</section>
 
 	<section aria-labelledby="fasce">
@@ -122,15 +121,14 @@ a { color: var(--accent); }
 		<div class="tablewrap">
 			<table>
 				<caption>Safari Mac e Safari iOS (stessi numeri di versione)</caption>
-				<thead><tr><th>Versione</th><th>Uscita</th><th>Stato</th><th>Cosa non funziona</th></tr></thead>
+				<thead><tr><th>Versione</th><th>Uscita</th><th>Stato</th><th>Cosa cambia</th></tr></thead>
 				<tbody>
-					<tr><td class="v">18.2 e successive</td><td class="y">dic 2024</td><td><span class="pill ok">Completo</span></td><td>Niente. Con le versioni 18.2+ e 26+ si vedono anche le animazioni aggiuntive (transizione tra pagine, comparsa allo scroll).</td></tr>
-					<tr><td class="v">16.4 – 18.1</td><td class="y">mar 2023</td><td><span class="pill ok">Completo</span></td><td>Niente di importante. Mancano solo le animazioni aggiuntive: le pagine si aprono normalmente.</td></tr>
-					<tr><td class="v">16.0 – 16.3</td><td class="y">set 2022</td><td><span class="pill warn">Con limiti</span></td><td><strong>Menu su telefono e finestre strette (sotto 1080 px): il pulsante non apre il menu.</strong> Su computer e iPad orizzontale il menu è visibile e funziona.</td></tr>
-					<tr><td class="v">15.4 – 15.8</td><td class="y">mar 2022</td><td><span class="pill warn">Con limiti</span></td><td>Come sopra, più: <strong>la riga curva dei loghi dei collaboratori resta vuota</strong>.</td></tr>
-					<tr><td class="v">15.0 – 15.3</td><td class="y">set 2021</td><td><span class="pill warn">Con limiti</span></td><td>Come sopra, più: le gallerie di foto vuote dei progetti lasciano uno spazio bianco.</td></tr>
-					<tr><td class="v">14.0 – 14.8</td><td class="y">set 2020</td><td><span class="pill bad">Molto degradato</span></td><td>Come sopra, più: <strong>player video e copertine delle card hanno altezza zero</strong> (non si vedono). Sulla 14.0 anche spaziature e posizionamenti sbagliati.</td></tr>
-					<tr><td class="v">prima della 14</td><td class="y">prima di set 2020</td><td><span class="pill bad">Non utilizzabile</span></td><td>Gli script di WordPress e del modulo contatti non partono; buona parte dello stile del tema a blocchi non si applica.</td></tr>
+					<tr><td class="v">18.2 e successive</td><td class="y">dic 2024</td><td><span class="pill ok">Completo</span></td><td>Tutto, comprese le animazioni aggiuntive (transizione tra pagine dalla 18.2, comparsa allo scroll dalla 26).</td></tr>
+					<tr><td class="v">14.1 – 18.1</td><td class="y">apr 2021</td><td><span class="pill ok">Completo</span></td><td>Tutto: menu su telefono, riga dei loghi, player, card, gallerie, moduli e download dei report. Mancano solo le animazioni aggiuntive.</td></tr>
+					<tr><td class="v">14.0</td><td class="y">set 2020</td><td><span class="pill ok">Quasi completo</span></td><td>Funziona tutto; alcuni spazi tra elementi affiancati sono più stretti (gli spazi “gap” nei blocchi flessibili arrivano con la 14.1).</td></tr>
+					<tr><td class="v">13.1</td><td class="y">mar 2020</td><td><span class="pill warn">Semplificato</span></td><td>Versione semplificata: pulsanti, fasce scure e link con uno stile più semplice; tutti i contenuti, il menu, la sfera, la timeline, il player e i moduli funzionano.</td></tr>
+					<tr><td class="v">12 – 13.0</td><td class="y">2018 – 2019</td><td><span class="pill warn">Semplificato</span></td><td>Come sopra. I moduli si inviano senza la verifica immediata dei campi; dopo “Scarica i report” i link ai PDF arrivano solo per email.</td></tr>
+					<tr><td class="v">prima della 12</td><td class="y">prima del 2018</td><td><span class="pill bad">Non verificato</span></td><td>Fuori dall’obiettivo. I testi restano leggibili, ma non è garantito altro.</td></tr>
 				</tbody>
 			</table>
 		</div>
@@ -138,14 +136,13 @@ a { color: var(--accent); }
 		<div class="tablewrap">
 			<table>
 				<caption>Chrome computer, Chrome Android, WebView Android (stessi numeri di versione)</caption>
-				<thead><tr><th>Versione</th><th>Uscita</th><th>Stato</th><th>Cosa non funziona</th></tr></thead>
+				<thead><tr><th>Versione</th><th>Uscita</th><th>Stato</th><th>Cosa cambia</th></tr></thead>
 				<tbody>
-					<tr><td class="v">126 e successive</td><td class="y">giu 2024</td><td><span class="pill ok">Completo</span></td><td>Niente, con tutte le animazioni aggiuntive.</td></tr>
-					<tr><td class="v">105 – 125</td><td class="y">ago 2022</td><td><span class="pill ok">Completo</span></td><td>Niente di importante. Sotto la 126 manca la transizione tra pagine; sotto la 115 manca anche la comparsa allo scroll.</td></tr>
-					<tr><td class="v">89 – 104</td><td class="y">mar 2021</td><td><span class="pill warn">Con limiti</span></td><td>Riga curva dei loghi vuota; gallerie vuote dei progetti con spazio bianco.</td></tr>
-					<tr><td class="v">88</td><td class="y">gen 2021</td><td><span class="pill warn">Con limiti</span></td><td>Come sopra, più: menu su telefono e finestre strette non si apre.</td></tr>
-					<tr><td class="v">85 – 87</td><td class="y">ago 2020</td><td><span class="pill bad">Non utilizzabile</span></td><td>Lo stile di WordPress (<code>:where()</code>) non si applica; player e card senza altezza.</td></tr>
-					<tr><td class="v">prima della 85</td><td class="y">prima di ago 2020</td><td><span class="pill bad">Non utilizzabile</span></td><td>Gli script di WordPress e del modulo contatti non partono.</td></tr>
+					<tr><td class="v">126 e successive</td><td class="y">giu 2024</td><td><span class="pill ok">Completo</span></td><td>Tutto, con tutte le animazioni aggiuntive.</td></tr>
+					<tr><td class="v">88 – 125</td><td class="y">gen 2021</td><td><span class="pill ok">Completo</span></td><td>Tutto. Sotto la 126 manca la transizione tra pagine, sotto la 115 la comparsa allo scroll.</td></tr>
+					<tr><td class="v">80 – 87</td><td class="y">feb – nov 2020</td><td><span class="pill warn">Semplificato</span></td><td>Versione semplificata (stile più semplice di pulsanti, fasce e link); tutti i contenuti e le funzioni ci sono.</td></tr>
+					<tr><td class="v">70 – 79</td><td class="y">2018 – 2019</td><td><span class="pill warn">Semplificato</span></td><td>Come sopra; moduli senza verifica immediata dei campi e link ai report solo per email.</td></tr>
+					<tr><td class="v">prima della 70</td><td class="y">prima del 2018</td><td><span class="pill bad">Non verificato</span></td><td>Fuori dall’obiettivo.</td></tr>
 				</tbody>
 			</table>
 		</div>
@@ -153,73 +150,59 @@ a { color: var(--accent); }
 		<div class="tablewrap">
 			<table>
 				<caption>Samsung Internet (Android)</caption>
-				<thead><tr><th>Versione</th><th>Uscita</th><th>Stato</th><th>Cosa non funziona</th></tr></thead>
+				<thead><tr><th>Versione</th><th>Uscita</th><th>Stato</th><th>Cosa cambia</th></tr></thead>
 				<tbody>
-					<tr><td class="v">20 e successive</td><td class="y">gen 2023</td><td><span class="pill ok">Completo</span></td><td>Niente di importante. La transizione tra pagine arriva con la 28 (2025).</td></tr>
-					<tr><td class="v">15 – 19</td><td class="y">2021 – 2022</td><td><span class="pill warn">Con limiti</span></td><td>Riga curva dei loghi vuota; gallerie vuote con spazio bianco.</td></tr>
-					<tr><td class="v">prima della 15</td><td class="y">prima del 2021</td><td><span class="pill bad">Non utilizzabile</span></td><td>Stile di WordPress non applicato; player e card senza altezza; menu su telefono bloccato.</td></tr>
+					<tr><td class="v">15 e successive</td><td class="y">2021</td><td><span class="pill ok">Completo</span></td><td>Tutto; la transizione tra pagine arriva con la 28 (2025).</td></tr>
+					<tr><td class="v">10 – 14</td><td class="y">2019 – 2021</td><td><span class="pill warn">Semplificato</span></td><td>Versione semplificata, contenuti e funzioni completi.</td></tr>
 				</tbody>
 			</table>
 		</div>
 	</section>
 
-	<section aria-labelledby="quanti">
-		<h2 id="quanti">Quante persone ne sono toccate</h2>
-		<div class="tablewrap">
-			<table>
-				<thead><tr><th>Browser</th><th>Sotto la versione “completo”</th><th>Quota sul traffico web mondiale</th><th>Quota sugli utenti di quel browser</th></tr></thead>
-				<tbody>
-					<tr><td>Safari iOS</td><td class="v">&lt; 16.4</td><td class="y">0,35%</td><td class="v">≈ 2,6%</td></tr>
-					<tr><td>Safari Mac</td><td class="v">&lt; 16.4</td><td class="y">0,12%</td><td class="v">≈ 4%</td></tr>
-					<tr><td>Chrome computer</td><td class="v">&lt; 105</td><td class="y">0,28%</td><td class="v">≈ 1,1%</td></tr>
-					<tr><td>Samsung Internet</td><td class="v">&lt; 20</td><td class="y">0,01%</td><td class="v">≈ 0,5%</td></tr>
-					<tr><td>Chrome Android</td><td class="v">&lt; 105</td><td class="y" colspan="2">Non misurabile: caniuse riporta solo l’ultima versione, perché si aggiorna da sola tramite Play Store.</td></tr>
-				</tbody>
-			</table>
-		</div>
-		<p class="note">Dati di utilizzo mondiali di caniuse, non solo italiani. Chi è fermo a iOS 15 ha di solito un iPhone 6s, 7 o SE di prima generazione: questi modelli non possono passare a iOS 16. Chi è fermo a Safari 15 su Mac usa macOS Catalina.</p>
-	</section>
-
-	<section aria-labelledby="problemi">
-		<h2 id="problemi">I problemi, uno per uno</h2>
+	<section aria-labelledby="fatto">
+		<h2 id="fatto">Cosa è stato corretto</h2>
 		<div class="issues">
 			<article class="issue">
-				<header><h3>1 · Il menu su telefono non si apre</h3><span class="pill warn">Safari/iOS &lt; 16.4 · Chrome &lt; 89</span></header>
+				<header><h3>1 · Menu su telefono</h3><span class="pill ok">Corretto</span></header>
 				<dl>
-					<dt>Causa</dt><dd>Il blocco Navigazione di WordPress apre il menu con un modulo JavaScript caricato tramite <em>import map</em> (Safari 16.4, marzo 2023; Chrome 89, marzo 2021). WordPress non aggiunge un sostituto per i browser più vecchi.</dd>
-					<dt>Verifica</dt><dd>Simulata in Chromium togliendo l’import map: su telefono il pulsante non apre il menu, su computer le voci restano visibili e funzionano.</dd>
-					<dt>Soluzione</dt><dd>Poche righe in <code>wero-theme/assets/js/nav.js</code>: se il browser non conosce le import map, il pulsante apre e chiude il menu da solo. Il limite scende a Safari 14 / Chrome 85.</dd>
+					<dt>Prima</dt><dd>Su Safari/iOS prima della 16.4 e Chrome prima della 89 il pulsante del menu non faceva nulla: il blocco Navigazione di WordPress usa un modulo JavaScript con <em>import map</em>, che quei browser non conoscono.</dd>
+					<dt>Ora</dt><dd>Lo script del tema (<code>nav.js</code>, sempre caricato con il menu) apre e chiude il menu quando WordPress non ci riesce, con chiusura da pulsante, tasto Esc e clic su una voce. Dove WordPress funziona, non interviene.</dd>
 				</dl>
 			</article>
 			<article class="issue">
-				<header><h3>2 · La riga curva dei loghi resta vuota</h3><span class="pill warn">Safari/iOS &lt; 16 · Chrome &lt; 105 · Samsung &lt; 20</span></header>
+				<header><h3>2 · Riga curva dei loghi</h3><span class="pill ok">Corretto</span></header>
 				<dl>
-					<dt>Causa</dt><dd>Il blocco “Riga curva dei loghi” calcola la curva con le unità <code>cqw</code>/<code>cqh</code> (Safari 16, settembre 2022; Chrome 105, agosto 2022).</dd>
-					<dt>Verifica</dt><dd>Simulata togliendo le unità: la fascia scura resta, i loghi spariscono.</dd>
-					<dt>Soluzione</dt><dd>Nel file <code>view.js</code> del blocco, calcolare le misure in pixel (il blocco conosce già la propria larghezza). Il limite scende a Safari 13.1 / Chrome 80.</dd>
+					<dt>Prima</dt><dd>Vuota su Safari prima della 16 e Chrome prima della 105 (unità <code>cqw</code>/<code>cqh</code>). Su <strong>tutti</strong> i Safari i loghi restavano nei colori originali invece che bianchi (filtri del canvas non attivi).</dd>
+					<dt>Ora</dt><dd>Misure calcolate in pixel dalla larghezza della fascia; logo reso bianco con una sagoma (composizione del canvas), metodo supportato ovunque.</dd>
 				</dl>
 			</article>
 			<article class="issue">
-				<header><h3>3 · Player video e copertine delle card senza altezza</h3><span class="pill bad">Safari/iOS &lt; 15 · Chrome &lt; 88</span></header>
+				<header><h3>3 · Player video, card e miniature</h3><span class="pill ok">Corretto</span></header>
 				<dl>
-					<dt>Causa</dt><dd>Le proporzioni 16:9 del player e 4:3 delle card usano <code>aspect-ratio</code> (Safari 15, settembre 2021; Chrome 88, gennaio 2021). Senza, i riquadri hanno altezza zero.</dd>
-					<dt>Verifica</dt><dd>Simulata togliendo la proprietà: player 0 px (invece di 666), card dell’archivio 0 px (invece di 287).</dd>
-					<dt>Soluzione</dt><dd>Regola di riserva con <code>@supports not (aspect-ratio: 1)</code> e il vecchio metodo del <code>padding-top</code>. Il limite scende a Safari 14.</dd>
+					<dt>Prima</dt><dd>Altezza zero, quindi invisibili, senza <code>aspect-ratio</code> (Safari prima della 15, Chrome prima della 88).</dd>
+					<dt>Ora</dt><dd>Regole di riserva che entrano in gioco solo dove <code>aspect-ratio</code> manca: 16:9 per il player, 4:3 per card e miniature.</dd>
 				</dl>
 			</article>
 			<article class="issue">
-				<header><h3>4 · Galleria di foto vuota con spazio bianco</h3><span class="pill warn">Safari/iOS &lt; 15.4 · Chrome &lt; 105</span></header>
+				<header><h3>4 · Galleria vuota</h3><span class="pill ok">Corretto</span></header>
 				<dl>
-					<dt>Causa</dt><dd>La galleria dei progetti ancora senza foto viene nascosta con il selettore <code>:has()</code> (Safari 15.4, marzo 2022; Chrome 105).</dd>
-					<dt>Effetto</dt><dd>Solo nei progetti senza foto: in fondo al testo resta uno spazio vuoto. Il contenuto non manca.</dd>
-					<dt>Soluzione</dt><dd>Lo script della galleria aggiunge una classe alle gallerie vuote; il CSS nasconde quella classe.</dd>
+					<dt>Prima</dt><dd>Spazio bianco nei progetti senza foto, senza <code>:has()</code> (Safari prima della 15.4, Chrome prima della 105).</dd>
+					<dt>Ora</dt><dd>Lo script della galleria segna le gallerie vuote, che vengono nascoste ovunque.</dd>
 				</dl>
 			</article>
 			<article class="issue">
-				<header><h3>5 · Limite fissato da WordPress e Contact Form 7</h3><span class="pill bad">Safari &lt; 14 · Chrome &lt; 85–88</span></header>
+				<header><h3>5 · JavaScript dei blocchi</h3><span class="pill ok">Corretto</span></header>
 				<dl>
-					<dt>Causa</dt><dd>Gli script di WordPress (<code>hooks</code>, <code>i18n</code>, Interactivity API) e di Contact Form 7 usano JavaScript del 2020–2021 (<code>||=</code>, <code>??=</code>, campi di classe). Il CSS dei blocchi usa <code>:where()</code>/<code>:is()</code> (Safari 14, Chrome 88).</dd>
-					<dt>Soluzione</dt><dd>Nessuna ragionevole dal tema: è il livello minimo che WordPress stesso supporta. Va accettato.</dd>
+					<dt>Prima</dt><dd>La sfera dei progetti usava JavaScript del 2020 (Safari 13.1+, Chrome 80+).</dd>
+					<dt>Ora</dt><dd>Tutti gli script dei blocchi WeRo sono compilati per Safari/iOS 12+ e Chrome 70+, in automatico a ogni build.</dd>
+				</dl>
+			</article>
+			<article class="issue">
+				<header><h3>6 · Versione semplificata per i browser più vecchi</h3><span class="pill plus">Nuovo</span></header>
+				<dl>
+					<dt>Perché</dt><dd>WordPress scrive gli stili di pulsanti, link e stili dei blocchi dentro il selettore <code>:where()</code> (Safari 14, Chrome 88). Prima di quelle versioni i pulsanti diventavano link blu e le fasce scure diventavano chiare, con testo e loghi bianchi invisibili.</dd>
+					<dt>Ora</dt><dd>Un controllo di una riga nell’intestazione della pagina riconosce questi browser e carica <code>legacy.css</code> (3,3 KB): pulsanti a pillola, fasce scure, link, larghezze del contenuto. I browser recenti non lo scaricano.</dd>
+					<dt>Limite</dt><dd>Su Safari 13.0 e precedenti, e Chrome 79 e precedenti, alcuni script di WordPress e Contact Form 7 non partono. I moduli si inviano lo stesso, ma senza verifica immediata dei campi; dopo “Scarica i report” i link ai PDF arrivano solo per email.</dd>
 				</dl>
 			</article>
 		</div>
@@ -249,9 +232,23 @@ a { color: var(--accent); }
 		<h2 id="metodo">Come è stata fatta l’analisi</h2>
 		<ul class="plain">
 			<li>Raccolti dal sito di prova (WordPress Playground, WordPress 7.1.5) tutti i CSS e JS caricati su home, 4 tipi di progetto, archivio, “Scarica i report” e privacy: 31 file e 72 blocchi in linea. Esclusi gli strumenti visibili solo agli amministratori.</li>
-			<li>CSS analizzato con <code>doiuse</code> (dati caniuse) e con una ricerca mirata delle proprietà recenti. JavaScript analizzato con un parser per trovare la versione del linguaggio e le funzioni usate.</li>
+			<li>CSS analizzato con <code>doiuse</code> (dati caniuse) e con una ricerca mirata delle proprietà recenti; JavaScript analizzato con un parser per trovare la versione del linguaggio e le funzioni usate.</li>
 			<li>Versioni minime e anni dai dati ufficiali di caniuse.com e MDN (browser-compat-data).</li>
-			<li>Effetti verificati in Chromium simulando un browser vecchio, cioè togliendo dal codice ricevuto una funzione alla volta: import map, <code>aspect-ratio</code>, unità <code>cqw</code>, <code>overflow: clip</code>. Togliendo <code>overflow: clip</code> nessuna pagina scorre di lato, a 375 e a 1440 px.</li>
+			<li>Tre simulazioni in Chromium, togliendo dal codice ricevuto ciò che i browser vecchi non conoscono:
+				<ul>
+					<li><strong>“2021”:</strong> senza import map, <code>:has()</code>, unità <code>cqw</code> e <code>overflow: clip</code>;</li>
+					<li><strong>“pre-2020”:</strong> in più senza <code>:where()</code>/<code>:is()</code>, <code>aspect-ratio</code>, <code>inset</code> e senza gli script in JavaScript recente;</li>
+					<li><strong>“moderno”:</strong> per escludere peggioramenti.</li>
+				</ul>
+				Risultati:
+				<ul>
+					<li>menu del telefono apribile in tutte e tre;</li>
+					<li>player visibile (16:9);</li>
+					<li>loghi sulla curva;</li>
+					<li>nessuno scorrimento laterale a 375 e 1440 px;</li>
+					<li>nei browser moderni nessuna differenza e <code>legacy.css</code> non scaricato.</li>
+				</ul>
+			</li>
 			<li><strong>Non è stato possibile provare su Safari reale:</strong> qui non c’è WebKit. Prima della pubblicazione conviene una prova su un iPhone con iOS 15 e uno con iOS 16, anche con un servizio come BrowserStack.</li>
 		</ul>
 	</section>

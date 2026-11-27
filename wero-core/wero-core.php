@@ -3,7 +3,7 @@
  * Plugin Name:       WeRo Core
  * Plugin URI:        https://we-ro.it
  * Description:       Struttura dei contenuti, campi, blocchi, impostazioni e SEO del sito WeRo. Indipendente dal tema: resta valido anche cambiando tema.
- * Version:           0.2.0
+ * Version:           0.2.1
  * Requires at least: 6.9
  * Requires PHP:      8.2
  * Author:            WeRo
@@ -19,7 +19,7 @@ namespace Wero\Core;
 
 defined( 'ABSPATH' ) || exit;
 
-const VERSION = '0.2.0';
+const VERSION = '0.2.1';
 const FILE    = __FILE__;
 define( 'WERO_CORE_DIR', plugin_dir_path( __FILE__ ) );
 define( 'WERO_CORE_URL', plugin_dir_url( __FILE__ ) );

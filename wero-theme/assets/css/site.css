@@ -19,9 +19,9 @@ img { max-width: 100%; }
 .wp-site-blocks > * + * { margin-block-start: 0; }
 
 /* effetti globali (creati da assets/js/background.js e cursor.js) */
-.bg-glow { position: fixed; inset: 0; width: 100vw; height: 100vh; z-index: -1; display: block; opacity: 0; transition: opacity .8s ease; pointer-events: none; }
+.bg-glow { position: fixed; top: 0; right: 0; bottom: 0; left: 0; width: 100vw; height: 100vh; z-index: -1; display: block; opacity: 0; transition: opacity .8s ease; pointer-events: none; }
 .bg-glow.is-ready { opacity: 1; }
-.dot-trail { position: fixed; inset: 0; width: 100vw; height: 100vh; z-index: 1100; pointer-events: none; }
+.dot-trail { position: fixed; top: 0; right: 0; bottom: 0; left: 0; width: 100vw; height: 100vh; z-index: 1100; pointer-events: none; }
 
 /* titoli e testi in sfumatura (stile di blocco "Sfumatura") */
 .is-style-heading-gradient,

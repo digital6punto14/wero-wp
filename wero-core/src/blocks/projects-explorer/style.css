@@ -121,3 +121,12 @@
 .wero-explorer button { font: inherit; color: inherit; }
 .wero-explorer .pinfo__link { color: #fff; }
 .wero-explorer .prow a, .wero-explorer .pgcard a { color: var(--wp--preset--color--ink, #15121a); }
+
+/* Browser senza aspect-ratio (Safari < 15, Chrome < 88): proporzioni 4:3 con altezze e padding */
+@supports not (aspect-ratio: 1 / 1) {
+  .wero-explorer .prow__thumb { height: 72px; }
+  .wero-explorer .pgcard__media { position: relative; }
+  .wero-explorer .pgcard__media::before { content: ""; display: block; padding-top: 75%; }
+  .wero-explorer .pgcard__media img, .wero-explorer .pgcard__media .pgcard__ph { position: absolute; top: 0; left: 0; }
+  @media (max-width: 900px) { .wero-explorer .prow__thumb { height: 54px; } }
+}

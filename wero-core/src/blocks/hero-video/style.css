@@ -1,8 +1,8 @@
 /* Hero: video a tutto schermo, testi bianchi (dall'originale .hero) */
 .wero-hero, .wero-hero *, .wero-hero *::before, .wero-hero *::after { box-sizing: border-box; }
 .wero-hero { position: relative; min-height: 100vh; min-height: 100svh; display: flex; align-items: flex-end; color: #fff; background: var(--wp--preset--color--ink, #15121a); overflow: hidden; margin-top: 0 !important; margin-bottom: 0 !important; }
-.wero-hero__media, .wero-hero__scrim { position: absolute; inset: 0; }
-.wero-hero__poster, .wero-hero__player, .wero-hero__player > * { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; border: 0; }
+.wero-hero__media, .wero-hero__scrim { position: absolute; top: 0; right: 0; bottom: 0; left: 0; }
+.wero-hero__poster, .wero-hero__player, .wero-hero__player > * { position: absolute; top: 0; right: 0; bottom: 0; left: 0; width: 100%; height: 100%; object-fit: cover; border: 0; }
 .wero-hero__player:empty { display: none; }
 .wero-hero__player { background: #000; z-index: 3; }
 .wero-hero__scrim { background: linear-gradient(to top, rgba(10, 8, 12, .78), rgba(10, 8, 12, .25) 55%, rgba(10, 8, 12, .1)); transition: opacity .6s ease; }

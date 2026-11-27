@@ -7,7 +7,7 @@
 .wero-dot--business { background: #ff3f7a; }
 .wero-dot--ricerca { background: #7b5cff; }
 .wero-tilted { position: relative; height: clamp(220px, 26vw, 340px); overflow: hidden; container-type: size; }
-.wero-tilted .tilted__band { position: absolute; inset: 0; pointer-events: none; transition: opacity .5s ease; }
+.wero-tilted .tilted__band { position: absolute; top: 0; right: 0; bottom: 0; left: 0; pointer-events: none; transition: opacity .5s ease; }
 .wero-tilted .tilted__tile { position: absolute; transform-style: preserve-3d; }
 .wero-tilted .tilted__slice { position: absolute; top: 0; overflow: hidden; }
 .wero-tilted .tilted__slice img { position: absolute; top: 0; max-width: none; object-fit: cover; }

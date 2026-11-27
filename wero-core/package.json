@@ -1,6 +1,6 @@
 {
 	"name": "wero-core",
-	"version": "0.1.0",
+	"version": "0.2.1",
 	"private": true,
 	"description": "Blocchi del plugin WeRo Core",
 	"license": "GPL-2.0-or-later",
@@ -8,9 +8,19 @@
 		"build": "wp-scripts build --webpack-src-dir=src/blocks --output-path=build/blocks --blocks-manifest",
 		"start": "wp-scripts start --webpack-src-dir=src/blocks --output-path=build/blocks --blocks-manifest",
 		"lint:js": "wp-scripts lint-js src",
-		"lint:css": "wp-scripts lint-style \"src/**/*.css\""
+		"lint:css": "wp-scripts lint-style \"src/**/*.css\"",
+		"postbuild": "node tools/legacy-views.js"
 	},
 	"devDependencies": {
 		"@wordpress/scripts": "^31.0.0"
-	}
+	},
+	"browserslist": [
+		"extends @wordpress/browserslist-config",
+		"safari >= 12",
+		"ios_saf >= 12",
+		"chrome >= 70",
+		"and_chr >= 70",
+		"samsung >= 10",
+		"firefox >= 68"
+	]
 }

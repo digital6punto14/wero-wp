@@ -9,7 +9,7 @@
   document.querySelectorAll('.wp-block-gallery.is-style-gallery-scroller').forEach(function (row) {
     if (row.dataset.weroScroller) return;
     /* galleria ancora vuota (es. foto del progetto da caricare): niente frecce */
-    if (!row.querySelector(':scope > .wp-block-image')) return;
+    if (!row.querySelector('.wp-block-image')) { row.classList.add('is-empty'); return; }
     row.dataset.weroScroller = '1';
     /* raggiungibile e scorrevole anche da tastiera (frecce sinistra/destra) */
     if (!row.hasAttribute('tabindex')) row.tabIndex = 0;
